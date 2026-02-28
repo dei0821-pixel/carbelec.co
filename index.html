@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CARBELEC S.A.S. | Carbon Electric - Ferretería en Bogotá</title>
+  <meta name="description" content="Ferretería CARBELEC: +1,600 productos. Herramientas Truper, Bosch, DeWalt, Stanley, Makita. Repuestos, eléctricos, seguridad industrial. Envío gratis. Bogotá.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root{--y:#FFD100;--yl:#FFE34D;--yd:#D4AD00;--b:#0A0A0A;--bl:#111;--bc:#171717;--gd:#222;--g:#888;--gl:#BBB;--w:#F5F0E8;--r:#C0392B}
+    *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'DM Sans',sans-serif;background:var(--b);color:var(--w);overflow-x:hidden}
+
+    /* NAV */
+    .nav{position:fixed;top:0;width:100%;z-index:1000;padding:.8rem 0;transition:all .4s;background:transparent}
+    .nav.scrolled{background:rgba(10,10,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,209,0,.1);padding:.5rem 0}
+    .nav-c{max-width:1300px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center}
+    .nav-logo{text-decoration:none}.nav-logo img{height:50px;width:auto;transition:height .3s}
+    .nav.scrolled .nav-logo img{height:40px}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-links a{text-decoration:none;color:var(--gl);font-size:.82rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;transition:color .3s;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--y);transition:width .3s}
+    .nav-links a:hover{color:var(--y)}.nav-links a:hover::after{width:100%}
+    .nav-btns{display:flex;align-items:center;gap:.5rem}
+    .nav-ml{display:flex;align-items:center;gap:.5rem;background:var(--y);color:var(--b);padding:.55rem 1.2rem;border-radius:50px;text-decoration:none;font-size:.78rem;font-weight:700;transition:transform .3s,box-shadow .3s}
+    .nav-ml:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,209,0,.3)}
+    .nav-wa{display:flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;padding:.55rem 1.2rem;border-radius:50px;text-decoration:none;font-size:.78rem;font-weight:600;transition:transform .3s,box-shadow .3s}
+    .nav-wa:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(37,211,102,.3)}
+    .mob-tog{display:none;background:none;border:none;color:var(--w);font-size:1.5rem;cursor:pointer}
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(255,209,0,.06) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(255,209,0,.04) 0%,transparent 50%),linear-gradient(180deg,var(--b),var(--bl))}
+    .hero-pat{position:absolute;inset:0;opacity:.025;background-image:linear-gradient(rgba(255,209,0,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,209,0,.4) 1px,transparent 1px);background-size:80px 80px}
+    .hero-c{position:relative;max-width:1300px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center}
+    .hero-badge{display:inline-flex;align-items:center;gap:.6rem;background:rgba(255,209,0,.08);border:1px solid rgba(255,209,0,.2);padding:.5rem 1.2rem;border-radius:50px;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--y);margin-bottom:1.5rem;animation:fiu .8s ease both}
+    .hero-badge .dot{width:6px;height:6px;background:var(--y);border-radius:50%;animation:pulse 2s infinite}
+    .hero-logo-lg{margin-bottom:1.5rem;animation:fiu .8s .1s ease both}.hero-logo-lg img{height:70px;width:auto}
+    .hero-t{font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:clamp(2.4rem,4.5vw,3.6rem);line-height:1.15;margin-bottom:1.5rem;animation:fiu .8s .2s ease both}
+    .hero-t .hl{color:var(--y)}
+    .hero-d{font-size:1rem;line-height:1.7;color:var(--gl);margin-bottom:.8rem;max-width:530px;animation:fiu .8s .35s ease both}
+    .hero-brands{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.5rem;animation:fiu .8s .4s ease both}
+    .hero-brand{font-size:.65rem;color:var(--g);letter-spacing:1px;padding:.3rem .7rem;border:1px solid rgba(255,255,255,.08);border-radius:50px;text-transform:uppercase}
+    .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;animation:fiu .8s .5s ease both}
+    .btn-p{display:inline-flex;align-items:center;gap:.6rem;background:var(--y);color:var(--b);padding:.85rem 1.8rem;border-radius:6px;text-decoration:none;font-weight:700;font-size:.85rem;transition:all .3s;border:none;cursor:pointer}
+    .btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(255,209,0,.2);background:var(--yl)}
+    .btn-s{display:inline-flex;align-items:center;gap:.6rem;background:transparent;color:var(--w);padding:.85rem 1.8rem;border-radius:6px;text-decoration:none;font-weight:500;font-size:.85rem;border:1px solid rgba(255,255,255,.2);transition:all .3s}
+    .btn-s:hover{border-color:var(--y);color:var(--y)}
+    .btn-wa{display:inline-flex;align-items:center;gap:.6rem;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;padding:.85rem 1.8rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:.85rem;transition:all .3s}
+    .btn-wa:hover{transform:translateY(-2px);box-shadow:0 12px 35px rgba(37,211,102,.3)}
+    .hero-vis{position:relative;animation:fiu .8s .3s ease both}
+    .hero-card{background:linear-gradient(145deg,var(--bc),var(--gd));border:1px solid rgba(255,209,0,.12);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden}
+    .hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--y),var(--yd),var(--y))}
+    .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;position:relative;z-index:1}
+    .stat{text-align:center;padding:1.2rem;border-radius:12px;background:rgba(255,209,0,.04);border:1px solid rgba(255,209,0,.08);transition:transform .3s}
+    .stat:hover{transform:translateY(-4px);border-color:rgba(255,209,0,.25)}
+    .stat-n{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;font-style:italic;color:var(--y);line-height:1;margin-bottom:.3rem}
+    .stat-l{font-size:.72rem;color:var(--g);letter-spacing:1px;text-transform:uppercase}
+    .hero-feats{display:flex;gap:1.5rem;margin-top:1.5rem;position:relative;z-index:1}
+    .hero-feat{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--gl)}.hero-feat i{color:var(--y);font-size:.7rem}
+
+    /* SECTIONS */
+    .sec{padding:6rem 0}.sec-c{max-width:1300px;margin:0 auto;padding:0 2rem}
+    .sec-h{text-align:center;margin-bottom:4rem}
+    .sec-tag{display:inline-block;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--y);margin-bottom:1rem}
+    .sec-tag::before,.sec-tag::after{content:'\2014';margin:0 .8rem;opacity:.4}
+    .sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:700;font-style:italic;margin-bottom:1rem}
+    .sec-sub{font-size:1rem;color:var(--g);max-width:600px;margin:0 auto;line-height:1.6}
+    .div-y{width:60px;height:3px;background:var(--y);margin:1rem auto 0;border-radius:2px}
+
+    /* CATEGORIES */
+    .cats{background:var(--bl);border-top:1px solid rgba(255,209,0,.06);border-bottom:1px solid rgba(255,209,0,.06)}
+    .cat-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.2rem}
+    .cat{text-align:center;padding:2rem 1rem;border-radius:16px;background:var(--bc);border:1px solid rgba(255,255,255,.04);transition:all .4s;cursor:pointer;position:relative;overflow:hidden}
+    .cat::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,209,0,.08),transparent);opacity:0;transition:opacity .4s}
+    .cat:hover::before{opacity:1}.cat:hover{transform:translateY(-6px);border-color:rgba(255,209,0,.25);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+    .cat-i{width:52px;height:52px;margin:0 auto .8rem;background:rgba(255,209,0,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--y);transition:all .3s;position:relative}
+    .cat:hover .cat-i{background:var(--y);color:var(--b);transform:scale(1.1)}
+    .cat-n{font-family:'Playfair Display',serif;font-weight:600;font-style:italic;font-size:.92rem;margin-bottom:.3rem;position:relative}
+    .cat-ct{font-size:.7rem;color:var(--g);position:relative}
+
+    /* PRODUCTS */
+    .prods{background:var(--b)}
+    .prod-filter{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-bottom:3rem}
+    .fbtn{padding:.5rem 1.2rem;border-radius:50px;border:1px solid rgba(255,255,255,.1);background:transparent;color:var(--gl);font-size:.76rem;font-weight:500;cursor:pointer;transition:all .3s;font-family:'DM Sans',sans-serif;letter-spacing:.5px}
+    .fbtn:hover,.fbtn.on{background:var(--y);color:var(--b);border-color:var(--y);font-weight:600}
+    .prod-g{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:1.5rem}
+    .pcard{background:var(--bc);border:1px solid rgba(255,255,255,.05);border-radius:16px;overflow:hidden;transition:all .4s}
+    .pcard:hover{transform:translateY(-6px);border-color:rgba(255,209,0,.2);box-shadow:0 20px 50px rgba(0,0,0,.5)}
+    .pcard.hide{display:none}
+    .pimg{height:170px;background:linear-gradient(135deg,var(--gd),var(--bl));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .pimg i{font-size:2.6rem;color:rgba(255,209,0,.2);transition:all .3s}
+    .pcard:hover .pimg i{color:var(--y);transform:scale(1.15)}
+    .pbadge{position:absolute;top:10px;left:10px;color:#fff;font-size:.6rem;font-weight:700;padding:.25rem .65rem;border-radius:4px;letter-spacing:1px;text-transform:uppercase}
+    .pbadge.top{background:var(--y);color:var(--b)}.pbadge.sale{background:var(--r)}
+    .pinfo{padding:1.2rem}
+    .pcat{font-size:.63rem;color:var(--y);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.4rem;font-weight:600}
+    .pname{font-family:'Playfair Display',serif;font-weight:600;font-style:italic;font-size:.95rem;margin-bottom:.4rem;line-height:1.3}
+    .pdesc{font-size:.76rem;color:var(--g);line-height:1.5;margin-bottom:.8rem}
+    .pfoot{display:flex;justify-content:space-between;align-items:center}
+    .pprice{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;font-style:italic;color:var(--y)}
+    .pprice small{font-size:.65rem;color:var(--g);font-family:'DM Sans',sans-serif;font-weight:400;font-style:normal}
+    .pact{width:36px;height:36px;border-radius:50%;background:rgba(255,209,0,.08);border:1px solid rgba(255,209,0,.15);display:flex;align-items:center;justify-content:center;color:var(--y);cursor:pointer;transition:all .3s;text-decoration:none;font-size:.85rem}
+    .pact:hover{background:var(--y);color:var(--b)}
+    .prod-cta{text-align:center;margin-top:3rem;display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+
+    /* ABOUT */
+    .about{background:var(--bl);border-top:1px solid rgba(255,209,0,.06)}
+    .ab-g{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .ab-vis{position:relative}
+    .ab-card{background:linear-gradient(145deg,var(--bc),var(--gd));border:1px solid rgba(255,209,0,.12);border-radius:20px;padding:2.5rem;position:relative;overflow:hidden}
+    .ab-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--y),var(--yd),var(--y))}
+    .ab-logo{text-align:center;margin-bottom:1.2rem}.ab-logo img{height:50px;width:auto;opacity:.7}
+    .ab-q{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:500;font-style:italic;line-height:1.45;margin-bottom:.8rem;color:var(--w);text-align:center}
+    .ab-q::before{content:'\201C';font-size:3rem;color:var(--y);line-height:0;vertical-align:-.4em;margin-right:.1em}
+    .ab-qa{font-size:.82rem;color:var(--y);font-weight:500;text-align:center}
+    .ab-float{position:absolute;bottom:-20px;right:-10px;background:var(--y);color:var(--b);padding:1rem 1.5rem;border-radius:12px;text-align:center;box-shadow:0 15px 40px rgba(255,209,0,.25)}
+    .ab-fn{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;font-style:italic;line-height:1}
+    .ab-fl{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+    .ab-txt h3{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;font-style:italic;margin-bottom:1.5rem}
+    .ab-txt h3 span{color:var(--y)}
+    .ab-txt p{color:var(--gl);line-height:1.8;margin-bottom:1.2rem;font-size:.93rem}
+    .ab-feats{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.5rem}
+    .ab-feat{display:flex;align-items:flex-start;gap:.7rem;padding:.9rem;border-radius:10px;background:rgba(255,209,0,.03);border:1px solid rgba(255,209,0,.06)}
+    .ab-feat i{color:var(--y);font-size:.95rem;margin-top:2px}
+    .ab-feat h4{font-size:.82rem;font-weight:600;margin-bottom:.15rem}
+    .ab-feat p{font-size:.72rem;color:var(--g);margin:0;line-height:1.4}
+
+    /* REVIEWS */
+    .revs{background:var(--b)}
+    .rev-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .rev{background:var(--bc);border:1px solid rgba(255,255,255,.05);border-radius:16px;padding:1.8rem;transition:all .3s}
+    .rev:hover{border-color:rgba(255,209,0,.15);transform:translateY(-4px)}
+    .rev-s{color:var(--y);font-size:.85rem;margin-bottom:.8rem;letter-spacing:2px}
+    .rev-t{font-size:.88rem;color:var(--gl);line-height:1.6;margin-bottom:1rem;font-style:italic}
+    .rev-a{display:flex;align-items:center;gap:.7rem}
+    .rev-av{width:38px;height:38px;border-radius:50%;background:var(--y);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--b);font-size:.75rem}
+    .rev-n{font-weight:600;font-size:.82rem}.rev-src{font-size:.68rem;color:var(--g)}
+
+    /* CONTACT */
+    .contact{background:var(--bl);border-top:1px solid rgba(255,209,0,.06)}
+    .ct-g{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+    .ct-info h3{font-family:'Playfair Display',serif;font-size:1.7rem;font-style:italic;margin-bottom:1rem}
+    .ct-info h3 span{color:var(--y)}
+    .ct-info>p{color:var(--gl);line-height:1.7;margin-bottom:1.8rem}
+    .ct-d{display:flex;align-items:flex-start;gap:.9rem;margin-bottom:1rem;padding:.9rem;border-radius:12px;background:rgba(255,209,0,.03);border:1px solid rgba(255,209,0,.06);transition:all .3s}
+    .ct-d:hover{border-color:rgba(255,209,0,.15)}
+    .ct-di{width:42px;height:42px;background:rgba(255,209,0,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--y);flex-shrink:0}
+    .ct-d h4{font-size:.82rem;margin-bottom:.15rem;font-weight:600}
+    .ct-d p{font-size:.82rem;color:var(--gl);line-height:1.4}
+    .ct-form{background:var(--bc);border:1px solid rgba(255,209,0,.1);border-radius:20px;padding:2.2rem;position:relative;overflow:hidden}
+    .ct-form::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--y),var(--yd),var(--y))}
+    .ct-form h4{font-family:'Playfair Display',serif;font-size:1.2rem;font-style:italic;margin-bottom:1.3rem;text-align:center}
+    .fg{margin-bottom:.8rem}.fg label{display:block;font-size:.7rem;color:var(--g);text-transform:uppercase;letter-spacing:1px;margin-bottom:.3rem}
+    .fg input,.fg textarea{width:100%;padding:.75rem .9rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;color:var(--w);font-family:'DM Sans',sans-serif;font-size:.88rem;transition:border-color .3s;outline:none}
+    .fg input:focus,.fg textarea:focus{border-color:var(--y)}
+    .fg textarea{resize:vertical;min-height:90px}
+    .fr{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+    .fsub{width:100%;margin-top:.3rem;text-align:center;justify-content:center}
+
+    /* FLOAT */
+    .wa-float{position:fixed;bottom:2rem;right:2rem;z-index:999;display:flex;align-items:center;gap:.7rem;background:#25D366;color:#fff;padding:.85rem 1.5rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.88rem;box-shadow:0 8px 30px rgba(37,211,102,.4);transition:all .3s;animation:bi 1s 1s ease both}
+    .wa-float:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 12px 40px rgba(37,211,102,.5)}
+    .wa-float i{font-size:1.3rem}
+
+    /* FOOTER */
+    .foot{background:var(--b);border-top:1px solid rgba(255,209,0,.08);padding:3rem 0 1.5rem}
+    .foot-c{max-width:1300px;margin:0 auto;padding:0 2rem}
+    .foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+    .foot-brand img{height:42px;margin-bottom:.8rem;display:block}
+    .foot-brand p{font-size:.82rem;color:var(--g);line-height:1.6}
+    .foot-col h5{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--y);margin-bottom:.8rem}
+    .foot-col a{display:block;color:var(--g);text-decoration:none;font-size:.82rem;margin-bottom:.5rem;transition:color .3s}
+    .foot-col a:hover{color:var(--y)}
+    .foot-bot{border-top:1px solid rgba(255,255,255,.05);padding-top:1.2rem;display:flex;justify-content:space-between;align-items:center}
+    .foot-bot p{font-size:.72rem;color:var(--g)}
+    .foot-soc{display:flex;gap:.6rem}
+    .foot-soc a{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;color:var(--g);text-decoration:none;transition:all .3s}
+    .foot-soc a:hover{background:var(--y);color:var(--b)}
+
+    /* ANIM */
+    @keyframes fiu{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    @keyframes bi{0%{opacity:0;transform:scale(.3)}50%{transform:scale(1.05)}70%{transform:scale(.9)}100%{opacity:1;transform:scale(1)}}
+    .fi{opacity:0;transform:translateY(30px);transition:all .6s ease}.fi.vis{opacity:1;transform:translateY(0)}
+
+    /* RESPONSIVE */
+    @media(max-width:1024px){.hero-c{grid-template-columns:1fr;text-align:center}.hero-d{margin:0 auto .8rem}.hero-brands{justify-content:center}.hero-ctas{justify-content:center}.hero-logo-lg{text-align:center}.hero-vis{display:none}.ab-g{grid-template-columns:1fr}.ab-vis{order:2}.ct-g{grid-template-columns:1fr}.rev-g{grid-template-columns:1fr 1fr}.foot-top{grid-template-columns:1fr 1fr}.nav-ml{display:none}}
+    @media(max-width:768px){.nav-links,.nav-btns .nav-ml,.nav-btns .nav-wa{display:none}.mob-tog{display:block}.cat-g{grid-template-columns:repeat(2,1fr)}.prod-g{grid-template-columns:1fr}.rev-g{grid-template-columns:1fr}.ab-feats{grid-template-columns:1fr}.fr{grid-template-columns:1fr}.foot-top{grid-template-columns:1fr;gap:1.5rem}.foot-bot{flex-direction:column;gap:.8rem;text-align:center}.sec{padding:4rem 0}.wa-float span{display:none}.wa-float{padding:1rem;border-radius:50%}.hero-logo-lg img{height:55px}.prod-cta{flex-direction:column;align-items:center}}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar"><div class="nav-c">
+    <a href="#" class="nav-logo"><img src="logo-carbelec.png" alt="CARBELEC S.A.S. - Carbon Electric"></a>
+    <ul class="nav-links"><li><a href="#inicio">Inicio</a></li><li><a href="#productos">Productos</a></li><li><a href="#nosotros">Nosotros</a></li><li><a href="#contacto">Contacto</a></li></ul>
+    <div class="nav-btns">
+      <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" class="nav-ml" target="_blank"><i class="fas fa-store"></i> Tienda MercadoLibre</a>
+      <a href="https://wa.me/5716014825174" class="nav-wa" target="_blank"><i class="fab fa-whatsapp"></i> Escríbenos</a>
+    </div>
+    <button class="mob-tog" onclick="document.querySelector('.nav-links').classList.toggle('show')"><i class="fas fa-bars"></i></button>
+  </div></nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio"><div class="hero-bg"></div><div class="hero-pat"></div>
+    <div class="hero-c">
+      <div>
+        <div class="hero-badge"><span class="dot"></span> Bogotá, Colombia</div>
+        <div class="hero-logo-lg"><img src="logo-carbelec.png" alt="CARBELEC S.A.S."></div>
+        <h1 class="hero-t">Tu ferretería de<br><span class="hl">confianza</span> en Bogotá</h1>
+        <p class="hero-d">Comercializadores, distribuidores e importadores de ferretería, eléctricos, repuestos, seguridad industrial y herramientas profesionales. Más de 1,600 productos disponibles.</p>
+        <div class="hero-brands">
+          <span class="hero-brand">Truper</span><span class="hero-brand">Bosch</span><span class="hero-brand">DeWalt</span><span class="hero-brand">Total</span><span class="hero-brand">Makita</span><span class="hero-brand">Stanley</span><span class="hero-brand">3M</span><span class="hero-brand">Pretul</span><span class="hero-brand">Sika</span><span class="hero-brand">Black+Decker</span>
+        </div>
+        <div class="hero-ctas">
+          <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" class="btn-p" target="_blank"><i class="fas fa-shopping-cart"></i> Comprar en MercadoLibre</a>
+          <a href="https://wa.me/5716014825174?text=Hola%2C%20me%20gustaría%20cotizar%20productos" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> Cotizar por WhatsApp</a>
+          <a href="#productos" class="btn-s"><i class="fas fa-th-large"></i> Ver Catálogo</a>
+        </div>
+      </div>
+      <div class="hero-vis"><div class="hero-card">
+        <div class="hero-stats">
+          <div class="stat"><div class="stat-n">1,645</div><div class="stat-l">Productos</div></div>
+          <div class="stat"><div class="stat-n">80+</div><div class="stat-l">Seguidores</div></div>
+          <div class="stat"><div class="stat-n">4.8</div><div class="stat-l">★ Calificación</div></div>
+          <div class="stat"><div class="stat-n">60+</div><div class="stat-l">Marcas</div></div>
+        </div>
+        <div class="hero-feats">
+          <div class="hero-feat"><i class="fas fa-check"></i> Envío gratis</div>
+          <div class="hero-feat"><i class="fas fa-check"></i> Factura electrónica</div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="sec cats" id="categorias"><div class="sec-c">
+    <div class="sec-h fi"><div class="sec-tag">Lo que ofrecemos</div><h2 class="sec-title">Nuestras Categorías</h2><p class="sec-sub">Más de 1,645 productos organizados para encontrar lo que necesitas</p><div class="div-y"></div></div>
+    <div class="cat-g">
+      <div class="cat fi" onclick="filterCat('herr')"><div class="cat-i"><i class="fas fa-tools"></i></div><div class="cat-n">Herramientas</div><div class="cat-ct">1,123 productos</div></div>
+      <div class="cat fi" onclick="filterCat('const')"><div class="cat-i"><i class="fas fa-hard-hat"></i></div><div class="cat-n">Construcción</div><div class="cat-ct">223 productos</div></div>
+      <div class="cat fi" onclick="filterCat('elec')"><div class="cat-i"><i class="fas fa-bolt"></i></div><div class="cat-n">Eléctricos</div><div class="cat-ct">Cables, interruptores</div></div>
+      <div class="cat fi" onclick="filterCat('seg')"><div class="cat-i"><i class="fas fa-shield-alt"></i></div><div class="cat-n">Seguridad Industrial</div><div class="cat-ct">EPP y protección 3M</div></div>
+      <div class="cat fi" onclick="filterCat('rep')"><div class="cat-i"><i class="fas fa-cogs"></i></div><div class="cat-n">Repuestos</div><div class="cat-ct">Bosch, DeWalt, Makita</div></div>
+      <div class="cat fi" onclick="filterCat('hogar')"><div class="cat-i"><i class="fas fa-home"></i></div><div class="cat-n">Hogar</div><div class="cat-ct">151 productos</div></div>
+    </div>
+  </div></section>
+
+  <!-- PRODUCTS -->
+  <section class="sec prods" id="productos"><div class="sec-c">
+    <div class="sec-h fi"><div class="sec-tag">Catálogo</div><h2 class="sec-title">Productos Destacados</h2><p class="sec-sub">Precios reales en pesos colombianos. Compra directo en MercadoLibre o cotiza por WhatsApp</p><div class="div-y"></div></div>
+    <div class="prod-filter fi">
+      <button class="fbtn on" onclick="filterCat('all')">Todos</button>
+      <button class="fbtn" onclick="filterCat('herr')">Herramientas</button>
+      <button class="fbtn" onclick="filterCat('elec')">Eléctricos</button>
+      <button class="fbtn" onclick="filterCat('rep')">Repuestos</button>
+      <button class="fbtn" onclick="filterCat('seg')">Seguridad</button>
+      <button class="fbtn" onclick="filterCat('const')">Construcción</button>
+      <button class="fbtn" onclick="filterCat('hogar')">Hogar</button>
+    </div>
+    <div class="prod-g">
+
+      <!-- HERRAMIENTAS -->
+      <div class="pcard fi" data-c="herr"><div class="pimg"><span class="pbadge top">Más Vendido</span><i class="fas fa-hammer"></i></div><div class="pinfo"><div class="pcat">Herramientas · Truper</div><div class="pname">Taladro Rotomartillo Truper ROTO-1/2A7, 650W</div><div class="pdesc">Atornillador eléctrico de 1/2", 110V, 60Hz. Para concreto y madera</div><div class="pfoot"><div class="pprice">Consultar</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Taladro%20Rotomartillo%20Truper%20ROTO-1/2A7%20650W" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="herr"><div class="pimg"><span class="pbadge top">Más Vendido</span><i class="fas fa-wind"></i></div><div class="pinfo"><div class="pcat">Herramientas · Pretul</div><div class="pname">Compresor de Aire 20L Pretul 23065, 2-1/2 HP</div><div class="pdesc">Monofásico, 60Hz, 120V. Para inflado, pintura y limpieza</div><div class="pfoot"><div class="pprice">Consultar</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Compresor%20Pretul%2023065%2020L" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="herr"><div class="pimg"><i class="fas fa-wrench"></i></div><div class="pinfo"><div class="pcat">Herramientas · Pretul</div><div class="pname">Taladro Inalámbrico 12V 3/8" Pretul 29975</div><div class="pdesc">Destornillador inalámbrico, 60Hz, 127V. Color amarillo, compacto y potente</div><div class="pfoot"><div class="pprice">$210.000</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Taladro%20Inalambrico%20Pretul%2029975" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="herr"><div class="pimg"><span class="pbadge top">Más Vendido</span><i class="fas fa-compress-alt"></i></div><div class="pinfo"><div class="pcat">Herramientas · Truper</div><div class="pname">Manguera Compresor Alta Presión 1/4" 10mt</div><div class="pdesc">Hule 300PSI, color negro. Resistente para uso profesional</div><div class="pfoot"><div class="pprice">$86.500</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Manguera%20Compresor%20Truper%2010mt" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="herr"><div class="pimg"><span class="pbadge top">Más Vendido</span><i class="fas fa-tools"></i></div><div class="pinfo"><div class="pcat">Herramientas · Total</div><div class="pname">Juego Llaves Curva Doble Corona 8 Pzas THT102486</div><div class="pdesc">Set profesional de llaves doble corona para mecánica y mantenimiento</div><div class="pfoot"><div class="pprice">$168.000</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Llaves%20Doble%20Corona%20Total%20THT102486" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="herr"><div class="pimg"><i class="fas fa-screwdriver"></i></div><div class="pinfo"><div class="pcat">Herramientas · Wolfox</div><div class="pname">Taladro Inalámbrico Destornillador 4.8V WF9651</div><div class="pdesc">Formato compacto 1/4". Ideal para trabajos ligeros del hogar</div><div class="pfoot"><div class="pprice">$88.000</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Taladro%20Inalambrico%20Wolfox%204.8V" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="herr"><div class="pimg"><span class="pbadge top">Más Vendido</span><i class="fas fa-ruler-combined"></i></div><div class="pinfo"><div class="pcat">Herramientas · Stanley</div><div class="pname">Juego de Llaves Allen 20 Und Stanley 69-255</div><div class="pdesc">Set completo color plateado. Hexagonales métricas y pulgadas</div><div class="pfoot"><div class="pprice">$76.000</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Llaves%20Allen%20Stanley%2069-255" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="herr"><div class="pimg"><i class="fas fa-cut"></i></div><div class="pinfo"><div class="pcat">Herramientas · Truper</div><div class="pname">Cepillo Eléctrico 3-1/4" 850W Truper 100502</div><div class="pdesc">Cepillo profesional color naranja, 127V. Para carpintería y acabados</div><div class="pfoot"><div class="pprice">$480.000</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Cepillo%20Electrico%20Truper%20100502" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="herr"><div class="pimg"><i class="fas fa-grip-lines"></i></div><div class="pinfo"><div class="pcat">Herramientas · Truper</div><div class="pname">Alicate Sacabocados 9" Truper</div><div class="pdesc">Alicate profesional de 9 pulgadas para perforar cuero, lona y textiles</div><div class="pfoot"><div class="pprice">$57.000</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Alicate%20Sacabocados%20Truper%209%22" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <!-- ELÉCTRICOS -->
+      <div class="pcard fi" data-c="elec"><div class="pimg"><i class="fas fa-plug"></i></div><div class="pinfo"><div class="pcat">Eléctricos · Genérica</div><div class="pname">Cable Duplex 2x12 Rollo 10 Metros Blanco</div><div class="pdesc">Cable eléctrico duplex para instalaciones residenciales. Rollo de 10 metros</div><div class="pfoot"><div class="pprice">$17.500 <small>/10mt</small></div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Cable%20Duplex%202x12%20Rollo%2010mt" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="elec"><div class="pimg"><i class="fas fa-toggle-on"></i></div><div class="pinfo"><div class="pcat">Eléctricos · Genérica</div><div class="pname">Interruptor Soldador / Inversor 25 Amp 6 Patas</div><div class="pdesc">Switch de 25 amperios con 6 terminales para equipos de soldadura</div><div class="pfoot"><div class="pprice">$32.000</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Interruptor%20Soldador%2025A%206%20Patas" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <!-- REPUESTOS -->
+      <div class="pcard fi" data-c="rep"><div class="pimg"><i class="fas fa-microchip"></i></div><div class="pinfo"><div class="pcat">Repuestos · Bosch</div><div class="pname">Campo Estator Bosch P/Esmeril GWS 22-180/230</div><div class="pdesc">Repuesto genérico compatible con esmeriles Bosch de 7" y 9"</div><div class="pfoot"><div class="pprice">$80.000</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Campo%20Estator%20Bosch%20GWS%2022" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="rep"><div class="pimg"><i class="fas fa-exchange-alt"></i></div><div class="pinfo"><div class="pcat">Repuestos · Bosch</div><div class="pname">Switch Interruptor Pulidora Bosch 7" y 9"</div><div class="pdesc">Interruptor de reemplazo para pulidoras Bosch grandes</div><div class="pfoot"><div class="pprice">$35.000</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Switch%20Pulidora%20Bosch%207%20y%209" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="rep"><div class="pimg"><i class="fas fa-bolt"></i></div><div class="pinfo"><div class="pcat">Repuestos · Bosch</div><div class="pname">Inducido Para Rotomartillo Bosch (Genérico)</div><div class="pdesc">Repuesto de inducido compatible con rotomartillos Bosch</div><div class="pfoot"><div class="pprice">$95.000</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Inducido%20Rotomartillo%20Bosch" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="rep"><div class="pimg"><i class="fas fa-circle-notch"></i></div><div class="pinfo"><div class="pcat">Repuestos · Genérica</div><div class="pname">Rodamiento Importado 608 2RS (Paq x 4 Und)</div><div class="pdesc">Balineras selladas para pulidoras, taladros y maquinaria industrial</div><div class="pfoot"><div class="pprice">$16.000 <small>/x4</small></div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Rodamiento%20608%202RS%20x4" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="rep"><div class="pimg"><i class="fas fa-fire"></i></div><div class="pinfo"><div class="pcat">Repuestos · Bosch</div><div class="pname">Par Escobillas Minipulidora Bosch y Skil</div><div class="pdesc">Carbones de repuesto para minipulidoras. Instalación fácil</div><div class="pfoot"><div class="pprice">$15.000 <small>/par</small></div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Escobillas%20Minipulidora%20Bosch" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="rep"><div class="pimg"><i class="fas fa-power-off"></i></div><div class="pinfo"><div class="pcat">Repuestos · Bosch</div><div class="pname">Switch Interruptor Taladro Bosch (Genérico)</div><div class="pdesc">Interruptor de velocidad variable para taladros Bosch</div><div class="pfoot"><div class="pprice">$19.900</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Switch%20Taladro%20Bosch" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <!-- SEGURIDAD -->
+      <div class="pcard fi" data-c="seg"><div class="pimg"><span class="pbadge top">Más Vendido</span><i class="fas fa-head-side-mask"></i></div><div class="pinfo"><div class="pcat">Seguridad Industrial · 3M</div><div class="pname">Respirador 3M 6200 Media Cara + Filtros 6001</div><div class="pdesc">Protección respiratoria reutilizable NIOSH. Cartucho doble para vapor orgánico</div><div class="pfoot"><div class="pprice">$120.000</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Respirador%203M%206200%20con%20Filtros" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="seg"><div class="pimg"><i class="fas fa-glasses"></i></div><div class="pinfo"><div class="pcat">Seguridad Industrial · Steelpro</div><div class="pname">Monogafa de Seguridad Zex AF Steelpro</div><div class="pdesc">Cristal claro, antiempañante. Protección ocular certificada</div><div class="pfoot"><div class="pprice">$27.000</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Monogafa%20Steelpro%20Zex%20AF" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <!-- CONSTRUCCIÓN -->
+      <div class="pcard fi" data-c="const"><div class="pimg"><i class="fas fa-fill-drip"></i></div><div class="pinfo"><div class="pcat">Construcción · Sika</div><div class="pname">Sikaflex Universal Blanco 300ml Sellador</div><div class="pdesc">Sellador elástico de poliuretano para juntas de construcción</div><div class="pfoot"><div class="pprice">$46.000</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Sikaflex%20Universal%20Blanco%20300ml" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="const"><div class="pimg"><i class="fas fa-tape"></i></div><div class="pinfo"><div class="pcat">Construcción · 3M</div><div class="pname">Cinta Dual Lock 3M Tipo Velcro x 50cm</div><div class="pdesc">Sistema de cierre reposicionable de alta resistencia 3M</div><div class="pfoot"><div class="pprice">$24.900</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Cinta%20Dual%20Lock%203M%2050cm" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <div class="pcard fi" data-c="const"><div class="pimg"><i class="fas fa-water"></i></div><div class="pinfo"><div class="pcat">Construcción · Diablo Rojo</div><div class="pname">Diablo Rojo Destapa Cañerías 350gr</div><div class="pdesc">Destapador de cañerías profesional. Acción rápida y potente</div><div class="pfoot"><div class="pprice">$15.900</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Diablo%20Rojo%20Destapa%20Canerias" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+      <!-- HOGAR -->
+      <div class="pcard fi" data-c="hogar"><div class="pimg"><i class="fas fa-shower"></i></div><div class="pinfo"><div class="pcat">Hogar · Genérica</div><div class="pname">Manguera Para Ducha Eléctrica (Regadera)</div><div class="pdesc">Manguera de repuesto compatible con duchas Boccherini y más</div><div class="pfoot"><div class="pprice">Consultar</div><a href="https://wa.me/5716014825174?text=Hola%2C%20quiero%20cotizar%20Manguera%20Ducha%20Electrica" class="pact" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div></div>
+
+    </div>
+
+    <div class="prod-cta fi">
+      <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" class="btn-p" target="_blank"><i class="fas fa-shopping-cart"></i> Ver los 1,645 productos en MercadoLibre</a>
+      <a href="https://wa.me/5716014825174?text=Hola%2C%20me%20gustaría%20ver%20el%20catálogo%20completo" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i> Catálogo por WhatsApp</a>
+    </div>
+  </div></section>
+
+  <!-- ABOUT -->
+  <section class="sec about" id="nosotros"><div class="sec-c">
+    <div class="sec-h fi"><div class="sec-tag">Nuestra Historia</div><h2 class="sec-title">Sobre CARBELEC S.A.S.</h2><div class="div-y"></div></div>
+    <div class="ab-g">
+      <div class="ab-vis fi"><div class="ab-card">
+        <div class="ab-logo"><img src="logo-carbelec.png" alt="CARBELEC S.A.S."></div>
+        <div class="ab-q">Empresa muy seria con buenos productos a excelente precio. Una atención muy amable. Recomendado."</div>
+        <div class="ab-qa">— Cliente verificado, Google Reviews</div>
+      </div><div class="ab-float"><div class="ab-fn">4.8★</div><div class="ab-fl">Google Rating</div></div></div>
+      <div class="ab-txt fi">
+        <h3>Más que una ferretería, somos tu <span>aliado</span></h3>
+        <p>CARBELEC - Carbon Electric S.A.S. somos comercializadores, distribuidores e importadores de elementos de ferretería, eléctricos y repuestos. Contamos con facturación electrónica y tenemos tienda física con amplio stock para entrega inmediata.</p>
+        <p>Trabajamos con más de 60 marcas incluyendo Truper, Bosch, DeWalt, Total, Makita, Stanley, 3M, Pretul, Black+Decker, Toolcraft, Schneider Electric y más. Ventas al por mayor y al detal con envío a todo Colombia.</p>
+        <div class="ab-feats">
+          <div class="ab-feat"><i class="fas fa-truck"></i><div><h4>Envíos Gratis</h4><p>Con MercadoLibre a todo el país</p></div></div>
+          <div class="ab-feat"><i class="fas fa-file-invoice"></i><div><h4>Factura Electrónica</h4><p>Compras desde $25.000</p></div></div>
+          <div class="ab-feat"><i class="fas fa-store"></i><div><h4>Tienda Física</h4><p>Bosa, Bogotá. Stock disponible</p></div></div>
+          <div class="ab-feat"><i class="fas fa-hand-holding-usd"></i><div><h4>Mayor y Detal</h4><p>Cuotas sin interés en ML</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- REVIEWS -->
+  <section class="sec revs"><div class="sec-c">
+    <div class="sec-h fi"><div class="sec-tag">Testimonios</div><h2 class="sec-title">Lo que dicen nuestros clientes</h2><div class="div-y"></div></div>
+    <div class="rev-g">
+      <div class="rev fi"><div class="rev-s">★★★★★</div><div class="rev-t">"Empresa muy seria con buenos productos a excelente precio. Una atención muy amable. Recomendado."</div><div class="rev-a"><div class="rev-av">JM</div><div><div class="rev-n">Juan M.</div><div class="rev-src">Google Reviews</div></div></div></div>
+      <div class="rev fi"><div class="rev-s">★★★★★</div><div class="rev-t">"Excelente servicio, amplia variedad de surtido, encontré el repuesto que necesitaba para mi pulidora que no había encontrado en ningún otro lado."</div><div class="rev-a"><div class="rev-av">CA</div><div><div class="rev-n">Carlos A.</div><div class="rev-src">Google Reviews</div></div></div></div>
+      <div class="rev fi"><div class="rev-s">★★★★★</div><div class="rev-t">"Tienen de todo lo que se necesita en ferretería y eléctricos. Los precios son muy competitivos y el personal sabe lo que vende."</div><div class="rev-a"><div class="rev-av">LP</div><div><div class="rev-n">Laura P.</div><div class="rev-src">Google Reviews</div></div></div></div>
+    </div>
+  </div></section>
+
+  <!-- CONTACT -->
+  <section class="sec contact" id="contacto"><div class="sec-c">
+    <div class="sec-h fi"><div class="sec-tag">Contacto</div><h2 class="sec-title">¿Necesitas una Cotización?</h2><p class="sec-sub">Compra directo en MercadoLibre con envío gratis o cotiza al por mayor por WhatsApp</p><div class="div-y"></div></div>
+    <div class="ct-g">
+      <div class="ct-info fi">
+        <h3>Visítanos en <span>Bogotá</span></h3>
+        <p>Tienda física en Bosa con todo el stock disponible. También hacemos envíos a todo Colombia por MercadoLibre con envío gratis y cuotas sin interés.</p>
+        <div class="ct-d"><div class="ct-di"><i class="fas fa-map-marker-alt"></i></div><div><h4>Dirección</h4><p>Cra. 81 #73F Sur 57, Bosa<br>Bogotá, Cundinamarca</p></div></div>
+        <div class="ct-d"><div class="ct-di"><i class="fas fa-phone-alt"></i></div><div><h4>Teléfonos</h4><p>+57 601 482 5174<br>+57 316 667 7374</p></div></div>
+        <div class="ct-d"><div class="ct-di"><i class="fab fa-whatsapp"></i></div><div><h4>WhatsApp</h4><p>Cotizaciones rápidas y al por mayor</p></div></div>
+        <div class="ct-d"><div class="ct-di"><i class="fas fa-clock"></i></div><div><h4>Horario</h4><p>Lun - Vie: 8:30am - 7:00pm<br>Sábados: 9:30am - 6:00pm</p></div></div>
+      </div>
+      <div class="ct-form fi">
+        <h4>Solicitar Cotización</h4>
+        <div class="fr"><div class="fg"><label>Nombre</label><input type="text" id="f-name" placeholder="Tu nombre"></div><div class="fg"><label>Teléfono</label><input type="tel" id="f-phone" placeholder="+57 3XX XXX XXXX"></div></div>
+        <div class="fg"><label>Email</label><input type="email" id="f-email" placeholder="tu@correo.com"></div>
+        <div class="fg"><label>Empresa (opcional)</label><input type="text" id="f-company" placeholder="Nombre de tu empresa"></div>
+        <div class="fg"><label>¿Qué productos necesitas?</label><textarea id="f-msg" placeholder="Describe productos, cantidades y detalles..."></textarea></div>
+        <button class="btn-p fsub" onclick="sendWA()"><i class="fab fa-whatsapp"></i> Enviar por WhatsApp</button>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- FOOTER -->
+  <footer class="foot"><div class="foot-c">
+    <div class="foot-top">
+      <div class="foot-brand"><img src="logo-carbelec.png" alt="CARBELEC S.A.S."><p>Carbon Electric S.A.S.<br>Comercializadores, distribuidores e importadores de ferretería, eléctricos y repuestos. Bogotá, Colombia.</p></div>
+      <div class="foot-col"><h5>Navegación</h5><a href="#inicio">Inicio</a><a href="#productos">Productos</a><a href="#nosotros">Nosotros</a><a href="#contacto">Contacto</a></div>
+      <div class="foot-col"><h5>Comprar</h5><a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank">MercadoLibre (1,645 productos)</a><a href="https://ferreteriacarbelec.mercadoshops.com.co/" target="_blank">MercadoShops</a><a href="https://wa.me/5716014825174" target="_blank">WhatsApp</a></div>
+      <div class="foot-col"><h5>Contacto</h5><a href="tel:+5716014825174"><i class="fas fa-phone-alt" style="width:14px"></i> 601 482 5174</a><a href="tel:+573166677374"><i class="fas fa-mobile-alt" style="width:14px"></i> 316 667 7374</a><a href="https://wa.me/5716014825174" target="_blank"><i class="fab fa-whatsapp" style="width:14px"></i> WhatsApp</a><a href="https://www.facebook.com/p/Ferreter%C3%ADa-Carbelec-100056033332482/" target="_blank"><i class="fab fa-facebook" style="width:14px"></i> Facebook</a></div>
+    </div>
+    <div class="foot-bot">
+      <p>© 2025 CARBELEC - Carbon Electric S.A.S. Todos los derechos reservados.</p>
+      <div class="foot-soc">
+        <a href="https://www.facebook.com/p/Ferreter%C3%ADa-Carbelec-100056033332482/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/5716014825174" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank"><i class="fas fa-store"></i></a>
+      </div>
+    </div>
+  </div></footer>
+
+  <!-- WA FLOAT -->
+  <a href="https://wa.me/5716014825174?text=Hola%2C%20necesito%20información%20sobre%20productos" class="wa-float" target="_blank"><i class="fab fa-whatsapp"></i><span>¿Necesitas ayuda?</span></a>
+
+  <script>
+    // Scroll nav
+    window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50)});
+
+    // Fade in observer
+    const obs=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('vis')})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+    document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+
+    // Product filter
+    function filterCat(c){
+      document.querySelectorAll('.fbtn').forEach(b=>{b.classList.remove('on')});
+      document.querySelectorAll('.pcard').forEach(card=>{
+        if(c==='all'){card.classList.remove('hide')}
+        else{card.classList.toggle('hide',card.dataset.c!==c)}
+      });
+      // Activate matching button
+      document.querySelectorAll('.fbtn').forEach(b=>{
+        const t=b.textContent.toLowerCase();
+        if((c==='all'&&t==='todos')||(c==='herr'&&t==='herramientas')||(c==='elec'&&t==='eléctricos')||(c==='rep'&&t==='repuestos')||(c==='seg'&&t==='seguridad')||(c==='const'&&t==='construcción')||(c==='hogar'&&t==='hogar'))b.classList.add('on');
+      });
+      // Scroll to products
+      const ps=document.getElementById('productos');
+      if(ps)ps.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    // WhatsApp form
+    function sendWA(){
+      const n=document.getElementById('f-name').value;
+      const p=document.getElementById('f-phone').value;
+      const e=document.getElementById('f-email').value;
+      const c=document.getElementById('f-company').value;
+      const m=document.getElementById('f-msg').value;
+      let msg='Hola, vengo de la página web de CARBELEC.';
+      if(n)msg+=`\n\nNombre: ${n}`;
+      if(p)msg+=`\nTeléfono: ${p}`;
+      if(e)msg+=`\nEmail: ${e}`;
+      if(c)msg+=`\nEmpresa: ${c}`;
+      if(m)msg+=`\n\nProductos que necesito:\n${m}`;
+      window.open(`https://wa.me/5716014825174?text=${encodeURIComponent(msg)}`,'_blank');
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'})})});
+  </script>
+</body>
+</html>
