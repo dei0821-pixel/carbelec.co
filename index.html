@@ -479,30 +479,27 @@
       var userMsgs=history.filter(m=>m.role==='user').map(m=>m.content);
       if(userMsgs.length>0) summary+='Me interesa: '+userMsgs.slice(-3).join(', ')+'. ';
       summary+='¿Me pueden ayudar?';
-      return 'https://wa.me/573153899483?text='+encodeURIComponent(summary);
+      return 'https://api.whatsapp.com/send?phone=573153899483&text='+encodeURIComponent(summary);
     }
     function addBot(t){
       var m=document.getElementById('chtMsgs'),d=document.createElement('div');
       d.className='cht-m cht-bot';
       var waLink=buildWaLink();
-      var html=t;
-      // Replace any wa.me link (with or without query params) with clickable WhatsApp link
-      html=html.replace(/https:\/\/wa\.me\/\d+[^\s]*/g, function(){
-        return '<a href="'+waLink+'" target="_blank" style="color:#25D366;text-decoration:underline;font-weight:600">WhatsApp CARBELEC</a>';
-      });
-      // Replace MercadoLibre link
-      html=html.replace(/https?:\/\/www\.mercadolibre\.com\.co\/pagina\/ferreteriacarbelec/g, function(u){
-        return '<a href="'+u+'" target="_blank" style="color:#C5A028;text-decoration:underline;font-weight:600">Tienda MercadoLibre</a>';
-      });
-      // Replace plain WhatsApp number mentions with clickable link
-      html=html.replace(/\+?57\s*315\s*389\s*9483/g, function(){
-        return '<a href="'+waLink+'" target="_blank" style="color:#25D366;text-decoration:underline;font-weight:600">WhatsApp CARBELEC</a>';
-      });
-      html=html.replace(/315\s*389\s*9483/g, function(){
-        return '<a href="'+waLink+'" target="_blank" style="color:#25D366;text-decoration:underline;font-weight:600">WhatsApp CARBELEC</a>';
-      });
-      // Bold text
+      // First: strip out ALL wa.me URLs (with any query params) and replace with placeholder
+      var html=t.replace(/https?:\/\/wa\.me\/\d+[^\s]*/g, '[[WA_LINK]]');
+      // Strip plain phone number mentions
+      html=html.replace(/\+?57\s*315\s*389\s*9483/g, '[[WA_LINK]]');
+      html=html.replace(/(?<!\d)315\s*389\s*9483/g, '[[WA_LINK]]');
+      // Strip MercadoLibre URLs
+      html=html.replace(/https?:\/\/www\.mercadolibre\.com\.co\/pagina\/ferreteriacarbelec/g, '[[ML_LINK]]');
+      // Clean up duplicate placeholders
+      html=html.replace(/\[\[WA_LINK\]\](\s*\[\[WA_LINK\]\])*/g, '[[WA_LINK]]');
+      html=html.replace(/\[\[ML_LINK\]\](\s*\[\[ML_LINK\]\])*/g, '[[ML_LINK]]');
+      // Bold
       html=html.replace(/\*\*(.*?)\*\*/g,'<b>$1</b>');
+      // Now replace placeholders with actual clickable links
+      html=html.replace(/\[\[ML_LINK\]\]/g, '<a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" style="color:#C5A028;text-decoration:underline;font-weight:600">Tienda MercadoLibre</a>');
+      html=html.replace(/\[\[WA_LINK\]\]/g, '<a href="'+waLink+'" target="_blank" style="color:#25D366;text-decoration:underline;font-weight:600">WhatsApp CARBELEC</a>');
       d.innerHTML=html;
       m.appendChild(d);m.scrollTop=m.scrollHeight;
     }
