@@ -381,11 +381,12 @@
 
   <!-- ═══ CARBELEC AI CHATBOT ═══ -->
   <style>
-    .cht-toggle{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--gold,#C5A028);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(197,160,40,.3);transition:all .3s;z-index:10000}
+    .cht-toggle{position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;background:var(--gold,#C5A028);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(197,160,40,.3);transition:all .3s;z-index:10000;animation:chtPulse 2s ease-in-out 3}
+    @keyframes chtPulse{0%,100%{transform:scale(1);box-shadow:0 4px 20px rgba(197,160,40,.3)}50%{transform:scale(1.15);box-shadow:0 6px 30px rgba(197,160,40,.5)}}
     .cht-toggle:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(197,160,40,.4)}
     .cht-toggle.active{background:#1d1d1f;box-shadow:0 4px 20px rgba(0,0,0,.2)}
     .cht-toggle svg{width:24px;height:24px;fill:currentColor}
-    .cht-win{position:fixed;bottom:92px;right:24px;width:380px;height:520px;background:#fff;border-radius:20px;box-shadow:0 12px 48px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.06);display:none;flex-direction:column;overflow:hidden;z-index:10000;animation:chtUp .3s cubic-bezier(.25,.46,.45,.94)}
+    .cht-win{position:fixed;bottom:92px;right:24px;width:420px;height:580px;background:#fff;border-radius:20px;box-shadow:0 12px 48px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.06);display:none;flex-direction:column;overflow:hidden;z-index:10000;animation:chtUp .3s cubic-bezier(.25,.46,.45,.94)}
     .cht-win.open{display:flex}
     @keyframes chtUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
     .cht-hdr{padding:16px 20px;background:#fff;border-bottom:.5px solid #e8e8ed;display:flex;align-items:center;gap:12px}
@@ -417,7 +418,7 @@
     .cht-snd:disabled{opacity:.4;cursor:not-allowed}
     .cht-snd svg{width:16px;height:16px;fill:currentColor}
     .cht-ft{padding:6px;text-align:center;font-size:10px;color:#86868b;background:#fff}
-    @media(max-width:440px){.cht-win{width:calc(100vw - 16px);height:calc(100vh - 120px);right:8px;bottom:80px;border-radius:16px}}
+    @media(max-width:440px){.cht-win{width:calc(100vw - 16px);height:calc(100vh - 100px);right:8px;bottom:80px;border-radius:16px}}
 
     .lang-sw{display:flex;gap:2px;margin-left:12px;align-items:center}
     .lang-btn{background:none;border:1px solid var(--border-light);border-radius:4px;padding:2px 6px;font-size:10px;font-weight:600;cursor:pointer;color:var(--text3);transition:all .2s;font-family:inherit;text-transform:uppercase}
@@ -492,6 +493,8 @@
       }catch(e){hideTyp();addBot('No pude conectarme. Escr\u00edbenos por WhatsApp al +57 315 389 9483.');}
       loading=false;document.getElementById('chtBtn').disabled=false;document.getElementById('chtInp').focus();
     }
+    // Auto-open chatbot after 2 seconds
+    setTimeout(function(){ if(!document.getElementById('chtWin').classList.contains('open')) chtToggle(); }, 2000);
   })();
   </script>
 
