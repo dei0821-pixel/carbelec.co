@@ -485,21 +485,25 @@
       var m=document.getElementById('chtMsgs'),d=document.createElement('div');
       d.className='cht-m cht-bot';
       var waLink=buildWaLink();
-      // First: strip out ALL wa.me URLs (with any query params) and replace with placeholder
-      var html=t.replace(/https?:\/\/wa\.me\/\d+[^\s]*/g, '[[WA_LINK]]');
-      // Strip plain phone number mentions
+      // Step 1: Escape HTML special chars to prevent raw HTML rendering
+      var html=t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      // Step 2: Remove ALL URLs (any http/https link) and replace with placeholder
+      html=html.replace(/https?:\/\/[^\s]+/g, function(url){
+        if(url.match(/mercadolibre/)) return '[[ML_LINK]]';
+        if(url.match(/wa\.me/)) return '[[WA_LINK]]';
+        return '[[WA_LINK]]';
+      });
+      // Step 3: Replace phone number patterns
       html=html.replace(/\+?57\s*315\s*389\s*9483/g, '[[WA_LINK]]');
-      html=html.replace(/(?<!\d)315\s*389\s*9483/g, '[[WA_LINK]]');
-      // Strip MercadoLibre URLs
-      html=html.replace(/https?:\/\/www\.mercadolibre\.com\.co\/pagina\/ferreteriacarbelec/g, '[[ML_LINK]]');
-      // Clean up duplicate placeholders
-      html=html.replace(/\[\[WA_LINK\]\](\s*\[\[WA_LINK\]\])*/g, '[[WA_LINK]]');
-      html=html.replace(/\[\[ML_LINK\]\](\s*\[\[ML_LINK\]\])*/g, '[[ML_LINK]]');
-      // Bold
+      html=html.replace(/315\s*389\s*9483/g, '[[WA_LINK]]');
+      // Step 4: Clean up duplicate/adjacent placeholders
+      html=html.replace(/(\[\[WA_LINK\]\]\s*)+/g, '[[WA_LINK]] ');
+      html=html.replace(/(\[\[ML_LINK\]\]\s*)+/g, '[[ML_LINK]] ');
+      // Step 5: Bold markdown
       html=html.replace(/\*\*(.*?)\*\*/g,'<b>$1</b>');
-      // Now replace placeholders with actual clickable links
-      html=html.replace(/\[\[ML_LINK\]\]/g, '<a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" style="color:#C5A028;text-decoration:underline;font-weight:600">Tienda MercadoLibre</a>');
-      html=html.replace(/\[\[WA_LINK\]\]/g, '<a href="'+waLink+'" target="_blank" style="color:#25D366;text-decoration:underline;font-weight:600">WhatsApp CARBELEC</a>');
+      // Step 6: Replace placeholders with real HTML links
+      html=html.replace(/\[\[ML_LINK\]\]/g, '<a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" style="color:#C5A028;text-decoration:underline;font-weight:600">🛒 Tienda MercadoLibre</a>');
+      html=html.replace(/\[\[WA_LINK\]\]/g, '<a href="'+waLink+'" target="_blank" style="color:#25D366;text-decoration:underline;font-weight:600">📱 WhatsApp CARBELEC</a>');
       d.innerHTML=html;
       m.appendChild(d);m.scrollTop=m.scrollHeight;
     }
