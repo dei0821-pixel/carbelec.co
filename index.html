@@ -481,7 +481,31 @@
       summary+='¿Me pueden ayudar?';
       return 'https://wa.me/573153899483?text='+encodeURIComponent(summary);
     }
-    function addBot(t){const m=document.getElementById('chtMsgs'),d=document.createElement('div');d.className='cht-m cht-bot';var waLink=buildWaLink();d.innerHTML=t.replace(/https:\/\/wa\.me\/573153899483/g,waLink).replace(/https:\/\/wa\.me\/\d+/g,waLink).replace(new RegExp(waLink.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'),function(u){return'<a href="'+u+'" target="_blank" style="color:#25D366;text-decoration:underline;font-weight:600">WhatsApp CARBELEC</a>'}).replace(/https?:\/\/www\.mercadolibre\.com\.co\/pagina\/ferreteriacarbelec/g,function(u){return'<a href="'+u+'" target="_blank" style="color:#C5A028;text-decoration:underline;font-weight:600">Tienda MercadoLibre</a>'}).replace(/\*\*(.*?)\*\*/g,'<b>$1</b>');m.appendChild(d);m.scrollTop=m.scrollHeight}
+    function addBot(t){
+      var m=document.getElementById('chtMsgs'),d=document.createElement('div');
+      d.className='cht-m cht-bot';
+      var waLink=buildWaLink();
+      var html=t;
+      // Replace any wa.me link (with or without query params) with clickable WhatsApp link
+      html=html.replace(/https:\/\/wa\.me\/\d+[^\s]*/g, function(){
+        return '<a href="'+waLink+'" target="_blank" style="color:#25D366;text-decoration:underline;font-weight:600">WhatsApp CARBELEC</a>';
+      });
+      // Replace MercadoLibre link
+      html=html.replace(/https?:\/\/www\.mercadolibre\.com\.co\/pagina\/ferreteriacarbelec/g, function(u){
+        return '<a href="'+u+'" target="_blank" style="color:#C5A028;text-decoration:underline;font-weight:600">Tienda MercadoLibre</a>';
+      });
+      // Replace plain WhatsApp number mentions with clickable link
+      html=html.replace(/\+?57\s*315\s*389\s*9483/g, function(){
+        return '<a href="'+waLink+'" target="_blank" style="color:#25D366;text-decoration:underline;font-weight:600">WhatsApp CARBELEC</a>';
+      });
+      html=html.replace(/315\s*389\s*9483/g, function(){
+        return '<a href="'+waLink+'" target="_blank" style="color:#25D366;text-decoration:underline;font-weight:600">WhatsApp CARBELEC</a>';
+      });
+      // Bold text
+      html=html.replace(/\*\*(.*?)\*\*/g,'<b>$1</b>');
+      d.innerHTML=html;
+      m.appendChild(d);m.scrollTop=m.scrollHeight;
+    }
     function addUsr(t){const m=document.getElementById('chtMsgs'),d=document.createElement('div');d.className='cht-m cht-usr';d.textContent=t;m.appendChild(d);m.scrollTop=m.scrollHeight}
     function showTyp(){const m=document.getElementById('chtMsgs'),d=document.createElement('div');d.className='cht-m cht-typ';d.id='chtTyp';d.innerHTML='<div class="cht-td"><span></span><span></span><span></span></div>';m.appendChild(d);m.scrollTop=m.scrollHeight}
     function hideTyp(){const e=document.getElementById('chtTyp');if(e)e.remove()}
