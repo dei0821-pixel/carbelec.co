@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad | CARBELEC S.A.S.</title>
+  <meta name="description" content="Política de privacidad y tratamiento de datos personales de CARBELEC — Carbon Electric S.A.S. Conforme a la Ley 1581 de 2012.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--gold:#C5A028;--gold-light:#DFBE47;--gold-bg:#FBF7ED;--bg:#fff;--bg2:#f5f5f7;--text:#1d1d1f;--text2:#6e6e73;--text3:#86868b;--border:#e8e8ed}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+    nav{position:sticky;top:0;z-index:100;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid rgba(0,0,0,.08)}
+    nav a{color:var(--gold);text-decoration:none;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px}
+    nav a:hover{color:var(--gold-light)}
+    .container{max-width:680px;margin:0 auto;padding:40px 24px 60px}
+    .badge{display:inline-block;background:var(--gold-bg);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:6px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:20px}
+    h1{font-size:clamp(28px,5vw,36px);font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:8px}
+    .subtitle{font-size:15px;color:var(--text3);margin-bottom:32px}
+    h2{font-size:17px;font-weight:600;margin:28px 0 10px;color:var(--text)}
+    h2:first-of-type{margin-top:0}
+    p{font-size:14.5px;color:var(--text2);margin-bottom:14px}
+    ul{padding-left:22px;margin-bottom:14px}
+    li{font-size:14.5px;color:var(--text2);margin-bottom:5px}
+    strong{color:var(--text);font-weight:600}
+    .highlight{background:var(--gold-bg);border-radius:12px;padding:20px 24px;margin:24px 0}
+    .highlight p{margin-bottom:0}
+    .divider{height:.5px;background:var(--border);margin:32px 0}
+    footer{text-align:center;padding:32px 24px;border-top:.5px solid var(--border)}
+    footer p{font-size:12px;color:var(--text3);margin-bottom:6px}
+    footer a{color:var(--gold);text-decoration:none;font-weight:500}
+    footer a:hover{text-decoration:underline}
+    .back-btn{display:inline-flex;align-items:center;gap:6px;margin-top:20px;padding:10px 20px;background:var(--gold);color:#fff;border-radius:100px;text-decoration:none;font-size:14px;font-weight:500;transition:background .2s}
+    .back-btn:hover{background:var(--gold-light)}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://carbelec.co">← Volver a CARBELEC</a>
+  </nav>
+
+  <div class="container">
+    <div class="badge">Ley 1581 de 2012</div>
+    <h1>Política de Privacidad y Tratamiento de Datos Personales</h1>
+    <p class="subtitle">CARBELEC — Carbon Electric S.A.S. · Última actualización: Marzo 2026</p>
+
+    <h2>1. Responsable del tratamiento</h2>
+    <p><strong>CARBELEC — Carbon Electric S.A.S.</strong>, identificada con NIT vigente, con domicilio en Cra. 81 #73F Sur 57, Bogotá, Cundinamarca, Colombia.</p>
+    <p>Teléfono: <a href="tel:+576016484985" style="color:var(--gold)">601 648 4985</a> · Correo: <a href="mailto:ventas@carbelec.co" style="color:var(--gold)">ventas@carbelec.co</a></p>
+
+    <h2>2. Datos que recopilamos</h2>
+    <p>Al interactuar con nuestros canales de atención (WhatsApp, chat web, formularios), podemos recopilar:</p>
+    <ul>
+      <li>Nombre y datos de contacto (teléfono, correo electrónico)</li>
+      <li>Información de ubicación (ciudad)</li>
+      <li>Productos consultados, cantidades y preferencias</li>
+      <li>Historial de conversaciones con nuestro asistente virtual</li>
+      <li>Información de empresa (cuando se proporciona voluntariamente)</li>
+    </ul>
+
+    <h2>3. Finalidad del tratamiento</h2>
+    <p>Utilizamos sus datos personales para:</p>
+    <ul>
+      <li>Atender consultas y solicitudes de cotización</li>
+      <li>Procesar pedidos y coordinar entregas</li>
+      <li>Enviar información sobre productos y promociones (solo con consentimiento)</li>
+      <li>Mejorar nuestros productos y servicios</li>
+      <li>Cumplir con obligaciones legales y tributarias</li>
+    </ul>
+
+    <div class="highlight">
+      <h2 style="margin-top:0">4. Asistente virtual con inteligencia artificial</h2>
+      <p>CARBELEC utiliza un asistente virtual basado en inteligencia artificial para atender consultas en WhatsApp y en nuestro sitio web. Al interactuar con este asistente:</p>
+      <ul>
+        <li>Sus mensajes son procesados por sistemas de IA para generar respuestas relevantes</li>
+        <li>Las conversaciones pueden ser almacenadas temporalmente para brindar continuidad en la atención</li>
+        <li>No se comparten sus datos con terceros para fines comerciales</li>
+        <li>Un asesor humano puede contactarle para completar su solicitud</li>
+      </ul>
+    </div>
+
+    <h2>5. Base legal</h2>
+    <p>El tratamiento de datos se realiza conforme a la <strong>Ley 1581 de 2012</strong> (Ley de Protección de Datos Personales de Colombia) y sus decretos reglamentarios. La base legal es el consentimiento del titular, otorgado al iniciar la comunicación con nuestros canales de atención.</p>
+
+    <h2>6. Derechos del titular</h2>
+    <p>Conforme a la Ley 1581 de 2012, usted tiene derecho a:</p>
+    <ul>
+      <li>Conocer, actualizar y rectificar sus datos personales</li>
+      <li>Solicitar prueba de la autorización otorgada</li>
+      <li>Ser informado sobre el uso dado a sus datos</li>
+      <li>Revocar la autorización y/o solicitar la supresión de sus datos</li>
+      <li>Acceder gratuitamente a sus datos personales</li>
+      <li>Presentar quejas ante la Superintendencia de Industria y Comercio (SIC)</li>
+    </ul>
+    <p>Para ejercer estos derechos, escriba a <strong><a href="mailto:ventas@carbelec.co" style="color:var(--gold)">ventas@carbelec.co</a></strong> con el asunto "Datos Personales". Atenderemos su solicitud en un plazo máximo de quince (15) días hábiles.</p>
+
+    <h2>7. Seguridad</h2>
+    <p>Implementamos medidas técnicas y administrativas para proteger sus datos personales contra acceso no autorizado, pérdida o alteración. Las conversaciones se almacenan en servidores seguros con cifrado. Los datos temporales de conversación se eliminan automáticamente después de un período de inactividad.</p>
+
+    <h2>8. Transferencia de datos</h2>
+    <p>Sus datos personales pueden ser procesados por proveedores de servicios tecnológicos (servidores en la nube, servicios de mensajería, inteligencia artificial) ubicados fuera de Colombia. En estos casos, garantizamos que dichos proveedores cumplan con estándares adecuados de protección de datos.</p>
+
+    <h2>9. Vigencia y modificaciones</h2>
+    <p>Esta política entra en vigencia a partir de su publicación y podrá ser actualizada en cualquier momento. Las modificaciones serán publicadas en este mismo sitio web. El uso continuado de nuestros servicios después de cualquier modificación constituye la aceptación de la política actualizada.</p>
+
+    <div class="divider"></div>
+
+    <p style="font-size:13px;color:var(--text3);text-align:center">
+      Si tiene preguntas sobre esta política, contáctenos en<br>
+      <a href="mailto:ventas@carbelec.co" style="color:var(--gold);font-weight:600">ventas@carbelec.co</a> ·
+      <a href="https://wa.me/573153899483" style="color:#25D366;font-weight:600">WhatsApp</a>
+    </p>
+
+    <div style="text-align:center">
+      <a href="https://carbelec.co" class="back-btn">← Volver a CARBELEC</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 CARBELEC — Carbon Electric S.A.S. Todos los derechos reservados.</p>
+    <p>Cra. 81 #73F Sur 57, Bogotá · <a href="tel:+576016484985">601 648 4985</a> · <a href="mailto:ventas@carbelec.co">ventas@carbelec.co</a></p>
+  </footer>
+
+</body>
+</html>
