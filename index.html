@@ -379,156 +379,475 @@
     }
   </script>
 
-  <!-- ═══ CARBELEC AI CHATBOT ═══ -->
-  <style>
-    .cht-toggle{position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;background:var(--gold,#C5A028);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(197,160,40,.3);transition:all .3s;z-index:10000;animation:chtPulse 2s ease-in-out 3}
-    @keyframes chtPulse{0%,100%{transform:scale(1);box-shadow:0 4px 20px rgba(197,160,40,.3)}50%{transform:scale(1.15);box-shadow:0 6px 30px rgba(197,160,40,.5)}}
-    .cht-toggle:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(197,160,40,.4)}
-    .cht-toggle.active{background:#1d1d1f;box-shadow:0 4px 20px rgba(0,0,0,.2)}
-    .cht-toggle svg{width:24px;height:24px;fill:currentColor}
-    .cht-win{position:fixed;bottom:92px;right:24px;width:400px;height:min(540px, calc(100vh - 120px));background:#fff;border-radius:20px;box-shadow:0 12px 48px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.06);display:none;flex-direction:column;overflow:hidden;z-index:10000;animation:chtUp .3s cubic-bezier(.25,.46,.45,.94)}
-    .cht-win.open{display:flex}
-    @keyframes chtUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-    .cht-hdr{padding:16px 20px;background:#fff;border-bottom:.5px solid #e8e8ed;display:flex;align-items:center;gap:12px}
-    .cht-av{width:36px;height:36px;background:#C5A028;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;flex-shrink:0}
-    .cht-hdr h3{font-size:14px;font-weight:600;color:#1d1d1f;line-height:1.2}
-    .cht-hdr p{font-size:11px;color:#86868b}
-    .cht-dot{width:7px;height:7px;background:#34C759;border-radius:50%;margin-left:auto;flex-shrink:0}
-    .cht-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
-    .cht-msgs::-webkit-scrollbar{width:4px}
-    .cht-msgs::-webkit-scrollbar-thumb{background:#d2d2d7;border-radius:4px}
-    .cht-m{max-width:85%;padding:10px 14px;border-radius:16px;font-size:13.5px;line-height:1.5;word-wrap:break-word}
-    .cht-bot{background:#f5f5f7;color:#1d1d1f;align-self:flex-start;border-bottom-left-radius:4px}
-    .cht-usr{background:#C5A028;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
-    .cht-typ{background:#f5f5f7;align-self:flex-start;border-bottom-left-radius:4px;padding:12px 18px}
-    .cht-td{display:flex;gap:4px;align-items:center}
-    .cht-td span{width:6px;height:6px;background:#86868b;border-radius:50%;animation:chtBnc 1.2s infinite}
-    .cht-td span:nth-child(2){animation-delay:.2s}
-    .cht-td span:nth-child(3){animation-delay:.4s}
-    @keyframes chtBnc{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
-    .cht-qr{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-    .cht-qc{padding:6px 12px;background:#fff;border:1px solid #e8e8ed;border-radius:100px;font-size:12px;color:#C5A028;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit}
-    .cht-qc:hover{background:#FBF7ED;border-color:#C5A028}
-    .cht-in{padding:12px 16px;border-top:.5px solid #e8e8ed;display:flex;gap:8px;align-items:center;background:#fff}
-    .cht-inp{flex:1;border:1px solid #e8e8ed;border-radius:100px;padding:10px 16px;font-size:13.5px;font-family:inherit;color:#1d1d1f;outline:none;background:#f5f5f7;transition:border-color .2s}
-    .cht-inp::placeholder{color:#86868b}
-    .cht-inp:focus{border-color:#C5A028;background:#fff}
-    .cht-snd{width:36px;height:36px;border-radius:50%;background:#C5A028;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
-    .cht-snd:hover{background:#DFBE47}
-    .cht-snd:disabled{opacity:.4;cursor:not-allowed}
-    .cht-snd svg{width:16px;height:16px;fill:currentColor}
-    .cht-ft{padding:6px;text-align:center;font-size:10px;color:#86868b;background:#fff}
-    @media(max-width:440px){.cht-win{width:calc(100vw - 16px);height:calc(100vh - 100px);right:8px;bottom:80px;border-radius:16px}}
 
-    .lang-sw{display:flex;gap:2px;margin-left:12px;align-items:center}
-    .lang-btn{background:none;border:1px solid var(--border-light);border-radius:4px;padding:2px 6px;font-size:10px;font-weight:600;cursor:pointer;color:var(--text3);transition:all .2s;font-family:inherit;text-transform:uppercase}
-    .lang-btn.active{background:var(--gold);color:#fff;border-color:var(--gold)}
-    .lang-btn:hover{border-color:var(--gold)}
-  </style>
-  <button class="cht-toggle" id="chtToggle" onclick="chtToggle()">
-    <svg id="chtIcoO" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/><path d="M7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
-    <svg id="chtIcoC" style="display:none" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-  </button>
-  <div class="cht-win" id="chtWin">
-    <div class="cht-hdr">
-      <div class="cht-av">C</div>
-      <div><h3>Asistente CARBELEC</h3><p>Responde en segundos</p></div>
-      <div class="cht-dot"></div>
+ 3. PEGAR en su lugar todo el contenido de este archivo
+    (desde SECCIÓN 1 hasta SECCIÓN 3)
+ 
+ 4. Desplegar el Worker v2.1 (carbelec-worker-v2.1.js) en Cloudflare
+ 
+ 5. Listo — el chatbot web ahora tiene:
+    - Clasificación de intención (compra, cotización, burro amarrado)
+    - Notificaciones por WhatsApp y email para ventas web
+    - Logging a Google Sheets con origen "Web Chat"
+    - Página de política de privacidad funcional
+    - Botón "Nueva consulta" al finalizar conversación
+    - Session ID único por visitante
+
+═══════════════════════════════════════════════════════════════════════
+-->
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN 1: MODAL DE POLÍTICA DE PRIVACIDAD                    -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<style>
+  /* ═══ MODAL DE PRIVACIDAD ═══ */
+  .priv-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:20000;display:none;align-items:center;justify-content:center;padding:24px;animation:privFadeIn .3s ease}
+  .priv-overlay.open{display:flex}
+  @keyframes privFadeIn{from{opacity:0}to{opacity:1}}
+  .priv-modal{background:#fff;border-radius:20px;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.2);animation:privSlideUp .35s cubic-bezier(.25,.46,.45,.94)}
+  @keyframes privSlideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  .priv-modal::-webkit-scrollbar{width:6px}
+  .priv-modal::-webkit-scrollbar-thumb{background:#d2d2d7;border-radius:6px}
+  .priv-hdr{position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);padding:20px 28px;border-bottom:.5px solid #e8e8ed;display:flex;align-items:center;justify-content:space-between;z-index:1}
+  .priv-hdr h2{font-size:18px;font-weight:600;color:#1d1d1f}
+  .priv-close{width:32px;height:32px;border-radius:50%;background:#f5f5f7;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:#86868b;transition:all .2s}
+  .priv-close:hover{background:#e8e8ed;color:#1d1d1f}
+  .priv-body{padding:28px}
+  .priv-body h3{font-size:15px;font-weight:600;color:#1d1d1f;margin:20px 0 8px;line-height:1.4}
+  .priv-body h3:first-child{margin-top:0}
+  .priv-body p{font-size:13.5px;color:#6e6e73;line-height:1.7;margin-bottom:12px}
+  .priv-body ul{padding-left:20px;margin-bottom:12px}
+  .priv-body li{font-size:13.5px;color:#6e6e73;line-height:1.7;margin-bottom:4px}
+  .priv-badge{display:inline-block;background:#FBF7ED;color:#C5A028;font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;margin-bottom:16px;text-transform:uppercase;letter-spacing:.05em}
+  .priv-ft{padding:16px 28px;border-top:.5px solid #e8e8ed;text-align:center}
+  .priv-ft p{font-size:11px;color:#86868b;margin:0}
+</style>
+
+<div class="priv-overlay" id="privOverlay" onclick="if(event.target===this)cerrarPrivacidad()">
+  <div class="priv-modal">
+    <div class="priv-hdr">
+      <h2>Política de Privacidad y Datos</h2>
+      <button class="priv-close" onclick="cerrarPrivacidad()">✕</button>
     </div>
-    <div class="cht-msgs" id="chtMsgs"></div>
-    <div class="cht-in">
-      <input type="text" class="cht-inp" id="chtInp" placeholder="Escribe tu pregunta..." onkeydown="if(event.key==='Enter')chtSend()">
-      <button class="cht-snd" id="chtBtn" onclick="chtSend()"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+    <div class="priv-body">
+      <div class="priv-badge">CARBELEC — Carbon Electric S.A.S.</div>
+
+      <h3>1. Responsable del tratamiento</h3>
+      <p><strong>CARBELEC — Carbon Electric S.A.S.</strong>, identificada con NIT vigente, con domicilio en Cra. 81 #73F Sur 57, Bogotá, Cundinamarca, Colombia. Teléfono: 601 648 4985. Correo: ventas@carbelec.co</p>
+
+      <h3>2. Datos que recopilamos</h3>
+      <p>Al interactuar con nuestros canales de atención (WhatsApp, chat web, formularios), podemos recopilar:</p>
+      <ul>
+        <li>Nombre y datos de contacto (teléfono, correo electrónico)</li>
+        <li>Información de ubicación (ciudad)</li>
+        <li>Productos consultados, cantidades y preferencias</li>
+        <li>Historial de conversaciones con nuestro asistente virtual</li>
+        <li>Información de empresa (cuando se proporciona voluntariamente)</li>
+      </ul>
+
+      <h3>3. Finalidad del tratamiento</h3>
+      <p>Utilizamos sus datos personales para:</p>
+      <ul>
+        <li>Atender consultas y solicitudes de cotización</li>
+        <li>Procesar pedidos y coordinar entregas</li>
+        <li>Enviar información sobre productos y promociones (solo con consentimiento)</li>
+        <li>Mejorar nuestros productos y servicios</li>
+        <li>Cumplir con obligaciones legales y tributarias</li>
+      </ul>
+
+      <h3>4. Asistente virtual con inteligencia artificial</h3>
+      <p>CARBELEC utiliza un asistente virtual basado en inteligencia artificial para atender consultas en WhatsApp y en nuestro sitio web. Al interactuar con este asistente:</p>
+      <ul>
+        <li>Sus mensajes son procesados por sistemas de IA para generar respuestas relevantes</li>
+        <li>Las conversaciones pueden ser almacenadas temporalmente para brindar continuidad en la atención</li>
+        <li>No se comparten sus datos con terceros para fines comerciales</li>
+        <li>Un asesor humano puede contactarle para completar su solicitud</li>
+      </ul>
+
+      <h3>5. Base legal</h3>
+      <p>El tratamiento de datos se realiza conforme a la Ley 1581 de 2012 (Ley de Protección de Datos Personales de Colombia) y sus decretos reglamentarios. La base legal es el consentimiento del titular, otorgado al iniciar la comunicación con nuestros canales de atención.</p>
+
+      <h3>6. Derechos del titular</h3>
+      <p>Usted tiene derecho a:</p>
+      <ul>
+        <li>Conocer, actualizar y rectificar sus datos personales</li>
+        <li>Solicitar prueba de la autorización otorgada</li>
+        <li>Ser informado sobre el uso dado a sus datos</li>
+        <li>Revocar la autorización y/o solicitar la supresión de sus datos</li>
+        <li>Acceder gratuitamente a sus datos personales</li>
+      </ul>
+      <p>Para ejercer estos derechos, escriba a <strong>ventas@carbelec.co</strong> con el asunto "Datos Personales".</p>
+
+      <h3>7. Seguridad</h3>
+      <p>Implementamos medidas técnicas y administrativas para proteger sus datos personales contra acceso no autorizado, pérdida o alteración. Las conversaciones se almacenan en servidores seguros con cifrado.</p>
+
+      <h3>8. Vigencia y modificaciones</h3>
+      <p>Esta política entra en vigencia a partir de su publicación y podrá ser actualizada en cualquier momento. Las modificaciones serán publicadas en este mismo sitio web.</p>
+
+      <p style="margin-top:20px;font-size:12px;color:#86868b;font-style:italic">Última actualización: Marzo 2026</p>
     </div>
-    <div class="cht-ft">Powered by IA &bull; CARBELEC S.A.S.</div>
+    <div class="priv-ft">
+      <p>CARBELEC — Carbon Electric S.A.S. • Bogotá, Colombia • Ley 1581 de 2012</p>
+    </div>
   </div>
-  <script>
-  (function(){
-    const WORKER_URL='https://carbelec-chatbot.dei0821.workers.dev';
-    let history=[],loading=false;
-    window.chtToggle=function(){
-      const w=document.getElementById('chtWin'),t=document.getElementById('chtToggle');
-      const o=document.getElementById('chtIcoO'),c=document.getElementById('chtIcoC');
-      if(w.classList.contains('open')){
-        w.classList.remove('open');t.classList.remove('active');o.style.display='';c.style.display='none';
-      }else{
-        w.classList.add('open');t.classList.add('active');o.style.display='none';c.style.display='';
-        if(!history.length)showWelcome();
-        document.getElementById('chtInp').focus();
-      }
+</div>
+
+<script>
+// ═══ MANEJO DEL MODAL DE PRIVACIDAD ═══
+function abrirPrivacidad() {
+  document.getElementById('privOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function cerrarPrivacidad() {
+  document.getElementById('privOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Interceptar clicks a carbelec.co/privacidad
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('a');
+  if (link) {
+    const href = link.getAttribute('href') || '';
+    if (href.includes('carbelec.co/privacidad') || href.includes('/privacidad')) {
+      e.preventDefault();
+      abrirPrivacidad();
+    }
+  }
+});
+
+// También interceptar links dentro del chatbot (que vienen como texto)
+document.addEventListener('click', function(e) {
+  if (e.target.tagName === 'A' || e.target.closest('a')) {
+    const link = e.target.tagName === 'A' ? e.target : e.target.closest('a');
+    const href = link.href || '';
+    if (href.includes('privacidad')) {
+      e.preventDefault();
+      abrirPrivacidad();
+    }
+  }
+});
+
+// Cerrar con Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') cerrarPrivacidad();
+});
+</script>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN 2: ESTILOS DEL CHATBOT v2.1                           -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<style>
+  .cht-toggle{position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;background:var(--gold,#C5A028);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(197,160,40,.3);transition:all .3s;z-index:10000;animation:chtPulse 2s ease-in-out 3}
+  @keyframes chtPulse{0%,100%{transform:scale(1);box-shadow:0 4px 20px rgba(197,160,40,.3)}50%{transform:scale(1.15);box-shadow:0 6px 30px rgba(197,160,40,.5)}}
+  .cht-toggle:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(197,160,40,.4)}
+  .cht-toggle.active{background:#1d1d1f;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+  .cht-toggle svg{width:24px;height:24px;fill:currentColor}
+  .cht-win{position:fixed;bottom:92px;right:24px;width:400px;height:min(540px, calc(100vh - 120px));background:#fff;border-radius:20px;box-shadow:0 12px 48px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.06);display:none;flex-direction:column;overflow:hidden;z-index:10000;animation:chtUp .3s cubic-bezier(.25,.46,.45,.94)}
+  .cht-win.open{display:flex}
+  @keyframes chtUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  .cht-hdr{padding:16px 20px;background:#fff;border-bottom:.5px solid #e8e8ed;display:flex;align-items:center;gap:12px}
+  .cht-av{width:36px;height:36px;background:#C5A028;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#fff;flex-shrink:0}
+  .cht-hdr h3{font-size:14px;font-weight:600;color:#1d1d1f;line-height:1.2}
+  .cht-hdr p{font-size:11px;color:#86868b}
+  .cht-dot{width:7px;height:7px;background:#34C759;border-radius:50%;margin-left:auto;flex-shrink:0}
+  .cht-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
+  .cht-msgs::-webkit-scrollbar{width:4px}
+  .cht-msgs::-webkit-scrollbar-thumb{background:#d2d2d7;border-radius:4px}
+  .cht-m{max-width:85%;padding:10px 14px;border-radius:16px;font-size:13.5px;line-height:1.5;word-wrap:break-word}
+  .cht-bot{background:#f5f5f7;color:#1d1d1f;align-self:flex-start;border-bottom-left-radius:4px}
+  .cht-usr{background:#C5A028;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+  .cht-typ{background:#f5f5f7;align-self:flex-start;border-bottom-left-radius:4px;padding:12px 18px}
+  .cht-td{display:flex;gap:4px;align-items:center}
+  .cht-td span{width:6px;height:6px;background:#86868b;border-radius:50%;animation:chtBnc 1.2s infinite}
+  .cht-td span:nth-child(2){animation-delay:.2s}
+  .cht-td span:nth-child(3){animation-delay:.4s}
+  @keyframes chtBnc{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-4px);opacity:1}}
+  .cht-qr{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .cht-qc{padding:6px 12px;background:#fff;border:1px solid #e8e8ed;border-radius:100px;font-size:12px;color:#C5A028;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit}
+  .cht-qc:hover{background:#FBF7ED;border-color:#C5A028}
+  .cht-in{padding:12px 16px;border-top:.5px solid #e8e8ed;display:flex;gap:8px;align-items:center;background:#fff}
+  .cht-inp{flex:1;border:1px solid #e8e8ed;border-radius:100px;padding:10px 16px;font-size:13.5px;font-family:inherit;color:#1d1d1f;outline:none;background:#f5f5f7;transition:border-color .2s}
+  .cht-inp::placeholder{color:#86868b}
+  .cht-inp:focus{border-color:#C5A028;background:#fff}
+  .cht-snd{width:36px;height:36px;border-radius:50%;background:#C5A028;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+  .cht-snd:hover{background:#DFBE47}
+  .cht-snd:disabled{opacity:.4;cursor:not-allowed}
+  .cht-snd svg{width:16px;height:16px;fill:currentColor}
+  .cht-ft{padding:6px;text-align:center;font-size:10px;color:#86868b;background:#fff}
+  @media(max-width:440px){.cht-win{width:calc(100vw - 16px);height:calc(100vh - 100px);right:8px;bottom:80px;border-radius:16px}}
+</style>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN 3: HTML + JS DEL CHATBOT v2.1                         -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+
+<button class="cht-toggle" id="chtToggle" onclick="chtToggle()">
+  <svg id="chtIcoO" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/><path d="M7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+  <svg id="chtIcoC" style="display:none" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+</button>
+
+<div class="cht-win" id="chtWin">
+  <div class="cht-hdr">
+    <div class="cht-av">C</div>
+    <div><h3>Asistente CARBELEC</h3><p>Responde en segundos • IA</p></div>
+    <div class="cht-dot"></div>
+  </div>
+  <div class="cht-msgs" id="chtMsgs"></div>
+  <div class="cht-in">
+    <input type="text" class="cht-inp" id="chtInp" placeholder="Escribe tu pregunta..." onkeydown="if(event.key==='Enter')chtSend()">
+    <button class="cht-snd" id="chtBtn" onclick="chtSend()"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
+  </div>
+  <div class="cht-ft">Powered by IA • CARBELEC S.A.S.</div>
+</div>
+
+<script>
+(function(){
+  const WORKER_URL = 'https://carbelec-chatbot.dei0821.workers.dev';
+  let history = [];
+  let loading = false;
+  let conversacionFinalizada = false;
+
+  // ═══ SESSION ID ÚNICO POR VISITANTE ═══
+  function generarSessionId() {
+    const stored = sessionStorage.getItem('carbelec_session_id');
+    if (stored) return stored;
+    const id = 'web-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    sessionStorage.setItem('carbelec_session_id', id);
+    return id;
+  }
+  const sessionId = generarSessionId();
+
+  // ═══ TOGGLE CHATBOT ═══
+  window.chtToggle = function() {
+    const w = document.getElementById('chtWin');
+    const t = document.getElementById('chtToggle');
+    const o = document.getElementById('chtIcoO');
+    const c = document.getElementById('chtIcoC');
+    if (w.classList.contains('open')) {
+      w.classList.remove('open');
+      t.classList.remove('active');
+      o.style.display = '';
+      c.style.display = 'none';
+    } else {
+      w.classList.add('open');
+      t.classList.add('active');
+      o.style.display = 'none';
+      c.style.display = '';
+      if (!history.length) showWelcome();
+      document.getElementById('chtInp').focus();
+    }
+  };
+
+  // ═══ BIENVENIDA ═══
+  function showWelcome() {
+    const m = document.getElementById('chtMsgs');
+    m.innerHTML = '';
+    conversacionFinalizada = false;
+    const lang = (typeof currentLang !== 'undefined') ? currentLang : 'es';
+    const msgs = {
+      es: '¡Hola! 👋 Soy el asistente de *CARBELEC*. ¿Qué producto necesitas? Cuéntame y te doy precios al instante 😊',
+      en: 'Hi! 👋 I\'m CARBELEC\'s assistant. What product do you need? Tell me and I\'ll give you prices right away 😊',
+      pt: 'Olá! 👋 Sou o assistente da CARBELEC. Qual produto você precisa? Me conte e eu lhe dou preços na hora 😊'
     };
-    function showWelcome(){
-      const m=document.getElementById('chtMsgs');m.innerHTML='';
-      var msgs = {
-        es: '¡Hola! 👋 Soy el asistente de CARBELEC. ¿En qué te puedo ayudar?',
-        en: 'Hi! 👋 I\'m CARBELEC\'s assistant. How can I help you?',
-        pt: 'Olá! 👋 Sou o assistente da CARBELEC. Como posso ajudar?'
-      };
-      addBot(msgs[currentLang||'es']);
-      const d=document.createElement('div');d.className='cht-qr';
-      var chips = {
-        es: '<button class="cht-qc" onclick="chtQ(\'¿Qué productos tienen?\')">📦 Productos</button><button class="cht-qc" onclick="chtQ(\'¿Cuál es el horario?\')">🕐 Horario</button><button class="cht-qc" onclick="chtQ(\'Necesito cotizar al por mayor\')">💰 Cotización</button><button class="cht-qc" onclick="chtQ(\'¿Hacen envíos a todo Colombia?\')">🚚 Envíos</button>',
-        en: '<button class="cht-qc" onclick="chtQ(\'What products do you have?\')">📦 Products</button><button class="cht-qc" onclick="chtQ(\'What are your hours?\')">🕐 Hours</button><button class="cht-qc" onclick="chtQ(\'I need a wholesale quote\')">💰 Quote</button><button class="cht-qc" onclick="chtQ(\'Do you ship nationwide?\')">🚚 Shipping</button>',
-        pt: '<button class="cht-qc" onclick="chtQ(\'Quais produtos vocês têm?\')">📦 Produtos</button><button class="cht-qc" onclick="chtQ(\'Qual é o horário?\')">🕐 Horário</button><button class="cht-qc" onclick="chtQ(\'Preciso de orçamento\')">💰 Orçamento</button><button class="cht-qc" onclick="chtQ(\'Fazem envios para todo o país?\')">🚚 Envios</button>'
-      };
-      d.innerHTML = chips[currentLang||'es'];
+    addBot(msgs[lang] || msgs.es);
+    const d = document.createElement('div');
+    d.className = 'cht-qr';
+    const chips = {
+      es: [
+        { text: '🔧 Herramientas', msg: '¿Qué herramientas tienen?' },
+        { text: '⚡ Eléctricos', msg: '¿Qué productos eléctricos tienen?' },
+        { text: '💰 Cotización', msg: 'Necesito cotizar productos al por mayor' },
+        { text: '🚚 Envíos', msg: '¿Hacen envíos a todo Colombia?' }
+      ],
+      en: [
+        { text: '🔧 Tools', msg: 'What tools do you have?' },
+        { text: '⚡ Electrical', msg: 'What electrical products do you have?' },
+        { text: '💰 Quote', msg: 'I need a wholesale quote' },
+        { text: '🚚 Shipping', msg: 'Do you ship nationwide?' }
+      ],
+      pt: [
+        { text: '🔧 Ferramentas', msg: 'Quais ferramentas vocês têm?' },
+        { text: '⚡ Elétricos', msg: 'Quais produtos elétricos vocês têm?' },
+        { text: '💰 Orçamento', msg: 'Preciso de orçamento' },
+        { text: '🚚 Envios', msg: 'Fazem envios para todo o país?' }
+      ]
+    };
+    const currentChips = chips[lang] || chips.es;
+    d.innerHTML = currentChips.map(function(c) {
+      return '<button class="cht-qc" onclick="chtQ(\'' + c.msg.replace(/'/g, "\\'") + '\')">' + c.text + '</button>';
+    }).join('');
+    m.appendChild(d);
+  }
+
+  // ═══ CONSTRUIR LINK DE WHATSAPP ═══
+  function buildWaLink() {
+    var summary = 'Hola, vengo del chat de carbelec.co. ';
+    var userMsgs = history.filter(function(m){ return m.role === 'user'; }).map(function(m){ return m.content; });
+    if (userMsgs.length > 0) summary += 'Me interesa: ' + userMsgs.slice(-3).join(', ') + '. ';
+    summary += '¿Me pueden ayudar?';
+    return 'https://api.whatsapp.com/send?phone=573153899483&text=' + encodeURIComponent(summary);
+  }
+
+  // ═══ AGREGAR MENSAJE DEL BOT ═══
+  function addBot(t) {
+    var m = document.getElementById('chtMsgs');
+    var d = document.createElement('div');
+    d.className = 'cht-m cht-bot';
+    var waLink = buildWaLink();
+    // Escapar HTML
+    var html = t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    // URLs → placeholders
+    html = html.replace(/https?:\/\/[^\s]+/g, function(url) {
+      if (url.match(/mercadolibre|mercadoshops/)) return '[[ML_LINK]]';
+      if (url.match(/privacidad/)) return '[[PRIV_LINK]]';
+      return '[[WA_LINK]]';
+    });
+    // Teléfonos → WhatsApp
+    html = html.replace(/\+?57\s*315\s*389\s*9483/g, '[[WA_LINK]]');
+    html = html.replace(/315\s*389\s*9483/g, '[[WA_LINK]]');
+    html = html.replace(/\+?57\s*316\s*667\s*7374/g, '[[WA_LINK]]');
+    // Limpiar duplicados
+    html = html.replace(/(\[\[WA_LINK\]\]\s*)+/g, '[[WA_LINK]] ');
+    html = html.replace(/(\[\[ML_LINK\]\]\s*)+/g, '[[ML_LINK]] ');
+    // Bold: *texto* → <b>texto</b>
+    html = html.replace(/\*([^*]+)\*/g, '<b>$1</b>');
+    // Reemplazar placeholders
+    html = html.replace(/\[\[ML_LINK\]\]/g,
+      '<a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" style="color:#C5A028;text-decoration:underline;font-weight:600">🛒 Tienda MercadoLibre</a>');
+    html = html.replace(/\[\[WA_LINK\]\]/g,
+      '<a href="' + waLink + '" target="_blank" style="color:#25D366;text-decoration:underline;font-weight:600">📱 WhatsApp CARBELEC</a>');
+    html = html.replace(/\[\[PRIV_LINK\]\]/g,
+      '<a href="#" onclick="abrirPrivacidad();return false;" style="color:#C5A028;text-decoration:underline">política de datos</a>');
+    // Link de privacidad en texto plano
+    html = html.replace(/carbelec\.co\/privacidad/g,
+      '<a href="#" onclick="abrirPrivacidad();return false;" style="color:#C5A028;text-decoration:underline">carbelec.co/privacidad</a>');
+    d.innerHTML = html;
+    m.appendChild(d);
+    m.scrollTop = m.scrollHeight;
+  }
+
+  // ═══ AGREGAR MENSAJE DEL USUARIO ═══
+  function addUsr(t) {
+    var m = document.getElementById('chtMsgs');
+    var d = document.createElement('div');
+    d.className = 'cht-m cht-usr';
+    d.textContent = t;
+    m.appendChild(d);
+    m.scrollTop = m.scrollHeight;
+  }
+
+  // ═══ INDICADOR DE ESCRITURA ═══
+  function showTyp() {
+    var m = document.getElementById('chtMsgs');
+    var d = document.createElement('div');
+    d.className = 'cht-m cht-typ';
+    d.id = 'chtTyp';
+    d.innerHTML = '<div class="cht-td"><span></span><span></span><span></span></div>';
+    m.appendChild(d);
+    m.scrollTop = m.scrollHeight;
+  }
+  function hideTyp() {
+    var e = document.getElementById('chtTyp');
+    if (e) e.remove();
+  }
+
+  // ═══ QUICK REPLY ═══
+  window.chtQ = function(t) {
+    var c = document.querySelector('.cht-qr');
+    if (c) c.remove();
+    sendMsg(t);
+  };
+
+  // ═══ ENVIAR DESDE INPUT ═══
+  window.chtSend = function() {
+    var i = document.getElementById('chtInp');
+    var t = i.value.trim();
+    if (!t || loading || conversacionFinalizada) return;
+    i.value = '';
+    sendMsg(t);
+  };
+
+  // ═══ MANEJAR INTENCIÓN DETECTADA ═══
+  function handleIntencion(intencion) {
+    if (!intencion || intencion === 'continuar') return;
+    conversacionFinalizada = true;
+    setTimeout(function() {
+      var m = document.getElementById('chtMsgs');
+      var d = document.createElement('div');
+      d.className = 'cht-qr';
+      d.style.marginTop = '12px';
+      d.innerHTML = '<button class="cht-qc" onclick="chtNuevaConversacion()" style="background:#C5A028;color:#fff;border-color:#C5A028">🔄 Nueva consulta</button>';
       m.appendChild(d);
-    }
-    function buildWaLink(){
-      var summary='Hola, vengo del chat de carbelec.co. ';
-      var userMsgs=history.filter(m=>m.role==='user').map(m=>m.content);
-      if(userMsgs.length>0) summary+='Me interesa: '+userMsgs.slice(-3).join(', ')+'. ';
-      summary+='¿Me pueden ayudar?';
-      return 'https://api.whatsapp.com/send?phone=573153899483&text='+encodeURIComponent(summary);
-    }
-    function addBot(t){
-      var m=document.getElementById('chtMsgs'),d=document.createElement('div');
-      d.className='cht-m cht-bot';
-      var waLink=buildWaLink();
-      // Step 1: Escape HTML special chars to prevent raw HTML rendering
-      var html=t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      // Step 2: Remove ALL URLs (any http/https link) and replace with placeholder
-      html=html.replace(/https?:\/\/[^\s]+/g, function(url){
-        if(url.match(/mercadolibre/)) return '[[ML_LINK]]';
-        if(url.match(/wa\.me/)) return '[[WA_LINK]]';
-        return '[[WA_LINK]]';
+      m.scrollTop = m.scrollHeight;
+    }, 1500);
+  }
+
+  // ═══ NUEVA CONVERSACIÓN ═══
+  window.chtNuevaConversacion = function() {
+    history = [];
+    conversacionFinalizada = false;
+    var newId = 'web-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    sessionStorage.setItem('carbelec_session_id', newId);
+    showWelcome();
+  };
+
+  // ═══ ENVIAR MENSAJE AL WORKER ═══
+  async function sendMsg(text) {
+    if (loading || conversacionFinalizada) return;
+    loading = true;
+    document.getElementById('chtBtn').disabled = true;
+    addUsr(text);
+    history.push({ role: 'user', content: text });
+    showTyp();
+    try {
+      var currentSessionId = sessionStorage.getItem('carbelec_session_id') || sessionId;
+      var r = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: history.slice(-10),
+          sessionId: currentSessionId
+        })
       });
-      // Step 3: Replace phone number patterns
-      html=html.replace(/\+?57\s*315\s*389\s*9483/g, '[[WA_LINK]]');
-      html=html.replace(/315\s*389\s*9483/g, '[[WA_LINK]]');
-      // Step 4: Clean up duplicate/adjacent placeholders
-      html=html.replace(/(\[\[WA_LINK\]\]\s*)+/g, '[[WA_LINK]] ');
-      html=html.replace(/(\[\[ML_LINK\]\]\s*)+/g, '[[ML_LINK]] ');
-      // Step 5: Bold markdown
-      html=html.replace(/\*\*(.*?)\*\*/g,'<b>$1</b>');
-      // Step 6: Replace placeholders with real HTML links
-      html=html.replace(/\[\[ML_LINK\]\]/g, '<a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" style="color:#C5A028;text-decoration:underline;font-weight:600">🛒 Tienda MercadoLibre</a>');
-      html=html.replace(/\[\[WA_LINK\]\]/g, '<a href="'+waLink+'" target="_blank" style="color:#25D366;text-decoration:underline;font-weight:600">📱 WhatsApp CARBELEC</a>');
-      d.innerHTML=html;
-      m.appendChild(d);m.scrollTop=m.scrollHeight;
+      var d = await r.json();
+      hideTyp();
+      if (d.content && d.content[0] && d.content[0].text) {
+        var reply = d.content[0].text;
+        addBot(reply);
+        history.push({ role: 'assistant', content: reply });
+        // Manejar intención detectada por el Worker
+        if (d.intencion) {
+          handleIntencion(d.intencion);
+        }
+      } else {
+        addBot('Disculpa, tuve un problema técnico. ¿Podrías intentar de nuevo?');
+      }
+    } catch(e) {
+      hideTyp();
+      addBot('No pude conectarme al servidor. Escríbenos directamente por WhatsApp.');
     }
-    function addUsr(t){const m=document.getElementById('chtMsgs'),d=document.createElement('div');d.className='cht-m cht-usr';d.textContent=t;m.appendChild(d);m.scrollTop=m.scrollHeight}
-    function showTyp(){const m=document.getElementById('chtMsgs'),d=document.createElement('div');d.className='cht-m cht-typ';d.id='chtTyp';d.innerHTML='<div class="cht-td"><span></span><span></span><span></span></div>';m.appendChild(d);m.scrollTop=m.scrollHeight}
-    function hideTyp(){const e=document.getElementById('chtTyp');if(e)e.remove()}
-    window.chtQ=function(t){const c=document.querySelector('.cht-qr');if(c)c.remove();sendMsg(t)};
-    window.chtSend=function(){const i=document.getElementById('chtInp'),t=i.value.trim();if(!t||loading)return;i.value='';sendMsg(t)};
-    async function sendMsg(text){
-      if(loading)return;loading=true;
-      document.getElementById('chtBtn').disabled=true;
-      addUsr(text);history.push({role:'user',content:text});showTyp();
-      try{
-        const r=await fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history.slice(-10)})});
-        const d=await r.json();hideTyp();
-        if(d.content&&d.content[0]&&d.content[0].text){
-          const reply=d.content[0].text;addBot(reply);history.push({role:'assistant',content:reply});
-        }else{addBot('Disculpa, tuve un problema. Escr\u00edbenos por WhatsApp al +57 315 389 9483.');}
-      }catch(e){hideTyp();addBot('No pude conectarme. Escr\u00edbenos por WhatsApp al +57 315 389 9483.');}
-      loading=false;document.getElementById('chtBtn').disabled=false;document.getElementById('chtInp').focus();
+    loading = false;
+    document.getElementById('chtBtn').disabled = false;
+    if (!conversacionFinalizada) {
+      document.getElementById('chtInp').focus();
     }
-    // Auto-open chatbot after 2 seconds
-    setTimeout(function(){ if(!document.getElementById('chtWin').classList.contains('open')) chtToggle(); }, 2000);
-  })();
-  </script>
+  }
+
+  // ═══ AUTO-ABRIR CHATBOT DESPUÉS DE 2 SEGUNDOS ═══
+  setTimeout(function() {
+    if (!document.getElementById('chtWin').classList.contains('open')) {
+      chtToggle();
+    }
+  }, 2000);
+
+})();
+</script>
+
 
 
   <script>
