@@ -683,7 +683,16 @@
     .priv-ft{padding:16px 28px;border-top:.5px solid #e8e8ed;text-align:center}
     .priv-ft p{font-size:11px;color:#86868b;margin:0}
 
-    /* ═══ CHATBOT ═══ */
+    /* ═══ CHATBOT v3: enlaces de contacto independientes de la IA ═══ */
+    .cht-contact{padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:.5px solid #e8e8ed;background:#fff;flex-shrink:0}
+    .cht-contact a{font-size:12px;font-weight:600;color:#157347;text-decoration:underline}
+    .cht-contact .cht-wa-web{font-size:11px;color:#6e6e73}
+    .cht-actions{align-self:flex-start;max-width:100%;padding:12px 14px;background:#edf8f0;border:1px solid #d2e9d8;border-radius:14px}
+    .cht-actions .cht-wa-main{display:inline-block;padding:9px 13px;background:#157347;color:#fff;border-radius:9px;font-size:13px;font-weight:600;text-decoration:none}
+    .cht-actions .cht-wa-web{display:block;margin-top:8px;color:#157347;font-size:12px;text-decoration:underline}
+    .cht-actions p{margin:8px 0 0;font-size:11px;line-height:1.45;color:#40574a}
+    .cht-contact a:focus-visible,.cht-actions a:focus-visible{outline:2px solid #157347;outline-offset:3px}
+    .cht-m[data-failed="true"]{opacity:.7}
     .cht-toggle{position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;background:var(--gold,#C5A028);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 4px 20px rgba(197,160,40,.3);transition:all .3s;z-index:10000;animation:chtPulse 2s ease-in-out 3}
     .cht-toggle[hidden]{display:none}
     @keyframes chtPulse{0%,100%{transform:scale(1);box-shadow:0 4px 20px rgba(197,160,40,.3)}50%{transform:scale(1.15);box-shadow:0 6px 30px rgba(197,160,40,.5)}}
@@ -819,8 +828,12 @@
       <div class="cht-dot" aria-hidden="true"></div>
     </div>
     <div class="cht-msgs" id="chtMsgs" role="log" aria-live="polite"></div>
+    <div class="cht-contact" aria-label="Contacto CARBELEC">
+      <a id="chtContact" href="https://wa.me/573153899483" target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+      <a id="chtContactWeb" class="cht-wa-web" href="https://web.whatsapp.com/send?phone=573153899483" target="_blank" rel="noopener noreferrer">WhatsApp Web</a>
+    </div>
     <form class="cht-in" id="chtForm">
-      <input type="text" class="cht-inp" id="chtInp" placeholder="Escribe tu pregunta..." aria-label="Escribe tu pregunta..." autocomplete="off" enterkeyhint="send">
+      <input type="text" class="cht-inp" id="chtInp" placeholder="Escribe tu pregunta..." aria-label="Escribe tu pregunta..." autocomplete="off" enterkeyhint="send" maxlength="2000">
       <button type="submit" class="cht-snd" id="chtBtn" aria-label="Enviar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
     </form>
     <div class="cht-ft"><span id="chtFt">Powered by IA • CARBELEC S.A.S.</span> • <a href="#privacidad" id="chtPriv">Privacidad</a></div>
@@ -837,7 +850,7 @@
     const AUTO_OPEN_MS = 2000;          // el chat se abre solo tras este tiempo; 0 = nunca
     const AUTO_OPEN_ON_PHONES = true;   // false = en pantallas pequeñas solo se abre al tocar el botón
     const REQUEST_TIMEOUT_MS = 60000;   // si el Worker no responde en este tiempo, se avisa al cliente
-    const HISTORY_WINDOW = 10;          // mensajes recientes que se envían al Worker
+    const HISTORY_WINDOW = 20;          // mensajes recientes que se envían al Worker
     const SESSION_KEY = 'carbelec_session_id';
     const CLOSED_KEY = 'carbelec_chat_closed';
 
@@ -856,7 +869,11 @@
         newChat: '🔄 Nueva consulta', ended: 'Consulta finalizada',
         errTech: 'Disculpa, tuve un problema técnico. ¿Podrías intentar de nuevo?',
         errNet: 'No pude conectarme al servidor. Escríbenos directamente:',
-        mlLink: '🛒 Tienda MercadoLibre', privLink: 'política de datos'
+        mlLink: '🛒 Tienda MercadoLibre', privLink: 'política de datos',
+        contact: 'Hablar por WhatsApp', webContact: 'Abrir WhatsApp Web', retry: 'Reintentar',
+        contactHint: 'Abre WhatsApp y envía el mensaje para hablar con CARBELEC. Abrir el enlace no envía la solicitud.',
+        waGreeting: 'Hola, vengo del chat de carbelec.co. Necesito ayuda con esta consulta:',
+        tooLong: 'Escribe un mensaje de hasta 2000 caracteres.'
       },
       en: {
         title: 'CARBELEC Assistant', sub: 'Replies in seconds • AI', placeholder: 'Type your question...',
@@ -871,7 +888,11 @@
         newChat: '🔄 New conversation', ended: 'Conversation ended',
         errTech: 'Sorry, I ran into a technical problem. Could you try again?',
         errNet: 'I couldn\'t reach the server. Message us directly:',
-        mlLink: '🛒 MercadoLibre store', privLink: 'privacy policy'
+        mlLink: '🛒 MercadoLibre store', privLink: 'privacy policy',
+        contact: 'Talk on WhatsApp', webContact: 'Open WhatsApp Web', retry: 'Try again',
+        contactHint: 'Open WhatsApp and send the message to talk to CARBELEC. Opening the link does not send your request.',
+        waGreeting: 'Hi, I came from the chat on carbelec.co. I need help with this request:',
+        tooLong: 'Please write a message of up to 2000 characters.'
       },
       pt: {
         title: 'Assistente CARBELEC', sub: 'Responde em segundos • IA', placeholder: 'Digite sua pergunta...',
@@ -886,7 +907,11 @@
         newChat: '🔄 Nova consulta', ended: 'Consulta finalizada',
         errTech: 'Desculpe, tive um problema técnico. Pode tentar de novo?',
         errNet: 'Não consegui conectar ao servidor. Fale conosco diretamente:',
-        mlLink: '🛒 Loja MercadoLibre', privLink: 'política de dados'
+        mlLink: '🛒 Loja MercadoLibre', privLink: 'política de dados',
+        contact: 'Falar pelo WhatsApp', webContact: 'Abrir WhatsApp Web', retry: 'Tentar novamente',
+        contactHint: 'Abra o WhatsApp e envie a mensagem para falar com a CARBELEC. Abrir o link não envia a solicitação.',
+        waGreeting: 'Olá, vim do chat de carbelec.co. Preciso de ajuda com esta consulta:',
+        tooLong: 'Escreva uma mensagem de até 2000 caracteres.'
       }
     };
 
@@ -901,7 +926,7 @@
 
     let chat = [];            // historial { role, content } que se envía al Worker
     let loading = false;      // hay una respuesta en camino
-    let finished = false;     // el Worker detectó una intención y cerró la conversación
+    let finished = false;     // solo una despedida explícita termina la conversación
     let pristine = false;     // solo se ve el saludo: todavía no se ha escrito nada
 
     const lang = () => {
@@ -1008,6 +1033,7 @@
       toggle.setAttribute('aria-label', tr(isOpen() ? 'close' : 'open'));
       const again = msgs.querySelector('.cht-new');
       if (again) again.textContent = tr('newChat');
+      updateContactLinks();
       if (pristine) showWelcome();      // aún no hay conversación: se repite el saludo en el nuevo idioma
     }
     document.addEventListener('carbelec:lang', applyLang);
@@ -1031,54 +1057,125 @@
       pristine = true;
     }
 
-    // ═══ CONSTRUIR LINK DE WHATSAPP ═══
-    function buildWaLink() {
-      let summary = 'Hola, vengo del chat de carbelec.co. ';
-      const userMsgs = chat
-        .filter(function (m) { return m.role === 'user'; })
-        .map(function (m) { return m.content.length > 200 ? m.content.slice(0, 197) + '…' : m.content; });
-      if (userMsgs.length > 0) summary += 'Me interesa: ' + userMsgs.slice(-3).join(', ') + '. ';
-      summary += '¿Me pueden ayudar?';
-      return 'https://api.whatsapp.com/send?phone=' + WA_PHONE + '&text=' + encodeURIComponent(summary);
+    // ═══ ENLACES SEGUROS: el destino siempre es el número público de CARBELEC ═══
+    // Cortar sin dividir emojis y sustituir sustitutos UTF-16 aislados antes de codificar URLs.
+    function safeSnippet(value, limit) {
+      let result = '';
+      for (const character of String(value == null ? '' : value)) {
+        const point = character.codePointAt(0);
+        const next = point >= 0xD800 && point <= 0xDFFF ? '\uFFFD' : character;
+        if (result.length + next.length > limit) break;
+        result += next;
+      }
+      return result;
+    }
+    function makeWaLinks(text) {
+      const encoded = encodeURIComponent(safeSnippet(text, 1600));
+      return {
+        url: 'https://wa.me/' + WA_PHONE + '?text=' + encoded,
+        webUrl: 'https://web.whatsapp.com/send?phone=' + WA_PHONE + '&text=' + encoded
+      };
+    }
+    function fallbackWaLinks() {
+      const requests = chat.filter(m => m.role === 'user');
+      const selected = requests.length > 4 ? [requests[0], ...requests.slice(-3)] : requests;
+      return makeWaLinks(tr('waGreeting') + '\n' + selected.map(m => safeSnippet(m.content, 320)).join('\n'));
+    }
+    // No confiar en el dominio, número, etiqueta ni parámetros proporcionados por el modelo.
+    function validateWaLink(value) {
+      if (typeof value !== 'string' || value.length > 14000) return null;
+      try {
+        const url = new URL(value);
+        if (url.protocol !== 'https:' || url.username || url.password || url.port || url.hash) return null;
+        if (url.hostname === 'wa.me') {
+          if (url.pathname !== '/' + WA_PHONE && url.pathname !== '/' + WA_PHONE + '/') return null;
+          if ([...url.searchParams.keys()].some(key => key !== 'text')) return null;
+        } else if (url.hostname === 'web.whatsapp.com' || url.hostname === 'api.whatsapp.com') {
+          if (!/^\/send\/?$/.test(url.pathname) || url.searchParams.getAll('phone').length !== 1 || url.searchParams.get('phone') !== WA_PHONE) return null;
+          if ([...url.searchParams.keys()].some(key => key !== 'text' && key !== 'phone')) return null;
+        } else return null;
+        if (url.searchParams.getAll('text').length > 1) return null;
+        return makeWaLinks(url.searchParams.get('text') || '');
+      } catch (error) { return null; }
+    }
+    function responseWaLinks(data) {
+      const actions = data && Array.isArray(data.actions) ? data.actions.slice(0, 10) : [];
+      const candidates = actions.filter(action => action && action.type === 'whatsapp')
+        .flatMap(action => [action.url, action.webUrl]);
+      candidates.push(data && data.whatsappUrl, data && data.whatsappWebUrl);
+      for (const candidate of candidates) {
+        const safe = validateWaLink(candidate);
+        if (safe) return safe;
+      }
+      return fallbackWaLinks();
+    }
+    function updateContactLinks() {
+      const links = fallbackWaLinks();
+      const main = byId('chtContact');
+      const web = byId('chtContactWeb');
+      main.href = links.url;
+      main.textContent = tr('contact');
+      main.title = tr('contactHint');
+      web.href = links.webUrl;
+      web.textContent = tr('webContact');
+      web.title = tr('contactHint');
+    }
+    function addContactActions(data) {
+      const links = responseWaLinks(data);
+      const row = document.createElement('div');
+      row.className = 'cht-actions';
+      [['cht-wa-main', 'contact', links.url], ['cht-wa-web', 'webContact', links.webUrl]].forEach(function (item) {
+        const link = document.createElement('a');
+        link.className = item[0];
+        link.textContent = tr(item[1]);
+        link.href = item[2];
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        row.appendChild(link);
+      });
+      const hint = document.createElement('p');
+      hint.textContent = tr('contactHint');
+      row.appendChild(hint);
+      msgs.appendChild(row);
+      msgs.scrollTop = msgs.scrollHeight;
     }
 
-    // ═══ TEXTO DEL BOT → HTML SEGURO ═══
-    // El texto se escapa primero; los únicos enlaces que llegan a la página son los tres de abajo.
-    function formatBot(text) {
-      let html = String(text).trim().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      // Enlaces Markdown [texto](url) → solo la URL
-      html = html.replace(/\[[^\]\n]+\]\((https?:\/\/[^\s)]+)\)/g, '$1');
-      // URLs → marcadores (la puntuación final no forma parte del enlace)
-      html = html.replace(/https?:\/\/[^\s]+/g, function (url) {
-        const tail = (url.match(/[.,;:!?)\]]+$/) || [''])[0];
-        const core = tail ? url.slice(0, -tail.length) : url;
-        if (/mercadolibre|mercadoshops/i.test(core)) return '[[ML_LINK]]' + tail;
-        if (/privacidad/i.test(core)) return '[[PRIV_LINK]]' + tail;
-        return '[[WA_LINK]]' + tail;
-      });
-      // Teléfonos → WhatsApp (con o sin +57; separados por espacios, puntos o guiones)
-      html = html.replace(/(?:\(?\+?57[\s.\-()]*)?(?:315[\s.\-]*389[\s.\-]*9483|316[\s.\-]*667[\s.\-]*7374)/g, '[[WA_LINK]]');
-      // Limpiar duplicados seguidos
-      html = html.replace(/\[\[WA_LINK\]\](?:\s*\[\[WA_LINK\]\])+/g, '[[WA_LINK]]');
-      html = html.replace(/\[\[ML_LINK\]\](?:\s*\[\[ML_LINK\]\])+/g, '[[ML_LINK]]');
-      // Viñetas "* " o "- " al inicio de línea → "• " (antes de las negritas, para no confundirlas)
-      html = html.replace(/^[ \t]*[*-][ \t]+/gm, '• ');
-      // Títulos Markdown "## Título" → línea en negrita
-      html = html.replace(/^#{1,6}[ \t]+(.+)$/gm, '<b>$1</b>');
-      // Negritas: **texto** y *texto* (estilo WhatsApp)
-      html = html.replace(/\*\*([^*\n]+)\*\*/g, '<b>$1</b>');
-      html = html.replace(/(^|[^*\w])\*([^\s*](?:[^*\n]*[^\s*])?)\*(?![*\w])/g, '$1<b>$2</b>');
-      // Reemplazar marcadores
-      html = html.replace(/\[\[ML_LINK\]\]/g,
-        '<a class="cht-a-ml" href="' + ML_URL + '" target="_blank" rel="noopener">' + tr('mlLink') + '</a>');
-      html = html.replace(/\[\[WA_LINK\]\]/g,
-        '<a class="cht-a-wa" href="' + buildWaLink().replace(/&/g, '&amp;') + '" target="_blank" rel="noopener">📱 WhatsApp CARBELEC</a>');
-      html = html.replace(/\[\[PRIV_LINK\]\]/g,
-        '<a class="cht-a-pv" href="#privacidad">' + tr('privLink') + '</a>');
-      // Link de privacidad en texto plano
-      html = html.replace(/carbelec\.co\/privacidad/g,
-        '<a class="cht-a-pv" href="#privacidad">carbelec.co/privacidad</a>');
-      return html;
+    // ═══ TEXTO DEL BOT → NODOS SEGUROS; nunca insertar HTML del modelo ═══
+    function safeBotLink(value) {
+      if (value === 'carbelec.co/privacidad' || ENLACE_PRIVACIDAD.test(value)) return { href: '#privacidad', label: tr('privLink') };
+      const whatsapp = validateWaLink(value);
+      if (whatsapp) return { href: whatsapp.url, label: tr('contact') };
+      if (value === ML_URL || value === ML_URL + '/') return { href: ML_URL, label: tr('mlLink') };
+      return null;
+    }
+    function renderBot(container, text) {
+      const source = String(text).trim().replace(/^[ \t]*[*-][ \t]+/gm, '• ');
+      const tokens = /\[[^\]\n]+\]\(https?:\/\/[^\s)]+\)|https?:\/\/[^\s<>]+|carbelec\.co\/privacidad|\*\*[^*\n]+\*\*|\*[^*\n]+\*/g;
+      let last = 0;
+      for (const match of source.matchAll(tokens)) {
+        container.appendChild(document.createTextNode(source.slice(last, match.index)));
+        const token = match[0];
+        if (token.startsWith('*')) {
+          const bold = document.createElement('b');
+          bold.textContent = token.replace(/^\*{1,2}|\*{1,2}$/g, '');
+          container.appendChild(bold);
+        } else {
+          const markdown = token.match(/^\[[^\]\n]+\]\((.+)\)$/);
+          const value = markdown ? markdown[1] : token;
+          const tail = (value.match(/[.,;:!?)\]]+$/) || [''])[0];
+          const safe = safeBotLink(tail ? value.slice(0, -tail.length) : value);
+          if (safe) {
+            const link = document.createElement('a');
+            link.textContent = safe.label;
+            link.href = safe.href;
+            if (safe.href !== '#privacidad') { link.target = '_blank'; link.rel = 'noopener noreferrer'; }
+            container.appendChild(link);
+            if (tail) container.appendChild(document.createTextNode(tail));
+          } else container.appendChild(document.createTextNode(token));
+        }
+        last = match.index + token.length;
+      }
+      container.appendChild(document.createTextNode(source.slice(last)));
     }
 
     // ═══ MENSAJES ═══
@@ -1090,7 +1187,7 @@
       msgs.scrollTop = msgs.scrollHeight;
       return div;
     }
-    function addBot(text) { return addMsg('cht-bot', function (div) { div.innerHTML = formatBot(text); }); }
+    function addBot(text) { return addMsg('cht-bot', function (div) { renderBot(div, text); }); }
     function addUsr(text) { return addMsg('cht-usr', function (div) { div.textContent = text; }); }
 
     // ═══ INDICADOR DE ESCRITURA ═══
@@ -1115,7 +1212,8 @@
 
     // ═══ MANEJAR INTENCIÓN DETECTADA ═══
     function handleIntencion(intencion) {
-      if (!intencion || intencion === 'continuar') return;
+      // Una derivación abre una opción de contacto; el cliente puede seguir aclarando su consulta.
+      if (intencion !== 'fin_consulta') return;
       setFinished(true);
       setTimeout(function () {
         if (!finished || msgs.querySelector('.cht-new')) return;
@@ -1136,6 +1234,8 @@
     function chtNuevaConversacion() {
       chat = [];
       sessionId = nuevoSessionId();
+      input.value = '';
+      updateContactLinks();
       showWelcome();
       input.focus();
     }
@@ -1145,6 +1245,14 @@
     function recentChat() {
       const recent = chat.slice(-HISTORY_WINDOW);
       while (recent.length > 1 && recent[0].role !== 'user') recent.shift();
+      const first = chat.find(message => message.role === 'user');
+      if (first && !recent.includes(first)) {
+        // Retener la petición original además del contexto más reciente, máximo 20 mensajes.
+        if (recent.length >= HISTORY_WINDOW) recent.shift();
+        recent.unshift(first);
+      }
+      // Dejar margen para sessionId/idioma dentro del límite del Worker de 64 KiB.
+      while (recent.length > 2 && new TextEncoder().encode(JSON.stringify(recent)).length > 60000) recent.splice(1, 1);
       return recent;
     }
 
@@ -1155,9 +1263,10 @@
         const res = await fetch(WORKER_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ messages: recentChat(), sessionId: sessionId }),
+          body: JSON.stringify({ messages: recentChat(), sessionId: sessionId, language: lang() }),
           signal: ctrl.signal
         });
+        if (!res.ok) throw new Error('Worker HTTP ' + res.status);
         return await res.json();
       } finally {
         clearTimeout(timer);
@@ -1167,20 +1276,22 @@
     async function sendMsg(text) {
       text = String(text || '').trim();
       if (!text || loading || finished) return;
+      if (text.length > 2000) { addBot(tr('tooLong')); if (!input.value) input.value = text; return; }
       loading = true;
       pristine = false;
       sendBtn.disabled = true;
-      addUsr(text);
+      const userBubble = addUsr(text);
       chat.push({ role: 'user', content: text });
+      updateContactLinks();
       showTyp();
 
       let reply = null;
-      let intencion = null;
+      let result = null;
       let error = null;
       try {
         const data = await askWorker();
         const part = data && data.content && data.content[0];
-        if (part && part.text) { reply = part.text; intencion = data.intencion; }
+        if (part && typeof part.text === 'string' && part.text.trim() && part.text.length <= 12000) { reply = part.text; result = data; }
         else error = 'errTech';
       } catch (e) {
         error = 'errNet';
@@ -1190,12 +1301,23 @@
       if (reply) {
         addBot(reply);
         chat.push({ role: 'assistant', content: reply });
-        handleIntencion(intencion);     // intención detectada por el Worker
+        const intentsWithContact = ['handoff', 'asesor', 'solicitud_asesor', 'confirmacion_compra', 'solicitud_cotizacion', 'burro_amarrado'];
+        if ((result.handoff && result.handoff.required === true) || intentsWithContact.includes(result.intencion) || result.degraded === true) {
+          addContactActions(result);
+        }
+        handleIntencion(result.intencion);
       } else {
-        // El enlace de WhatsApp del aviso lleva lo que el cliente alcanzó a escribir.
-        addBot(error === 'errNet' ? tr('errNet') + ' +57 315 389 9483' : tr('errTech'));
-        chat.pop();                     // el mensaje no llegó: no debe quedar en el historial…
-        if (!input.value) input.value = text;   // …y vuelve al campo para reintentar con Enter
+        addBot(tr(error === 'errNet' ? 'errNet' : 'errTech'));
+        addContactActions();             // conserva la consulta fallida en el mensaje de WhatsApp
+        chat.pop();                      // una respuesta fallida no crea contexto ficticio
+        userBubble.dataset.failed = 'true';
+        const retry = document.createElement('button');
+        retry.type = 'button';
+        retry.className = 'cht-qc cht-retry';
+        retry.textContent = tr('retry');
+        retry.dataset.retry = text;
+        msgs.appendChild(retry);
+        if (!input.value) input.value = text; // respeta cualquier otro borrador que el cliente esté escribiendo
       }
 
       loading = false;
@@ -1216,6 +1338,11 @@
       if (!chip || loading) return;
       if (chip.dataset.action === 'new') {
         chtNuevaConversacion();
+      } else if (chip.dataset.retry && !finished) {
+        const retryText = chip.dataset.retry;
+        if (input.value.trim() === retryText) input.value = '';
+        chip.remove();
+        sendMsg(retryText);
       } else if (chip.dataset.msg && !finished) {
         chip.parentNode.remove();          // las sugerencias desaparecen al usar una
         sendMsg(chip.dataset.msg);
