@@ -145,6 +145,15 @@
     .cf input:focus,.cf textarea:focus{border-color:var(--gold)}
     .cf textarea{min-height:90px;resize:vertical}
     .cf .btn{align-self:flex-start}
+    .co-form{scroll-margin-top:88px;background:var(--bg);border:1px solid var(--border-light);border-radius:var(--r);padding:28px;box-shadow:0 4px 24px rgba(0,0,0,.05)}
+    .co-form:target{animation:formFlash 1.6s var(--ease)}
+    @keyframes formFlash{0%,35%{border-color:var(--gold);box-shadow:0 0 0 4px rgba(197,160,40,.28)}100%{border-color:var(--border-light);box-shadow:0 4px 24px rgba(0,0,0,.05)}}
+    .co-alt{margin-top:18px;padding-top:18px;border-top:1px solid var(--border-light);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--text2)}
+    .btn-wa{background:#128c4a;color:#fff}.btn-wa:hover{background:#0f7a40}
+    .btn-sm{padding:9px 18px;font-size:14px}
+    .wa-fab{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:900;display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 18px 0 14px;border-radius:100px;background:#128c4a;color:#fff;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.22);transition:background .2s,transform .2s}
+    .wa-fab:hover{background:#0f7a40;transform:translateY(-2px)}
+    .wa-fab i{font-size:22px}
 
     .quote-field{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:600;color:var(--text2)}
     .quote-note,.quote-status{font-size:12px;line-height:1.5;color:var(--text2)}
@@ -179,11 +188,17 @@
       .nav-links{display:none}.nav-toggle{display:block}.mob-nav.open{display:flex}
       .cats{grid-template-columns:1fr 1fr}.tg,.ab-grid,.co-grid{grid-template-columns:1fr}
       .ft-inner{grid-template-columns:1fr 1fr;gap:24px}
+      /* On phones the quote form comes first and the jump lands on it instantly instead of scrolling through the whole page */
+      html{scroll-behavior:auto}
+      .co-form{order:-1}
     }
     @media(max-width:600px){
       .cats,.pgrid{grid-template-columns:1fr}.cfr,.ab-feats{grid-template-columns:1fr}
       .ft-inner{grid-template-columns:1fr}.ft-btm{flex-direction:column;gap:10px;text-align:center}
       .hero h1{font-size:36px}
+      .co-form{padding:22px 18px}.cf .btn{align-self:stretch;justify-content:center}
+      .hero-actions .btn{width:100%;max-width:320px;justify-content:center}
+      .wa-fab{width:46px;height:46px;padding:0;justify-content:center;left:12px}.wa-fab span{display:none}
     }
     /* Phones zoom the whole page when a focused field has text smaller than 16px */
     @media(hover:none) and (pointer:coarse){.cf input,.cf textarea{font-size:16px}}
@@ -217,6 +232,7 @@
     <a href="#productos" data-i18n="nav_prod">Productos</a>
     <a href="#nosotros" data-i18n="nav_about">Nosotros</a>
     <a href="#contacto" data-i18n="nav_contact">Contacto</a>
+    <a href="#cotizacion" data-i18n="hero_btn_wa">Solicitar cotización</a>
     <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener">MercadoLibre</a>
     <div class="lang-sw"><button type="button" class="lang-btn active" data-lang="es" aria-pressed="true">ES</button><button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button><button type="button" class="lang-btn" data-lang="pt" aria-pressed="false">PT</button></div>
   </div>
@@ -228,7 +244,8 @@
     <p class="hero-sub" data-i18n="hero_sub">Herramientas profesionales, eléctricos, repuestos y seguridad industrial. Desde Bogotá a todo Colombia.</p>
     <div class="hero-actions">
       <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener" class="btn btn-gold"><i class="fas fa-shopping-bag" aria-hidden="true"></i> <span data-i18n="hero_btn_ml">Comprar en MercadoLibre</span></a>
-      <a href="#contacto" class="btn btn-out"><i class="fas fa-envelope" aria-hidden="true"></i> <span data-i18n="hero_btn_wa">Solicitar cotización</span></a>
+      <a href="#cotizacion" class="btn btn-out"><i class="fas fa-envelope" aria-hidden="true"></i> <span data-i18n="hero_btn_wa">Solicitar cotización</span></a>
+      <a href="https://wa.me/573153899483?text=Hola%2C%20quiero%20cotizar%20unos%20productos" target="_blank" rel="noopener" class="btn btn-wa"><i class="fab fa-whatsapp" aria-hidden="true"></i> <span data-i18n="hero_btn_chat">Escribir por WhatsApp</span></a>
     </div>
     <div class="hero-stats">
       <div><div class="hs-val" data-i18n="stat_products_n">1.645+</div><div class="hs-lbl" data-i18n="stat_products">Productos</div></div>
@@ -335,7 +352,7 @@
         <div class="co-item"><div class="co-ico"><i class="fab fa-whatsapp" aria-hidden="true"></i></div><div><h3>WhatsApp</h3><p><a href="https://wa.me/573153899483" target="_blank" rel="noopener">+57 315 389 9483</a><br><span data-i18n="co_wa_d">Cotizaciones rápidas</span></p></div></div>
         <div class="co-item"><div class="co-ico"><i class="fas fa-clock" aria-hidden="true"></i></div><div><h3 data-i18n="co_hours">Horario</h3><p data-i18n-html="co_hours_d">Lun — Vie: 8:30am – 7:00pm<br>Sábados: 9:30am – 6:00pm</p></div></div>
       </div>
-      <div>
+      <div class="co-form" id="cotizacion">
         <h3 class="cf-title" data-i18n="form_title">Solicitar cotización</h3>
         
         <form class="cf" id="quoteForm" method="post" novalidate aria-describedby="quoteRequired quoteNotice">
@@ -356,6 +373,7 @@
           <p id="quoteStatus" class="quote-status" role="status" aria-live="polite" aria-atomic="true"></p>
           <button id="quoteRetry" type="button" class="btn btn-out" hidden>Reintentar aunque pueda duplicarse</button>
         </form>
+        <div class="co-alt"><span data-i18n="form_alt">¿Prefieres una respuesta más rápida?</span><a href="https://wa.me/573153899483?text=Hola%2C%20quiero%20cotizar%20unos%20productos" target="_blank" rel="noopener" class="btn btn-wa btn-sm"><i class="fab fa-whatsapp" aria-hidden="true"></i> <span data-i18n="hero_btn_chat">Escribir por WhatsApp</span></a></div>
       </div>
     </div>
   </section>
@@ -377,6 +395,8 @@
       </div>
     </div>
   </footer>
+
+  <a class="wa-fab" href="https://wa.me/573153899483?text=Hola%2C%20vengo%20de%20carbelec.co%20y%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener" data-i18n-attr="aria-label:wa_fab"><i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span></a>
 
   <script>
   (() => {
@@ -408,7 +428,7 @@
     // so `es` only lists the texts that are created by this script.
     const I18N = {
       es: {
-        pc_best: 'Más Vendido', pc_ask: 'Consultar precio', pc_wa: 'Preguntar por WhatsApp',
+        pc_best: 'Más Vendido', pc_ask: 'Consultar precio', pc_wa: 'Preguntar por WhatsApp', wa_fab: 'Escribir por WhatsApp',
         meta_title: document.title, meta_desc: document.querySelector('meta[name="description"]').content
       },
       en: {
@@ -425,7 +445,7 @@
         prod_label: 'Catalogue', prod_title: 'Featured products.', prod_desc: 'Prices in Colombian pesos (COP).',
         pill_all: 'All', pill_safety: 'Safety',
         prod_cta: 'See all 1,645 products on MercadoLibre',
-        pc_best: 'Best Seller', pc_ask: 'Ask for price', pc_wa: 'Ask on WhatsApp',
+        pc_best: 'Best Seller', pc_ask: 'Ask for price', pc_wa: 'Ask on WhatsApp', wa_fab: 'Message us on WhatsApp', hero_btn_chat: 'Message us on WhatsApp', form_alt: 'Prefer a faster answer?',
         empty_a: 'No featured products in this category yet. Find them on', empty_b: 'or ask for them on',
         about_label: 'Our story', about_title: 'More than a hardware store.', about_desc: 'Your ally for professional and home projects.',
         about_p1: '<strong>CARBELEC — Carbon Electric S.A.S.</strong> We sell, distribute and import hardware, electrical supplies and spare parts. Electronic invoicing and a physical store in Bogotá.',
@@ -456,7 +476,7 @@
         prod_label: 'Catálogo', prod_title: 'Produtos em destaque.', prod_desc: 'Preços em pesos colombianos (COP).',
         pill_all: 'Todos', pill_safety: 'Segurança',
         prod_cta: 'Ver 1.645 produtos no MercadoLibre',
-        pc_best: 'Mais Vendido', pc_ask: 'Consultar preço', pc_wa: 'Perguntar pelo WhatsApp',
+        pc_best: 'Mais Vendido', pc_ask: 'Consultar preço', pc_wa: 'Perguntar pelo WhatsApp', wa_fab: 'Fale conosco pelo WhatsApp', hero_btn_chat: 'Fale pelo WhatsApp', form_alt: 'Prefere uma resposta mais rápida?',
         empty_a: 'Ainda não temos produtos em destaque nesta categoria. Encontre-os no', empty_b: 'ou peça pelo',
         about_label: 'Nossa história', about_title: 'Mais que uma ferragem.', about_desc: 'Seu aliado para projetos profissionais e domésticos.',
         about_p1: '<strong>CARBELEC — Carbon Electric S.A.S.</strong> Somos comerciantes, distribuidores e importadores de ferragens, materiais elétricos e peças de reposição. Fatura eletrônica e loja física em Bogotá.',
@@ -668,7 +688,7 @@
         retry.disabled = pending;
         form.setAttribute('aria-busy', String(pending));
       }
-      function show(key, kind = 'error') { statusKey = key; status.dataset.state = kind; paint(); }
+      function show(key, kind = 'error') { statusKey = key; status.dataset.state = kind; paint(); status.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
       retry.addEventListener('click', () => {
         if (pending) return;
         allowUnconfirmedRetry = true;
