@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CARBELEC S.A.S. | Carbon Electric — Ferretería en Bogotá</title>
   <meta name="description" content="Ferretería CARBELEC en Bogotá. Más de 1.600 productos de ferretería, eléctricos, repuestos y herramientas. Envío gratis a todo Colombia.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C5A028'/%3E%3Ctext x='32' y='44' font-family='Arial' font-size='38' font-weight='700' text-anchor='middle' fill='%231d1d1f'%3EC%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
@@ -420,9 +421,12 @@
     // so `es` only lists the texts that are created by this script.
     const I18N = {
       es: {
-        pc_best: 'Más Vendido', pc_ask: 'Consultar precio', pc_wa: 'Preguntar por WhatsApp'
+        pc_best: 'Más Vendido', pc_ask: 'Consultar precio', pc_wa: 'Preguntar por WhatsApp',
+        meta_title: document.title, meta_desc: document.querySelector('meta[name="description"]').content
       },
       en: {
+        meta_title: 'CARBELEC S.A.S. | Carbon Electric — Hardware store in Bogotá',
+        meta_desc: 'CARBELEC hardware store in Bogotá. Over 1,600 hardware, electrical, spare parts and tools products. Free shipping across Colombia.',
         nav_home: 'Home', nav_cat: 'Categories', nav_prod: 'Products', nav_about: 'About', nav_contact: 'Contact', nav_shop: 'Shop', menu: 'Menu',
         hero_title: 'Your trusted hardware store.',
         hero_sub: 'Professional tools, electrical supplies, spare parts and industrial safety. From Bogotá to all of Colombia and beyond.',
@@ -456,6 +460,8 @@
         ft_nav: 'Navigation', ft_buy: 'Shop', ft_rights: 'All rights reserved.', ft_privacy: 'Privacy policy'
       },
       pt: {
+        meta_title: 'CARBELEC S.A.S. | Carbon Electric — Ferragem em Bogotá',
+        meta_desc: 'Ferragem CARBELEC em Bogotá. Mais de 1.600 produtos de ferragens, elétricos, peças e ferramentas. Frete grátis para toda a Colômbia.',
         nav_home: 'Início', nav_cat: 'Categorias', nav_prod: 'Produtos', nav_about: 'Sobre', nav_contact: 'Contato', nav_shop: 'Loja', menu: 'Menu',
         hero_title: 'Sua ferragem de confiança.',
         hero_sub: 'Ferramentas profissionais, elétricos, peças de reposição e segurança industrial. De Bogotá para toda a Colômbia e além.',
@@ -519,6 +525,10 @@
     }
 
     function translate(root = document) {
+      if (root === document) {
+        document.title = t('meta_title');
+        $('meta[name="description"]').content = t('meta_desc');
+      }
       const apply = (key, write) => { const text = t(key); if (text) write(text); };   // a missing text never blanks the page
       $$('[data-i18n]', root).forEach(el => apply(el.dataset.i18n, text => { el.textContent = text; }));
       $$('[data-i18n-html]', root).forEach(el => apply(el.dataset.i18nHtml, text => { el.innerHTML = text; }));
