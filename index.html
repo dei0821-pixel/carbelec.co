@@ -110,10 +110,11 @@
     .ab-p{font-size:15px;color:var(--text2);line-height:1.7}.ab-p+.ab-p{margin-top:14px}.ab-p strong{color:var(--text)}
     .ab-quote{background:var(--bg2);border-radius:var(--r);padding:36px;position:relative}
     .ab-quote::before{content:'\201C';font-size:64px;color:var(--gold);opacity:.25;position:absolute;top:4px;left:16px;line-height:1;font-family:Georgia,serif}
-    .ab-quote blockquote{font-size:17px;font-style:italic;color:var(--text2);line-height:1.6;margin-bottom:10px;position:relative;z-index:1}
-    .ab-quote cite{font-size:12px;color:var(--text3);font-style:normal}
-    .ab-rating{display:inline-flex;align-items:center;gap:6px;background:var(--gold-bg);padding:5px 12px;border-radius:6px;margin-top:12px;font-size:13px;font-weight:600}
-    .ab-rating .st{color:var(--gold)}
+    .ab-score{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px}
+    .ab-score::before{display:none}
+    .ab-score-val{font-size:64px;font-weight:600;letter-spacing:-.04em;line-height:1}
+    .ab-score-st{color:var(--gold);font-size:20px;letter-spacing:3px}
+    .ab-score-lbl{font-size:13px;color:var(--text3)}
     .ab-feats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px}
     .ab-f{background:var(--bg2);border-radius:var(--rs);padding:20px}
     .ab-f i{color:var(--gold);font-size:16px;margin-bottom:8px;display:block}
@@ -233,7 +234,6 @@
       <div><div class="hs-val" data-i18n="stat_products_n">1.645+</div><div class="hs-lbl" data-i18n="stat_products">Productos</div></div>
       <div><div class="hs-val">60+</div><div class="hs-lbl" data-i18n="stat_brands">Marcas</div></div>
       <div><div class="hs-val">4.8 ★</div><div class="hs-lbl" data-i18n="stat_rating">Calificación</div></div>
-      <div><div class="hs-val">80+</div><div class="hs-lbl" data-i18n="stat_followers">Seguidores</div></div>
     </div>
   </section>
 
@@ -304,10 +304,10 @@
           <div class="ab-f"><i class="fas fa-handshake" aria-hidden="true"></i><h3 data-i18n="feat_whole">Mayor y Detal</h3><p data-i18n="feat_whole_d">Cuotas sin interés en ML</p></div>
         </div>
       </div>
-      <div class="ab-quote">
-        <blockquote>Empresa muy seria con buenos productos a excelente precio. Una atención muy amable. Recomendado.</blockquote>
-        <cite data-i18n="quote_cite">— Cliente verificado, Google Reviews</cite>
-        <div class="ab-rating"><span class="st" aria-hidden="true">★★★★★</span> <span data-i18n="quote_rating">4.8 en Google</span></div>
+      <div class="ab-quote ab-score">
+        <div class="ab-score-val">4.8</div>
+        <div class="ab-score-st" aria-hidden="true">★★★★★</div>
+        <div class="ab-score-lbl" data-i18n="quote_rating">Calificación en Google</div>
       </div>
     </div>
   </section>
@@ -365,7 +365,7 @@
     <div class="ft-inner">
       <div class="ft-brand"><p data-i18n-html="ft_desc"><strong>CARBELEC — Carbon Electric S.A.S.</strong><br>Comercializadores, distribuidores e importadores de ferretería, eléctricos y repuestos. Bogotá, Colombia.</p></div>
       <div class="ft-col"><h2 data-i18n="ft_nav">Navegación</h2><a href="#inicio" data-i18n="nav_home">Inicio</a><a href="#categorias" data-i18n="nav_cat">Categorías</a><a href="#productos" data-i18n="nav_prod">Productos</a><a href="#nosotros" data-i18n="nav_about">Nosotros</a><a href="#contacto" data-i18n="nav_contact">Contacto</a></div>
-      <div class="ft-col"><h2 data-i18n="ft_buy">Comprar</h2><a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener">MercadoLibre</a><a href="https://ferreteriacarbelec.mercadoshops.com.co/" target="_blank" rel="noopener">MercadoShops</a><a href="https://wa.me/573153899483" target="_blank" rel="noopener">WhatsApp</a></div>
+      <div class="ft-col"><h2 data-i18n="ft_buy">Comprar</h2><a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener">MercadoLibre</a><a href="https://wa.me/573153899483" target="_blank" rel="noopener">WhatsApp</a></div>
       <div class="ft-col"><h2 data-i18n="nav_contact">Contacto</h2><a href="tel:+576016484985">601 648 4985</a><a href="tel:+573153899483">315 389 9483</a><a href="https://wa.me/573153899483" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.facebook.com/p/Ferreter%C3%ADa-Carbelec-100056033332482/" target="_blank" rel="noopener">Facebook</a></div>
     </div>
     <div class="ft-btm">
@@ -418,7 +418,7 @@
         hero_title: 'Your trusted hardware store.',
         hero_sub: 'Professional tools, electrical supplies, spare parts and industrial safety. From Bogotá to all of Colombia and beyond.',
         hero_btn_ml: 'Shop on MercadoLibre', hero_btn_wa: 'Request a Quote',
-        stat_products_n: '1,645+', stat_products: 'Products', stat_brands: 'Brands', stat_rating: 'Rating', stat_followers: 'Followers',
+        stat_products_n: '1,645+', stat_products: 'Products', stat_brands: 'Brands', stat_rating: 'Rating',
         cat_label: 'What we offer', cat_title: 'Our categories.', cat_desc: 'Everything you need for your projects.',
         cat_tools: 'Tools', cat_tools_d: '1,123 products — Drills, compressors, wrenches',
         cat_safety: 'Industrial Safety', cat_safety_d: 'PPE, 3M respirators, safety glasses',
@@ -433,7 +433,7 @@
         feat_ship: 'Free Shipping', feat_ship_d: 'Anywhere in Colombia via MercadoLibre',
         feat_inv: 'Electronic Invoice', feat_inv_d: 'On purchases from COP $25,000',
         feat_store: 'Physical Store', feat_whole: 'Wholesale & Retail', feat_whole_d: 'Interest-free installments on MercadoLibre',
-        quote_cite: '— Verified customer, Google Reviews', quote_rating: '4.8 on Google',
+        quote_rating: 'Rating on Google',
         test_label: 'Testimonials', test_title: 'What our customers say.',
         contact_label: 'Contact', contact_title: 'Need a quote?', contact_desc: 'Buy on MercadoLibre or request a wholesale quote via WhatsApp.',
         co_addr: 'Address', co_phones: 'Phones', co_wa_d: 'Fast quotes', co_hours: 'Opening hours',
@@ -449,7 +449,7 @@
         hero_title: 'Sua ferragem de confiança.',
         hero_sub: 'Ferramentas profissionais, elétricos, peças de reposição e segurança industrial. De Bogotá para toda a Colômbia e além.',
         hero_btn_ml: 'Comprar no MercadoLibre', hero_btn_wa: 'Solicitar Orçamento',
-        stat_products_n: '1.645+', stat_products: 'Produtos', stat_brands: 'Marcas', stat_rating: 'Avaliação', stat_followers: 'Seguidores',
+        stat_products_n: '1.645+', stat_products: 'Produtos', stat_brands: 'Marcas', stat_rating: 'Avaliação',
         cat_label: 'O que oferecemos', cat_title: 'Nossas categorias.', cat_desc: 'Tudo o que você precisa para seus projetos.',
         cat_tools: 'Ferramentas', cat_tools_d: '1.123 produtos — Furadeiras, compressores, chaves',
         cat_safety: 'Segurança Industrial', cat_safety_d: 'EPI, respiradores 3M, óculos',
@@ -464,7 +464,7 @@
         feat_ship: 'Frete Grátis', feat_ship_d: 'Para toda a Colômbia pelo MercadoLibre',
         feat_inv: 'Fatura Eletrônica', feat_inv_d: 'Compras a partir de $25.000',
         feat_store: 'Loja Física', feat_whole: 'Atacado e Varejo', feat_whole_d: 'Parcelas sem juros no MercadoLibre',
-        quote_cite: '— Cliente verificado, Google Reviews', quote_rating: '4.8 no Google',
+        quote_rating: 'Avaliação no Google',
         test_label: 'Depoimentos', test_title: 'O que nossos clientes dizem.',
         contact_label: 'Contato', contact_title: 'Precisa de um orçamento?', contact_desc: 'Compre no MercadoLibre ou solicite orçamento por WhatsApp.',
         co_addr: 'Endereço', co_phones: 'Telefones', co_wa_d: 'Orçamentos rápidos', co_hours: 'Horário',
