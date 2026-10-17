@@ -74,7 +74,7 @@
     .divider{max-width:1024px;margin:0 auto;height:.5px;background:var(--border-light)}
 
     /* CATEGORIES - each card filters the product grid below */
-    .cats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
     .cat{display:block;color:inherit;text-decoration:none;background:var(--bg2);border-radius:var(--r);padding:32px 24px;transition:all .35s var(--ease);cursor:pointer}
     .cat:hover{background:var(--bg);box-shadow:0 4px 24px rgba(0,0,0,.06);transform:translateY(-4px)}
     .cat-ico{width:40px;height:40px;background:var(--gold-bg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gold);margin-bottom:14px}
@@ -248,11 +248,7 @@
     <p class="sec-desc" data-i18n="cat_desc">Todo lo que necesitas para tus proyectos.</p>
     <div class="cats">
       <a class="cat" href="#productos" data-cat="herramientas"><div class="cat-ico"><i class="fas fa-wrench" aria-hidden="true"></i></div><h3 data-i18n="cat_tools">Herramientas</h3><p data-i18n="cat_tools_d">1.123 productos — Taladros, compresores, llaves</p></a>
-      <a class="cat" href="#productos" data-cat="construccion"><div class="cat-ico"><i class="fas fa-hard-hat" aria-hidden="true"></i></div><h3 data-i18n="cat_build">Construcción</h3><p data-i18n="cat_build_d">223 productos — Selladores, cintas, adhesivos</p></a>
-      <a class="cat" href="#productos" data-cat="electricos"><div class="cat-ico"><i class="fas fa-bolt" aria-hidden="true"></i></div><h3 data-i18n="cat_elec">Eléctricos</h3><p data-i18n="cat_elec_d">Cables, interruptores, conectores</p></a>
       <a class="cat" href="#productos" data-cat="seguridad"><div class="cat-ico"><i class="fas fa-shield-alt" aria-hidden="true"></i></div><h3 data-i18n="cat_safety">Seguridad Industrial</h3><p data-i18n="cat_safety_d">EPP, respiradores 3M, gafas</p></a>
-      <a class="cat" href="#productos" data-cat="repuestos"><div class="cat-ico"><i class="fas fa-cogs" aria-hidden="true"></i></div><h3 data-i18n="cat_parts">Repuestos</h3><p data-i18n="cat_parts_d">Bosch, DeWalt, Makita — Escobillas, campos</p></a>
-      <a class="cat" href="#productos" data-cat="hogar"><div class="cat-ico"><i class="fas fa-home" aria-hidden="true"></i></div><h3 data-i18n="cat_home">Hogar</h3><p data-i18n="cat_home_d">151 productos — Duchas, accesorios</p></a>
     </div>
   </section>
   <div class="divider"></div>
@@ -260,15 +256,11 @@
   <section class="sec rv" id="productos">
     <p class="sec-lbl" data-i18n="prod_label">Catálogo</p>
     <h2 class="sec-title" data-i18n="prod_title">Productos destacados.</h2>
-    <p class="sec-desc" data-i18n="prod_desc">Precios reales en pesos colombianos.</p>
+    <p class="sec-desc" data-i18n="prod_desc">Precios en pesos colombianos (COP).</p>
     <div class="pills">
       <button type="button" class="pill active" data-f="all" aria-pressed="true" data-i18n="pill_all">Todos</button>
       <button type="button" class="pill" data-f="herramientas" aria-pressed="false" data-i18n="cat_tools">Herramientas</button>
-      <button type="button" class="pill" data-f="electricos" aria-pressed="false" data-i18n="cat_elec">Eléctricos</button>
-      <button type="button" class="pill" data-f="repuestos" aria-pressed="false" data-i18n="cat_parts">Repuestos</button>
       <button type="button" class="pill" data-f="seguridad" aria-pressed="false" data-i18n="pill_safety">Seguridad</button>
-      <button type="button" class="pill" data-f="construccion" aria-pressed="false" data-i18n="cat_build">Construcción</button>
-      <button type="button" class="pill" data-f="hogar" aria-pressed="false" data-i18n="cat_home">Hogar</button>
     </div>
     <div class="pgrid" id="pg">
       <!-- Shown when a category has no featured products yet -->
@@ -403,16 +395,11 @@
     //   icon   Font Awesome icon shown if the photo fails to load
     //   img    photo URL
     const PRODUCTS = [
-      { cat: 'herramientas', brand: 'Truper', name: 'Taladro Rotomartillo Truper ROTO-1/2A7, 650W', desc: 'Atornillador 1/2", 110V, 60Hz. Motor de 650W montado sobre baleros de bolas. Para concreto, madera y metal.', price: null, best: true, icon: 'fa-screwdriver-wrench', img: 'assets/truper-roto-1-2a7.jpg' },
-      { cat: 'herramientas', brand: 'Pretul', name: 'Compresor de Aire 20L Pretul 23065, 2-1/2 HP', desc: 'Motor monofásico, 60Hz, 120V. 2 conexiones rápidas de latón. Para inflado, pintura y limpieza.', price: null, best: true, icon: 'fa-wind', img: 'assets/pretul-comp-20lp.jpg' },
       { cat: 'herramientas', brand: 'Pretul', name: 'Taladro Inalámbrico 12V 3/8" Pretul 29975', desc: 'Taladro destornillador inalámbrico de 12V con broquero de 3/8". Compacto para uso doméstico.', price: 210000, icon: 'fa-screwdriver', img: 'assets/pretul-tali-12p-29975.jpg' },
       { cat: 'herramientas', brand: 'Total', name: 'Juego Llaves Curva Doble Corona 8 Pzas THT102486', desc: 'Set profesional de llaves doble corona para mecánica y mantenimiento industrial.', price: 168000, best: true, icon: 'fa-wrench', img: 'assets/total-tht102486.jpg' },
       { cat: 'herramientas', brand: 'Stanley', name: 'Juego de Llaves Allen 20 Und Stanley 69-255', desc: 'Set completo hexagonales métricas y pulgadas. Acero al cromo vanadio.', price: 76000, best: true, icon: 'fa-tools', img: 'assets/stanley-69-255.webp' },
       { cat: 'herramientas', brand: 'Truper', name: 'Cepillo Eléctrico 3-1/4" 850W Truper', desc: 'Cepillo profesional 127V para carpintería y acabados de madera.', price: 480000, icon: 'fa-hammer', img: 'assets/truper-planer-850w.jpg' },
       { cat: 'herramientas', brand: 'Truper', name: 'Manguera Compresor Alta Presión 1/4" 10mt', desc: 'Hule 300PSI, color negro. Resistente para uso profesional e industrial.', price: 86500, best: true, icon: 'fa-link', img: 'assets/truper-compressor-hose-10m.jpg' },
-      { cat: 'repuestos', brand: 'Bosch', name: 'Campo Estator Bosch P/Esmeril GWS 22-180/230', desc: 'Repuesto genérico compatible con esmeriles Bosch de 7" y 9".', price: 80000, icon: 'fa-cog', img: '' },
-      { cat: 'repuestos', brand: 'Bosch', name: 'Inducido Para Rotomartillo Bosch (Genérico)', desc: 'Consulta la compatibilidad con el modelo exacto de tu herramienta antes de comprar.', price: 95000, icon: 'fa-cog', img: '' },
-      { cat: 'repuestos', brand: 'Bosch', name: 'Par Escobillas Minipulidora Bosch y Skil', desc: 'Carbones de repuesto para minipulidoras. Instalación fácil y rápida.', price: 15000, unit: '/par', icon: 'fa-exchange-alt', img: '' },
       { cat: 'seguridad', brand: '3M', name: 'Respirador 3M 6200 Media Cara + Filtros 6001', desc: 'Protección respiratoria reutilizable NIOSH. Cartucho doble para vapor orgánico.', price: 120000, best: true, icon: 'fa-head-side-mask', img: 'assets/3m-6200-respirator-6001-filters.png' },
       { cat: 'seguridad', brand: 'Steelpro', name: 'Monogafa de Seguridad Zex AF Steelpro', desc: 'Cristal claro, antiempañante. Protección ocular certificada.', price: 27000, icon: 'fa-glasses', img: 'assets/steelpro-zex-af-goggles.png' }
     ];
@@ -434,12 +421,8 @@
         stat_products_n: '1,645+', stat_products: 'Products', stat_brands: 'Brands', stat_rating: 'Rating', stat_followers: 'Followers',
         cat_label: 'What we offer', cat_title: 'Our categories.', cat_desc: 'Everything you need for your projects.',
         cat_tools: 'Tools', cat_tools_d: '1,123 products — Drills, compressors, wrenches',
-        cat_build: 'Construction', cat_build_d: '223 products — Sealants, tapes, adhesives',
-        cat_elec: 'Electrical', cat_elec_d: 'Cables, switches, connectors',
         cat_safety: 'Industrial Safety', cat_safety_d: 'PPE, 3M respirators, safety glasses',
-        cat_parts: 'Spare Parts', cat_parts_d: 'Bosch, DeWalt, Makita — Carbon brushes, field coils',
-        cat_home: 'Home', cat_home_d: '151 products — Showers, accessories',
-        prod_label: 'Catalogue', prod_title: 'Featured products.', prod_desc: 'Real prices in Colombian pesos.',
+        prod_label: 'Catalogue', prod_title: 'Featured products.', prod_desc: 'Prices in Colombian pesos (COP).',
         pill_all: 'All', pill_safety: 'Safety',
         prod_cta: 'See all 1,645 products on MercadoLibre',
         pc_best: 'Best Seller', pc_ask: 'Ask for price', pc_wa: 'Ask on WhatsApp',
@@ -469,12 +452,8 @@
         stat_products_n: '1.645+', stat_products: 'Produtos', stat_brands: 'Marcas', stat_rating: 'Avaliação', stat_followers: 'Seguidores',
         cat_label: 'O que oferecemos', cat_title: 'Nossas categorias.', cat_desc: 'Tudo o que você precisa para seus projetos.',
         cat_tools: 'Ferramentas', cat_tools_d: '1.123 produtos — Furadeiras, compressores, chaves',
-        cat_build: 'Construção', cat_build_d: '223 produtos — Selantes, fitas, adesivos',
-        cat_elec: 'Elétricos', cat_elec_d: 'Cabos, interruptores, conectores',
         cat_safety: 'Segurança Industrial', cat_safety_d: 'EPI, respiradores 3M, óculos',
-        cat_parts: 'Peças de Reposição', cat_parts_d: 'Bosch, DeWalt, Makita — Escovas de carvão, estatores',
-        cat_home: 'Casa', cat_home_d: '151 produtos — Chuveiros, acessórios',
-        prod_label: 'Catálogo', prod_title: 'Produtos em destaque.', prod_desc: 'Preços reais em pesos colombianos.',
+        prod_label: 'Catálogo', prod_title: 'Produtos em destaque.', prod_desc: 'Preços em pesos colombianos (COP).',
         pill_all: 'Todos', pill_safety: 'Segurança',
         prod_cta: 'Ver 1.645 produtos no MercadoLibre',
         pc_best: 'Mais Vendido', pc_ask: 'Consultar preço', pc_wa: 'Perguntar pelo WhatsApp',
