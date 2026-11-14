@@ -120,10 +120,10 @@ Downloaded 14 November 2026 from the public seller page https://www.mercadolibre
 
 ## Full catalog
 
-- **catalog.json** — 1,638 products from the store's MercadoLibre listing of 14 November 2026. Each row is `[id, name, price in COP, category, brand, MercadoLibre address]`. The page loads this file after the featured products written in `index.html`.
+- **catalog.json** — 1,665 products (the featured ones first) from the store's MercadoLibre listing of 14 November 2026. Each row is `[id, name, price in COP, category, brand, MercadoLibre address]`. A featured row has a seventh element with its own photo, description and "best seller" mark.
 - **catalog/** — one photo per product, named by its MercadoLibre listing id, resized to at most 640 px (WebP). Sources are the full-size listing photos on `http2.mlstatic.com`.
 - **catalog.en.json**, **catalog.pt.json** — product names in English and Portuguese, as `{id: name}` (a `d:<id>` key holds a description). The page loads one when that language is chosen; a product missing from the file is shown in Spanish.
 - **tienda-interior.webp** — photo of the store interior shown in "Nosotros" (from the business's Google Maps listing).
-- **pages.css** — styles of the generated product and catalog pages (`p/`, `catalogo/`).
+- **site.css**, **js/**, **icons.svg**, **favicon.svg** — styles, scripts and icons of the site. The icons are Font Awesome Free 6.5.1 (CC BY 4.0).
 
 All 1,665 listings are on the site; 27 of them are the featured products. Names, categories and brands are derived automatically from the listing titles. Prices are a snapshot and do not update on their own. `tools/README.md` explains how to rebuild all of this from a new export.

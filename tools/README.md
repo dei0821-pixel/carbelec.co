@@ -5,17 +5,17 @@ The site is static. Two scripts turn a MercadoLibre listing export into what the
 ## Updating prices and products
 
 1. Get a fresh export of the store listing as a JSON list of `{id, name, img, price, url}` and save it as
-   `tools/data/mercadolibre-export.json` (the file in the repository is the export of 14 November 2026).
+   `data/mercadolibre-export.json` (the file in the repository is the export of 14 November 2026).
 2. Rebuild the catalog. Photos already in `assets/catalog/` are kept; missing ones are downloaded and
    resized (needs Python 3 with Pillow, and `curl`):
 
        python3 tools/import_catalog.py
 
-3. Rebuild the product pages, category pages and sitemap (needs Node.js 18 or later):
+3. Rebuild the pages and the sitemap (needs Node.js 22):
 
-       node tools/build_pages.mjs
+       npm run build
 
-4. Open `index.html` through a local web server (`python3 -m http.server`) and check the catalog, then commit.
+4. Run `npm test`, look at the site with `npm run serve`, then commit everything.
 
 ## Translations
 
@@ -27,17 +27,19 @@ there and are shown in Spanish until one is added.
 
 | Script | Reads | Writes |
 |---|---|---|
-| `import_catalog.py` | the export, `index.html` (ids of featured products) | `assets/catalog.json`, new photos in `assets/catalog/` |
-| `build_pages.mjs` | `index.html` (featured products), `assets/catalog.json` | `p/*.html`, `catalogo/*.html`, `sitemap.xml` |
+| `import_catalog.py` | the export, `data/featured.json` | `assets/catalog.json`, new photos in `assets/catalog/` |
+| `build.mjs` | `src/`, `data/featured.json`, `assets/catalog.json` | `index.html`, `404.html`, `catalogo/*.html`, `p/*.html`, `sitemap.xml` |
 
 ## Editing by hand
 
-- **Featured products** are the `PRODUCTS` list in `index.html`. Each has the `id` of its MercadoLibre listing;
-  `import_catalog.py` leaves those listings out of `catalog.json` so they are not shown twice.
+- **Featured products** are `data/featured.json`. They come first in the catalog and the first eight are shown on
+  the home page. Each has the `id` of its MercadoLibre listing; run both scripts after changing the file.
 - **Category, brand or name of one product**: edit its row in `assets/catalog.json`
-  (`[id, name, price, category, brand, MercadoLibre address]`) and run `build_pages.mjs`. A later import
-  overwrites manual edits, so lasting fixes belong in the rules at the top of `import_catalog.py`.
-- **Categories** are `herramientas`, `repuestos`, `electricos`, `hogar`, `construccion` and `seguridad`. Adding one
-  needs a filter button and a category card in `index.html` and an entry in `CATEGORIES` in `build_pages.mjs`.
+  (`[id, name, price, category, brand, MercadoLibre address]`) and run the build. A later import overwrites
+  manual edits, so lasting fixes belong in the rules at the top of `import_catalog.py`.
+- **Categories** are listed in `CATEGORIES` in `build.mjs`; a new one also needs a filter button in
+  `src/pages/catalog.html`, a card in `src/pages/home.html` and its texts in `assets/js/core.js`.
+- **Texts** of the menu, footer and pages are in `src/`; their English and Portuguese versions are in
+  `assets/js/core.js`.
 
-Files in `p/` and `catalogo/` are generated: do not edit them, they are rewritten on every build.
+The generated pages are rewritten on every build: never edit `index.html`, `catalogo/` or `p/` directly.

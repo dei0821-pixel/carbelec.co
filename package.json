@@ -1,0 +1,14 @@
+{
+  "name": "carbelec.co",
+  "private": true,
+  "type": "module",
+  "description": "Sitio de CARBELEC — Carbon Electric S.A.S.",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "serve": "python3 -m http.server 8080",
+    "test": "node tests/smoke.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
+  }
+}

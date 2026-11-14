@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Rebuild assets/catalog.json (and missing photos) from a MercadoLibre listing export.
 
-    python3 tools/import_catalog.py [tools/data/mercadolibre-export.json]
+    python3 tools/import_catalog.py [data/mercadolibre-export.json]
 
 The export is a JSON list of {id, name, img, price, url}, one entry per listing.
-Products written by hand in index.html (the ones with `id: 'MCO…'`) are skipped, so they are not shown twice.
-After running this, run `node tools/build_pages.mjs` to regenerate the product pages and the sitemap.
+The featured products in data/featured.json are written first, with their own name, description and photo;
+their listings are skipped so they are not shown twice.
+After running this, run `node tools/build.mjs` to regenerate the pages and the sitemap.
 """
 import json
 import os
@@ -15,7 +16,7 @@ import sys
 import unicodedata
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EXPORT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'tools', 'data', 'mercadolibre-export.json')
+EXPORT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'data', 'mercadolibre-export.json')
 PHOTOS = os.path.join(REPO, 'assets', 'catalog')
 PHOTO_SIZE = 640          # longest side, in pixels
 
@@ -169,31 +170,48 @@ def ensure_photo(product_id, listing_img):
 
 
 # ── Build ──────────────────────────────────────────────────────────────────
+def address_of(url):
+    """MercadoLibre address without scheme and query; the site adds the seller filter back."""
+    address = url[len('https://'):].split('?')[0]
+    assert re.fullmatch(r'(www|articulo)\.mercadolibre\.com\.co/[A-Za-z0-9_\-/.%]+', address), url
+    return address
+
+
 def main():
     listings = json.load(open(EXPORT, encoding='utf8'))
-    page = open(os.path.join(REPO, 'index.html'), encoding='utf8').read()
-    featured = set(re.findall(r"\bid: '(MCO\d+)'", page))
+    featured = json.load(open(os.path.join(REPO, 'data', 'featured.json'), encoding='utf8'))
+    featured_ids = {item['id'] for item in featured}
+    assert len(featured_ids) == len(featured), 'duplicate id in data/featured.json'
     os.makedirs(PHOTOS, exist_ok=True)
 
-    rows, skipped, no_photo = [], 0, []
+    # Featured products come first and carry what the listing does not have: a hand-written name,
+    # an optional description, the "best seller" mark and their own photo.
+    rows = []
+    for item in featured:
+        extra = {'img': '/' + item['img'].lstrip('/')}
+        if item.get('desc'):
+            extra['desc'] = item['desc']
+        if item.get('best'):
+            extra['best'] = True
+        rows.append([item['id'], item['name'], item['price'], item['cat'], item.get('brand', ''), address_of(item['url']), extra])
+
+    no_photo = []
     for listing in listings:
         product_id = listing['id'].replace('-', '')
         assert re.fullmatch(r'MCO\d+', product_id), listing['id']
-        if product_id in featured:
-            skipped += 1
+        if product_id in featured_ids:
             continue
-        address = listing['url'][len('https://'):].split('?')[0]
-        assert re.fullmatch(r'(www|articulo)\.mercadolibre\.com\.co/[A-Za-z0-9_\-/.%]+', address), listing['url']
         if not ensure_photo(product_id, listing['img']):
             no_photo.append(product_id)
             continue
         name = clean_name(listing['name'])
-        # [id, name, price in COP, category, brand, MercadoLibre address without "https://"]
-        rows.append([product_id, name, int(re.sub(r'\D', '', listing['price'])), classify(name), brand_of(name), address])
+        # [id, name, price in COP, category, brand, MercadoLibre address]
+        rows.append([product_id, name, int(re.sub(r'\D', '', listing['price'])), classify(name), brand_of(name), address_of(listing['url'])])
 
     with open(os.path.join(REPO, 'assets', 'catalog.json'), 'w', encoding='utf8') as out:
         json.dump(rows, out, ensure_ascii=False, separators=(',', ':'))
-    print('%d listings: %d written, %d featured in index.html, %d without photo' % (len(listings), len(rows), skipped, len(no_photo)))
+    print('%d products written (%d featured, %d from the listing); %d listings without photo'
+          % (len(rows), len(featured), len(rows) - len(featured), len(no_photo)))
 
 
 if __name__ == '__main__':
