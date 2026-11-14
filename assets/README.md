@@ -117,3 +117,10 @@ Downloaded 14 November 2026 from the public seller page https://www.mercadolibre
 
 - **web/ml-pinza-pelacable-5-pulgadas-0-6-a-2-6mm-uyustools.webp** — Pinza Pelacable 5 Pulgadas 0.6 A 2.6mm Uyustools Pel205
   Source: https://http2.mlstatic.com/D_NQ_NP_2X_825681-MLA99362691348_112025-F.webp
+
+## Full catalog
+
+- **catalog.json** — 1,348 products read from the store's MercadoLibre listing on 14 November 2026. Each row is `[id, name, price in COP, category, brand, MercadoLibre address]`. The page loads this file after the featured products written in `index.html`.
+- **catalog/** — one photo per product, named by its MercadoLibre listing id, resized to at most 640 px (WebP). Sources are the full-size listing photos on `http2.mlstatic.com`.
+
+Only listings whose photo is at least 800 px on its longest side were included (1,374 of 1,665); 26 of those were already featured on the page. Categories and brands were assigned automatically from the product names, so some may need correcting by editing the row in `catalog.json`. Prices are a snapshot and do not update on their own.

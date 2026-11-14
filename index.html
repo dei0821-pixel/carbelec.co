@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Limits what the page may load or contact, so injected content cannot pull in outside scripts or send data elsewhere.
        When adding a new outside service (fonts, form, chatbot), add its address here too. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src https://formsubmit.co https://carbelec-chatbot.dei0821.workers.dev; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://formsubmit.co https://carbelec-chatbot.dei0821.workers.dev; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>CARBELEC S.A.S. | Carbon Electric — Ferretería en Bogotá</title>
   <meta name="description" content="Ferretería CARBELEC en Bogotá. Más de 1.600 productos de ferretería, eléctricos, repuestos y herramientas. Envío gratis a todo Colombia.">
@@ -87,14 +87,20 @@
     .divider{max-width:var(--maxw);margin:0 auto;height:.5px;background:var(--border-light)}
 
     /* CATEGORIES - each card filters the product grid below */
-    .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .cats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
     .cat{display:block;color:inherit;text-decoration:none;background:var(--bg2);border-radius:var(--r);padding:32px 24px;transition:all .35s var(--ease);cursor:pointer}
     .cat:hover{background:var(--bg);box-shadow:0 4px 24px rgba(0,0,0,.06);transform:translateY(-4px)}
     .cat-ico{width:40px;height:40px;background:var(--gold-bg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gold);margin-bottom:14px}
     .cat h3{font-size:16px;font-weight:600;margin-bottom:2px}.cat p{font-size:13px;color:var(--text3)}
 
     /* PRODUCTS */
-    .pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px}
+    .psearch{position:relative;max-width:520px;margin-bottom:16px}
+    .psearch i{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:14px;pointer-events:none}
+    .psearch input{width:100%;background:var(--bg2);border:1px solid var(--border-light);border-radius:100px;padding:12px 16px 12px 42px;font-size:15px;font-family:inherit;color:var(--text);outline:none;transition:border-color .2s,background .2s}
+    .psearch input::placeholder{color:var(--text3)}
+    .psearch input:focus{border-color:var(--gold);background:var(--bg)}
+    .pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+    .pcount{font-size:13px;color:var(--text3);margin-bottom:20px;min-height:1.6em}
     .pill{padding:7px 16px;background:transparent;border:1px solid var(--border-light);border-radius:100px;color:var(--text2);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit}
     .pill:hover{border-color:var(--border);color:var(--text)}.pill.active{background:var(--text);border-color:var(--text);color:#fff}
     .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
@@ -229,7 +235,7 @@
       .wa-fab{width:46px;height:46px;padding:0;justify-content:center;left:12px}.wa-fab span{display:none}
     }
     /* Phones zoom the whole page when a focused field has text smaller than 16px */
-    @media(hover:none) and (pointer:coarse){.cf input,.cf textarea{font-size:16px}}
+    @media(hover:none) and (pointer:coarse){.cf input,.cf textarea,.psearch input{font-size:16px}}
     @media(prefers-reduced-motion:reduce){
       html{scroll-behavior:auto}
       *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
@@ -292,28 +298,34 @@
     <h2 class="sec-title" data-i18n="cat_title">Nuestras categorías.</h2>
     <p class="sec-desc" data-i18n="cat_desc">Todo lo que necesitas para tus proyectos.</p>
     <div class="cats">
-      <a class="cat" href="#productos" data-cat="herramientas"><div class="cat-ico"><i class="fas fa-wrench" aria-hidden="true"></i></div><h3 data-i18n="cat_tools">Herramientas</h3><p data-i18n="cat_tools_d">1.123 productos — Taladros, compresores, llaves</p></a>
-      <a class="cat" href="#productos" data-cat="seguridad"><div class="cat-ico"><i class="fas fa-shield-alt" aria-hidden="true"></i></div><h3 data-i18n="cat_safety">Seguridad Industrial</h3><p data-i18n="cat_safety_d">EPP, respiradores 3M, gafas</p></a>
-      <a class="cat" href="#productos" data-cat="electricos"><div class="cat-ico"><i class="fas fa-bolt" aria-hidden="true"></i></div><h3 data-i18n="cat_elec">Eléctricos</h3><p data-i18n="cat_elec_d">Cargadores, cables, pilas</p></a>
-      <a class="cat" href="#productos" data-cat="hogar"><div class="cat-ico"><i class="fas fa-home" aria-hidden="true"></i></div><h3 data-i18n="cat_home">Hogar</h3><p data-i18n="cat_home_d">Plomería, jardín, cocina</p></a>
+      <a class="cat" href="#productos" data-cat="herramientas"><div class="cat-ico"><i class="fas fa-wrench" aria-hidden="true"></i></div><h3 data-i18n="cat_tools">Herramientas</h3><p data-i18n="cat_tools_d">Taladros, llaves, alicates, brocas</p></a>
+      <a class="cat" href="#productos" data-cat="repuestos"><div class="cat-ico"><i class="fas fa-cogs" aria-hidden="true"></i></div><h3 data-i18n="cat_parts">Repuestos</h3><p data-i18n="cat_parts_d">Escobillas, inducidos, interruptores</p></a>
+      <a class="cat" href="#productos" data-cat="electricos"><div class="cat-ico"><i class="fas fa-bolt" aria-hidden="true"></i></div><h3 data-i18n="cat_elec">Eléctricos</h3><p data-i18n="cat_elec_d">Tomas, cables, extensiones, bombillos</p></a>
+      <a class="cat" href="#productos" data-cat="hogar"><div class="cat-ico"><i class="fas fa-home" aria-hidden="true"></i></div><h3 data-i18n="cat_home">Hogar</h3><p data-i18n="cat_home_d">Plomería, cerraduras, jardín, cocina</p></a>
+      <a class="cat" href="#productos" data-cat="construccion"><div class="cat-ico"><i class="fas fa-hard-hat" aria-hidden="true"></i></div><h3 data-i18n="cat_build">Construcción</h3><p data-i18n="cat_build_d">Cintas, pegantes, selladores</p></a>
+      <a class="cat" href="#productos" data-cat="seguridad"><div class="cat-ico"><i class="fas fa-shield-alt" aria-hidden="true"></i></div><h3 data-i18n="cat_safety">Seguridad Industrial</h3><p data-i18n="cat_safety_d">Respiradores, guantes, gafas</p></a>
     </div>
   </section>
   <div class="divider"></div>
 
   <section class="sec rv" id="productos">
     <p class="sec-lbl" data-i18n="prod_label">Catálogo</p>
-    <h2 class="sec-title" data-i18n="prod_title">Productos destacados.</h2>
+    <h2 class="sec-title" data-i18n="prod_title">Nuestros productos.</h2>
     <p class="sec-desc" data-i18n="prod_desc">Precios de referencia en pesos colombianos (COP). El precio final es el publicado en MercadoLibre.</p>
+    <div class="psearch"><i class="fas fa-search" aria-hidden="true"></i><input type="search" id="pgSearch" autocomplete="off" enterkeyhint="search" maxlength="80" placeholder="Buscar por nombre, marca o referencia" aria-label="Buscar por nombre, marca o referencia" data-i18n-attr="placeholder:pg_search;aria-label:pg_search"></div>
     <div class="pills">
       <button type="button" class="pill active" data-f="all" aria-pressed="true" data-i18n="pill_all">Todos</button>
       <button type="button" class="pill" data-f="herramientas" aria-pressed="false" data-i18n="cat_tools">Herramientas</button>
-      <button type="button" class="pill" data-f="seguridad" aria-pressed="false" data-i18n="pill_safety">Seguridad</button>
+      <button type="button" class="pill" data-f="repuestos" aria-pressed="false" data-i18n="cat_parts">Repuestos</button>
       <button type="button" class="pill" data-f="electricos" aria-pressed="false" data-i18n="cat_elec">Eléctricos</button>
       <button type="button" class="pill" data-f="hogar" aria-pressed="false" data-i18n="cat_home">Hogar</button>
+      <button type="button" class="pill" data-f="construccion" aria-pressed="false" data-i18n="cat_build">Construcción</button>
+      <button type="button" class="pill" data-f="seguridad" aria-pressed="false" data-i18n="pill_safety">Seguridad</button>
     </div>
+    <p class="pcount" id="pgCount" role="status" aria-live="polite"></p>
     <div class="pgrid" id="pg">
       <!-- Shown when a category has no featured products yet -->
-      <p class="pempty" id="pgEmpty" hidden><span data-i18n="empty_a">Aún no tenemos productos destacados en esta categoría. Encuéntralos en</span> <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener">MercadoLibre</a> <span data-i18n="empty_b">o pídelos por</span> <a id="pgEmptyWa" href="https://wa.me/573153899483" target="_blank" rel="noopener">WhatsApp</a>.</p>
+      <p class="pempty" id="pgEmpty" hidden><span data-i18n="empty_a">No encontramos productos para esa búsqueda. Búscalos en</span> <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener">MercadoLibre</a> <span data-i18n="empty_b">o pídelos por</span> <a id="pgEmptyWa" href="https://wa.me/573153899483" target="_blank" rel="noopener">WhatsApp</a>.</p>
     </div>
     <noscript><p class="pempty">Consulta el catálogo completo en <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec">MercadoLibre</a>.</p></noscript>
     <template id="pcTpl">
@@ -485,7 +497,7 @@
     // so `es` only lists the texts that are created by this script.
     const I18N = {
       es: {
-        pc_best: 'Más Vendido', pc_ask: 'Consultar precio', pc_wa: 'Preguntar por WhatsApp', wa_fab: 'Escribir por WhatsApp',
+        pg_count: '{n} productos', pc_best: 'Más Vendido', pc_ask: 'Consultar precio', pc_wa: 'Preguntar por WhatsApp', wa_fab: 'Escribir por WhatsApp',
         meta_title: document.title, meta_desc: document.querySelector('meta[name="description"]').content
       },
       en: {
@@ -497,15 +509,18 @@
         hero_btn_ml: 'Shop on MercadoLibre', hero_btn_wa: 'Request a Quote',
         stat_products_n: '1,645+', stat_products: 'Products', stat_brands: 'Brands', stat_rating: 'Rating',
         cat_label: 'What we offer', cat_title: 'Our categories.', cat_desc: 'Everything you need for your projects.',
-        cat_tools: 'Tools', cat_tools_d: '1,123 products — Drills, compressors, wrenches',
-        cat_safety: 'Industrial Safety', cat_safety_d: 'PPE, 3M respirators, safety glasses',
-        cat_elec: 'Electrical', cat_elec_d: 'Chargers, cables, batteries',
-        cat_home: 'Home', cat_home_d: 'Plumbing, garden, kitchen',
-        prod_label: 'Catalogue', prod_title: 'Featured products.', prod_desc: 'Reference prices in Colombian pesos (COP). The final price is the one listed on MercadoLibre.',
+        cat_tools: 'Tools', cat_tools_d: 'Drills, wrenches, pliers, bits',
+        cat_safety: 'Industrial Safety', cat_safety_d: 'Respirators, gloves, safety glasses',
+        cat_elec: 'Electrical', cat_elec_d: 'Outlets, cables, extension cords, bulbs',
+        cat_home: 'Home', cat_home_d: 'Plumbing, locks, garden, kitchen',
+        cat_parts: 'Spare Parts', cat_parts_d: 'Carbon brushes, armatures, switches',
+        cat_build: 'Construction', cat_build_d: 'Tapes, adhesives, sealants',
+        pg_search: 'Search by name, brand or reference', pg_count: '{n} products',
+        prod_label: 'Catalogue', prod_title: 'Our products.', prod_desc: 'Reference prices in Colombian pesos (COP). The final price is the one listed on MercadoLibre.',
         pill_all: 'All', pill_safety: 'Safety',
         prod_cta: 'See all 1,645 products on MercadoLibre',
         prod_more: 'Show more products', pc_best: 'Best Seller', pc_ask: 'Ask for price', pc_wa: 'Ask on WhatsApp', wa_fab: 'Message us on WhatsApp', hero_btn_chat: 'Message us on WhatsApp', form_alt: 'Prefer a faster answer?',
-        empty_a: 'No featured products in this category yet. Find them on', empty_b: 'or ask for them on',
+        empty_a: 'No products found for that search. Look for them on', empty_b: 'or ask for them on',
         about_label: 'Our story', about_title: 'More than a hardware store.', about_desc: 'Your ally for professional and home projects.',
         about_p1: '<strong>CARBELEC — Carbon Electric S.A.S.</strong> We sell, distribute and import hardware, electrical supplies and spare parts. Electronic invoicing and a physical store in Bogotá.',
         about_p2: 'Over 60 brands: Truper, Bosch, DeWalt, Total, Makita, Stanley, 3M, Pretul, Black+Decker, Toolcraft, Schneider Electric. Wholesale and retail.',
@@ -530,15 +545,18 @@
         hero_btn_ml: 'Comprar no MercadoLibre', hero_btn_wa: 'Solicitar Orçamento',
         stat_products_n: '1.645+', stat_products: 'Produtos', stat_brands: 'Marcas', stat_rating: 'Avaliação',
         cat_label: 'O que oferecemos', cat_title: 'Nossas categorias.', cat_desc: 'Tudo o que você precisa para seus projetos.',
-        cat_tools: 'Ferramentas', cat_tools_d: '1.123 produtos — Furadeiras, compressores, chaves',
-        cat_safety: 'Segurança Industrial', cat_safety_d: 'EPI, respiradores 3M, óculos',
-        cat_elec: 'Elétricos', cat_elec_d: 'Carregadores, cabos, pilhas',
-        cat_home: 'Casa', cat_home_d: 'Encanamento, jardim, cozinha',
-        prod_label: 'Catálogo', prod_title: 'Produtos em destaque.', prod_desc: 'Preços de referência em pesos colombianos (COP). O preço final é o publicado no MercadoLibre.',
+        cat_tools: 'Ferramentas', cat_tools_d: 'Furadeiras, chaves, alicates, brocas',
+        cat_safety: 'Segurança Industrial', cat_safety_d: 'Respiradores, luvas, óculos',
+        cat_elec: 'Elétricos', cat_elec_d: 'Tomadas, cabos, extensões, lâmpadas',
+        cat_home: 'Casa', cat_home_d: 'Encanamento, fechaduras, jardim, cozinha',
+        cat_parts: 'Peças de Reposição', cat_parts_d: 'Escovas de carvão, induzidos, interruptores',
+        cat_build: 'Construção', cat_build_d: 'Fitas, adesivos, selantes',
+        pg_search: 'Buscar por nome, marca ou referência', pg_count: '{n} produtos',
+        prod_label: 'Catálogo', prod_title: 'Nossos produtos.', prod_desc: 'Preços de referência em pesos colombianos (COP). O preço final é o publicado no MercadoLibre.',
         pill_all: 'Todos', pill_safety: 'Segurança',
         prod_cta: 'Ver 1.645 produtos no MercadoLibre',
         prod_more: 'Ver mais produtos', pc_best: 'Mais Vendido', pc_ask: 'Consultar preço', pc_wa: 'Perguntar pelo WhatsApp', wa_fab: 'Fale conosco pelo WhatsApp', hero_btn_chat: 'Fale pelo WhatsApp', form_alt: 'Prefere uma resposta mais rápida?',
-        empty_a: 'Ainda não temos produtos em destaque nesta categoria. Encontre-os no', empty_b: 'ou peça pelo',
+        empty_a: 'Não encontramos produtos para essa busca. Procure no', empty_b: 'ou peça pelo',
         about_label: 'Nossa história', about_title: 'Mais que uma ferragem.', about_desc: 'Seu aliado para projetos profissionais e domésticos.',
         about_p1: '<strong>CARBELEC — Carbon Electric S.A.S.</strong> Somos comerciantes, distribuidores e importadores de ferragens, materiais elétricos e peças de reposição. Fatura eletrônica e loja física em Bogotá.',
         about_p2: 'Mais de 60 marcas: Truper, Bosch, DeWalt, Total, Makita, Stanley, 3M, Pretul, Black+Decker, Toolcraft, Schneider Electric. Atacado e varejo.',
@@ -610,76 +628,114 @@
     }
 
     /* ── Products ───────────────────────────────────────────── */
+    // The products written above come first. The rest of the catalog is read from assets/catalog.json, so the
+    // page stays light and still shows the featured products if that file cannot be loaded.
     const grid = $('#pg');
     const emptyNote = $('#pgEmpty');
+    const moreBtn = $('#pgMore');
+    const searchBox = $('#pgSearch');
+    const countNote = $('#pgCount');
+    const cardTpl = $('#pcTpl').content.firstElementChild;
+    const PAGE_SIZE = 12;                       // cards added per "Ver más productos"
+    const ML_SELLER = '?pdp_filters=seller_id%3A272993470';
+    const CAT_ICONS = { herramientas: 'fa-wrench', repuestos: 'fa-cogs', electricos: 'fa-bolt', hogar: 'fa-home', construccion: 'fa-hard-hat', seguridad: 'fa-shield-alt' };
 
-    function buildProducts() {
-      const tpl = $('#pcTpl').content.firstElementChild;
-      const cards = PRODUCTS.map(p => {
-        const card = tpl.cloneNode(true);
-        card.dataset.cat = p.cat;
+    let catalog = PRODUCTS.slice();
+    let matches = [];
+    let rendered = 0;
+    let currentFilter = 'all';
+    let query = '';
 
-        const frame = $('.pc-img', card);
-        const img = $('img', card);
-        $('.fallback i', card).classList.add(p.icon || 'fa-box');
-        img.alt = p.name;
-        img.addEventListener('error', () => frame.classList.add('noimg'), { once: true });
-        if (p.img) img.src = p.img; else { img.remove(); frame.classList.add('noimg'); }
+    // Lower case without accents, so "electrico" finds "Eléctrico".
+    const fold = text => text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    const searchText = p => p.search || (p.search = fold(p.name + ' ' + (p.brand || '')));
 
-        $('.pc-badge', card).hidden = !p.best;
-        const brand = $('.pc-br', card);
-        brand.textContent = p.brand || '';
-        brand.hidden = !p.brand;
-        const desc = $('.pc-ds', card);
-        desc.textContent = p.desc || '';
-        desc.hidden = !p.desc;
-        $('.pc-nm a', card).textContent = p.name;
-        // With a MercadoLibre listing the photo and the name open it; without one they are plain content.
-        $$('.pc-link', card).forEach(link => {
-          if (p.url) link.href = p.url;
-          else { link.removeAttribute('target'); link.removeAttribute('rel'); }
-        });
+    function makeCard(p) {
+      const card = cardTpl.cloneNode(true);
+      const frame = $('.pc-img', card);
+      const img = $('img', card);
+      $('.fallback i', card).classList.add(p.icon || CAT_ICONS[p.cat] || 'fa-box');
+      img.alt = p.name;
+      img.addEventListener('error', () => frame.classList.add('noimg'), { once: true });
+      if (p.img) img.src = p.img; else { img.remove(); frame.classList.add('noimg'); }
 
-        const price = $('.pc-pr', card);
-        if (p.price) {
-          price.textContent = fmt(p.price) + (p.unit || '');
-        } else {
-          price.classList.add('ask');
-          price.dataset.i18n = 'pc_ask';
-        }
-        // The WhatsApp message stays in Spanish: it is read by the store, not by the visitor.
-        $('.pc-wa', card).href = waUrl('Hola, me interesa: ' + p.name + (p.price ? ' (' + fmt(p.price) + ')' : ''));
-        return card;
+      $('.pc-badge', card).hidden = !p.best;
+      const brand = $('.pc-br', card);
+      brand.textContent = p.brand || '';
+      brand.hidden = !p.brand;
+      const desc = $('.pc-ds', card);
+      desc.textContent = p.desc || '';
+      desc.hidden = !p.desc;
+      $('.pc-nm a', card).textContent = p.name;
+      // With a MercadoLibre listing the photo and the name open it; without one they are plain content.
+      $$('.pc-link', card).forEach(link => {
+        if (p.url) link.href = p.url;
+        else { link.removeAttribute('target'); link.removeAttribute('rel'); }
       });
-      grid.prepend(...cards);
-      translate(grid);
+
+      const price = $('.pc-pr', card);
+      if (p.price) {
+        price.textContent = fmt(p.price) + (p.unit || '');
+      } else {
+        price.classList.add('ask');
+        price.dataset.i18n = 'pc_ask';
+      }
+      // The WhatsApp message stays in Spanish: it is read by the store, not by the visitor.
+      $('.pc-wa', card).href = waUrl('Hola, me interesa: ' + p.name + (p.price ? ' (' + fmt(p.price) + ')' : ''));
+      translate(card);
+      return card;
     }
 
-    // The grid shows PAGE_SIZE products at a time; "Ver más productos" reveals the next batch.
-    const PAGE_SIZE = 12;
-    const moreBtn = $('#pgMore');
-    let currentFilter = 'all';
-    let limit = PAGE_SIZE;
+    function findMatches() {
+      const words = fold(query).split(/\s+/).filter(Boolean);
+      matches = catalog.filter(p => (currentFilter === 'all' || p.cat === currentFilter) && words.every(word => searchText(p).includes(word)));
+    }
 
-    function setFilter(filter, keepLimit = false) {
-      currentFilter = filter;
-      if (!keepLimit) limit = PAGE_SIZE;
-      let shown = 0;
-      $$('.pc', grid).forEach(card => {
-        const on = filter === 'all' || card.dataset.cat === filter;
-        if (on) shown++;
-        card.hidden = !on || shown > limit;
-      });
-      moreBtn.hidden = shown <= limit;
+    function paintCount() {
+      countNote.textContent = matches.length ? t('pg_count').replace('{n}', pesos.format(matches.length)) : '';
+      moreBtn.hidden = rendered >= matches.length;
+      emptyNote.hidden = matches.length > 0;
+    }
+
+    // Adds the next batch of cards and returns the first new one.
+    function renderMore() {
+      const cards = matches.slice(rendered, rendered + PAGE_SIZE).map(makeCard);
+      emptyNote.before(...cards);
+      rendered += cards.length;
+      paintCount();
+      return cards[0];
+    }
+
+    function showProducts() {
+      findMatches();
+      $$('.pc', grid).forEach(card => card.remove());
+      rendered = 0;
+      renderMore();
       let label = '';
       $$('.pill').forEach(btn => {
-        const on = btn.dataset.f === filter;
+        const on = btn.dataset.f === currentFilter;
         btn.classList.toggle('active', on);
         btn.setAttribute('aria-pressed', on);
-        if (on) label = I18N.es[btn.dataset.i18n] || '';
+        if (on && currentFilter !== 'all') label = I18N.es[btn.dataset.i18n] || '';
       });
-      emptyNote.hidden = shown > 0;
-      if (!shown) $('#pgEmptyWa').href = waUrl('Hola, busco productos de la categoría ' + label);
+      if (!matches.length) $('#pgEmptyWa').href = waUrl('Hola, busco: ' + [query.trim(), label].filter(Boolean).join(' — '));
+    }
+
+    function setFilter(filter) { currentFilter = filter; showProducts(); }
+
+    async function loadCatalog() {
+      const response = await fetch('assets/catalog.json');
+      if (!response.ok) throw new Error('catalog.json: HTTP ' + response.status);
+      // Each row: [id, name, price, category, brand, MercadoLibre address without "https://"]
+      const rows = await response.json();
+      catalog = PRODUCTS.concat(rows.map(([id, name, price, cat, brand, path]) => ({
+        cat, brand, name, price,
+        img: 'assets/catalog/' + id + '.webp',
+        url: 'https://' + path + (path.startsWith('www.') ? ML_SELLER : '')
+      })));
+      // The featured products stay first, so the cards already on screen are still the right ones.
+      findMatches();
+      if (rendered < Math.min(PAGE_SIZE, matches.length)) showProducts(); else paintCount();
     }
 
     /* ── Start ──────────────────────────────────────────────── */
@@ -706,18 +762,21 @@
     start('texts', readSpanishFromPage);
 
     start('products', () => {
-      buildProducts();
-      setFilter('all');
+      showProducts();
       moreBtn.addEventListener('click', () => {
-        const firstNew = limit;
-        limit += PAGE_SIZE;
-        setFilter(currentFilter, true);
-        const next = $$('.pc:not([hidden])', grid)[firstNew];
-        if (next) $('.pc-nm a', next).focus({ preventScroll: true });
+        const first = renderMore();
+        if (first) $('.pc-nm a', first).focus({ preventScroll: true });
       });
       $$('.pill').forEach(btn => btn.addEventListener('click', () => setFilter(btn.dataset.f)));
       // Category cards are links to #productos; on the way there they also apply their filter.
       $$('.cat[data-cat]').forEach(card => card.addEventListener('click', () => setFilter(card.dataset.cat)));
+      let typing;
+      searchBox.addEventListener('input', () => {
+        clearTimeout(typing);
+        typing = setTimeout(() => { query = searchBox.value; showProducts(); }, 150);
+      });
+      document.addEventListener('carbelec:lang', paintCount);
+      loadCatalog().catch(err => console.error('[CARBELEC] catalog:', err));
     });
 
     start('languages', () => {
