@@ -39,3 +39,8 @@ Verified 11 October 2026. Original image bytes are hosted with the website so ex
   SHA-256: BA1065B52AA152BC88FAD97BD95765687FEADBEC9E0B6780B4FB2F15CD3B2556
 
 The three generic Bosch spare-part cards require a verified photograph of the exact stocked part; unrelated Truper photos were removed.
+
+## Files used by the page
+
+- **web/** — the same photographs resized to at most 800 px and saved as WebP so the page loads quickly. The product cards use these; the originals above are kept as the verified sources. To add a photo, keep the original here and put a resized copy in `web/`.
+- **logo.png** — the CARBELEC logo shown in the navigation bar and the hero.
