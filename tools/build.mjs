@@ -21,6 +21,8 @@ const REPO = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const SITE = 'https://carbelec.co';
 const FEATURED_ON_HOME = 8;
 const RELATED = 4;
+// Products shown beside the title of the home page: rotary hammer, angle grinder, cordless drill, socket set.
+const HERO_SHOTS = ['MCO3503282342', 'MCO1826876923', 'MCO854831192', 'MCO1587817033'];
 // key: category in the data; label: Spanish name; i18n: key of its translated name in assets/js/core.js
 const CATEGORIES = [
   { key: 'herramientas', label: 'Herramientas', i18n: 'cat_tools' },
@@ -107,6 +109,9 @@ const crumbs = items => ({
 function homePage() {
   const description = 'Ferretería CARBELEC en Bogotá. Más de 1.600 productos de ferretería, eléctricos, repuestos y herramientas. Envío gratis a todo Colombia.';
   const cards = featured.slice(0, FEATURED_ON_HOME).map(p => indent(cardHtml(p), 6)).join('\n');
+  const shots = HERO_SHOTS.map(id => products.find(p => p.id === id)).map(p =>
+    `      <a class="shot" href="${pageUrl(p.id)}"><span class="shot-img"><img src="${esc(p.img)}" alt="" width="640" height="640"></span>`
+    + `<span class="shot-name" data-pname="${p.id}">${esc(p.name)}</span><span class="shot-price">${fmt(p.price)}</span></a>`).join('\n');
   const store = {
     '@context': 'https://schema.org', '@type': 'HardwareStore', name: 'CARBELEC — Carbon Electric S.A.S.',
     url: SITE + '/', image: SITE + '/assets/logo.png', telephone: '+57 315 389 9483',
@@ -119,7 +124,7 @@ function homePage() {
   };
   return shell({
     title: 'CARBELEC S.A.S. | Carbon Electric — Ferretería en Bogotá', description, canonical: SITE + '/', titleKey: 'meta',
-    body: read('src/pages/home.html').replace('{{featured}}', cards), scripts: ['home'], structured: [store]
+    body: read('src/pages/home.html').replace('{{featured}}', cards).replace('{{heroShots}}', shots), scripts: ['home'], structured: [store]
   });
 }
 
