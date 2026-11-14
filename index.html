@@ -149,6 +149,9 @@
     .ab-p{font-size:15px;color:var(--text2);line-height:1.7}.ab-p+.ab-p{margin-top:14px}.ab-p strong{color:var(--text)}
     .ab-quote{background:var(--bg2);border-radius:var(--r);padding:36px;position:relative}
     .ab-quote::before{content:'\201C';font-size:64px;color:var(--gold);opacity:.25;position:absolute;top:4px;left:16px;line-height:1;font-family:Georgia,serif}
+    .ab-side{display:grid;gap:12px}
+    .ab-photo{border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:var(--bg2)}
+    .ab-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 62%}
     .ab-score{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px}
     .ab-score::before{display:none}
     .ab-score-val{font-size:64px;font-weight:600;letter-spacing:-.04em;line-height:1}
@@ -335,7 +338,7 @@
     <div class="hero-stats">
       <div><div class="hs-val" data-i18n="stat_products_n">1.665+</div><div class="hs-lbl" data-i18n="stat_products">Productos</div></div>
       <div><div class="hs-val">60+</div><div class="hs-lbl" data-i18n="stat_brands">Marcas</div></div>
-      <div><div class="hs-val">4.8 ★</div><div class="hs-lbl" data-i18n="stat_rating">Calificación</div></div>
+      <div><div class="hs-val">4.7 ★</div><div class="hs-lbl" data-i18n="stat_rating">Calificación</div></div>
     </div>
   </section>
 
@@ -429,10 +432,13 @@
           <div class="ab-f"><i class="fas fa-handshake" aria-hidden="true"></i><h3 data-i18n="feat_whole">Mayor y Detal</h3><p data-i18n="feat_whole_d">Cuotas sin interés en ML</p></div>
         </div>
       </div>
-      <div class="ab-quote ab-score">
-        <div class="ab-score-val">4.8</div>
-        <div class="ab-score-st" aria-hidden="true">★★★★★</div>
-        <div class="ab-score-lbl" data-i18n="quote_rating">Calificación en Google</div>
+      <div class="ab-side">
+        <figure class="ab-photo"><img src="assets/tienda-interior.webp" alt="Exhibidor de herramientas en la tienda CARBELEC" width="750" height="1000" loading="lazy" decoding="async" data-i18n-attr="alt:about_photo"></figure>
+        <div class="ab-quote ab-score">
+          <div class="ab-score-val">4.7</div>
+          <div class="ab-score-st" aria-hidden="true">★★★★★</div>
+          <div class="ab-score-lbl" data-i18n="quote_rating">Calificación en Google</div>
+        </div>
       </div>
     </div>
   </section>
@@ -442,9 +448,9 @@
     <p class="sec-lbl" data-i18n="test_label">Testimonios</p>
     <h2 class="sec-title mb" data-i18n="test_title">Lo que dicen nuestros clientes.</h2>
     <div class="tg">
-      <div class="tc"><div class="tc-st" role="img" aria-label="5/5">★★★★★</div><p>"Empresa muy seria con buenos productos a excelente precio. Atención amable."</p><div class="tc-au"><div class="tc-av" aria-hidden="true">JM</div><div><div class="tc-nm">Juan M.</div><div class="tc-sr">Google Reviews</div></div></div></div>
-      <div class="tc"><div class="tc-st" role="img" aria-label="5/5">★★★★★</div><p>"Excelente servicio, amplia variedad. Encontré el repuesto para mi pulidora."</p><div class="tc-au"><div class="tc-av" aria-hidden="true">CA</div><div><div class="tc-nm">Carlos A.</div><div class="tc-sr">Google Reviews</div></div></div></div>
-      <div class="tc"><div class="tc-st" role="img" aria-label="5/5">★★★★★</div><p>"Tienen de todo en ferretería y eléctricos. Precios competitivos."</p><div class="tc-au"><div class="tc-av" aria-hidden="true">LP</div><div><div class="tc-nm">Laura P.</div><div class="tc-sr">Google Reviews</div></div></div></div>
+      <div class="tc"><div class="tc-st" role="img" aria-label="5/5">★★★★★</div><p data-i18n="test_1">"Empresa muy seria con buenos productos a excelente precio. Atención amable."</p><div class="tc-au"><div class="tc-av" aria-hidden="true">JM</div><div><div class="tc-nm">Juan M.</div><div class="tc-sr">Google Reviews</div></div></div></div>
+      <div class="tc"><div class="tc-st" role="img" aria-label="5/5">★★★★★</div><p data-i18n="test_2">"Excelente servicio, amplia variedad. Encontré el repuesto para mi pulidora."</p><div class="tc-au"><div class="tc-av" aria-hidden="true">CA</div><div><div class="tc-nm">Carlos A.</div><div class="tc-sr">Google Reviews</div></div></div></div>
+      <div class="tc"><div class="tc-st" role="img" aria-label="5/5">★★★★★</div><p data-i18n="test_3">"Tienen de todo en ferretería y eléctricos. Precios competitivos."</p><div class="tc-au"><div class="tc-av" aria-hidden="true">LP</div><div><div class="tc-nm">Laura P.</div><div class="tc-sr">Google Reviews</div></div></div></div>
     </div>
   </section>
   <div class="divider"></div>
@@ -631,6 +637,10 @@
         feat_store: 'Physical Store', feat_whole: 'Wholesale & Retail', feat_whole_d: 'Interest-free installments on MercadoLibre',
         quote_rating: 'Rating on Google',
         test_label: 'Testimonials', test_title: 'What our customers say.',
+        test_1: '"A very reliable company with good products at an excellent price. Friendly service."',
+        test_2: '"Excellent service and a wide range. I found the spare part for my grinder."',
+        test_3: '"They have everything in hardware and electrical supplies. Competitive prices."',
+        about_photo: 'Tool display inside the CARBELEC store',
         contact_label: 'Contact', contact_title: 'Need a quote?', contact_desc: 'Buy on MercadoLibre or request a wholesale quote via WhatsApp.',
         co_addr: 'Address', co_phones: 'Phones', co_wa_d: 'Fast quotes', co_hours: 'Opening hours',
         co_hours_d: 'Mon — Fri: 8:30am – 7:00pm<br>Saturdays: 9:30am – 6:00pm',
@@ -677,6 +687,10 @@
         feat_store: 'Loja Física', feat_whole: 'Atacado e Varejo', feat_whole_d: 'Parcelas sem juros no MercadoLibre',
         quote_rating: 'Avaliação no Google',
         test_label: 'Depoimentos', test_title: 'O que nossos clientes dizem.',
+        test_1: '"Empresa muito séria, com bons produtos a um preço excelente. Atendimento atencioso."',
+        test_2: '"Excelente serviço e grande variedade. Encontrei a peça de reposição para a minha esmerilhadeira."',
+        test_3: '"Têm de tudo em ferragens e elétricos. Preços competitivos."',
+        about_photo: 'Expositor de ferramentas na loja CARBELEC',
         contact_label: 'Contato', contact_title: 'Precisa de um orçamento?', contact_desc: 'Compre no MercadoLibre ou solicite orçamento por WhatsApp.',
         co_addr: 'Endereço', co_phones: 'Telefones', co_wa_d: 'Orçamentos rápidos', co_hours: 'Horário',
         co_hours_d: 'Seg — Sex: 8:30 – 19:00<br>Sábados: 9:30 – 18:00',
@@ -768,11 +782,23 @@
       ['escobillas', /escobilla|carbon/], ['inducidos', /inducido|armadura|rotor/], ['interruptores', /interruptor|switch|gatillo|boton/],
       ['rodamientos', /rodamiento|balinera/], ['campos', /campo|bobina|estator/], ['mandriles', /mandril|broquero|portabroca/]
     ];
-    const subOf = p => p.sub || (p.sub = (SUBS.find(([, pattern]) => pattern.test(searchText(p))) || ['otros'])[0]);
+    const subOf = p => p.sub || (p.sub = (SUBS.find(([, pattern]) => pattern.test(fold(p.name))) || ['otros'])[0]);
 
     // Lower case without accents, so "electrico" finds "Eléctrico".
     const fold = text => text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
-    const searchText = p => p.search || (p.search = fold(p.name + ' ' + (p.brand || '')));
+    // Product names and descriptions in the other languages: assets/catalog.<lang>.json maps a product id to
+    // its name, and "d:<id>" to its description. A product missing there is shown in Spanish.
+    const translations = {};
+    const nameOf = p => (translations[lang] && translations[lang][p.id]) || p.name;
+    const descOf = p => (translations[lang] && translations[lang]['d:' + p.id]) || p.desc || '';
+    // A search finds a product by its Spanish name or by its name in the language on screen.
+    function searchText(p) {
+      if (p.searchLang !== lang) {
+        p.search = fold(p.name + ' ' + nameOf(p) + ' ' + (p.brand || ''));
+        p.searchLang = lang;
+      }
+      return p.search;
+    }
 
     function makeCard(p) {
       const card = cardTpl.cloneNode(true);
@@ -780,7 +806,7 @@
       const frame = $('.pc-img', card);
       const img = $('img', card);
       $('.fallback i', card).classList.add(p.icon || CAT_ICONS[p.cat] || 'fa-box');
-      img.alt = p.name;
+      img.alt = nameOf(p);
       img.addEventListener('error', () => frame.classList.add('noimg'), { once: true });
       if (p.img) img.src = p.img; else { img.remove(); frame.classList.add('noimg'); }
 
@@ -789,9 +815,9 @@
       brand.textContent = p.brand || '';
       brand.hidden = !p.brand;
       const desc = $('.pc-ds', card);
-      desc.textContent = p.desc || '';
+      desc.textContent = descOf(p);
       desc.hidden = !p.desc;
-      $('.pc-nm a', card).textContent = p.name;
+      $('.pc-nm a', card).textContent = nameOf(p);
       // With a MercadoLibre listing the photo and the name open it; without one they are plain content.
       $$('.pc-link', card).forEach(link => {
         if (p.url) link.href = p.url;
@@ -820,7 +846,7 @@
         && words.every(word => searchText(p).includes(word)));
       if (sortOrder === 'asc') matches.sort((a, b) => a.price - b.price);
       else if (sortOrder === 'desc') matches.sort((a, b) => b.price - a.price);
-      else if (sortOrder === 'az') matches.sort((a, b) => a.name.localeCompare(b.name, 'es'));
+      else if (sortOrder === 'az') matches.sort((a, b) => nameOf(a).localeCompare(nameOf(b), lang));
     }
 
     // Brand list for the products of the current category, most common first.
@@ -920,6 +946,32 @@
 
     function setFilter(filter) { currentFilter = filter; subFilter = ''; showProducts(); }
 
+    // Redraws the cards on screen, keeping how many were shown (used when the language changes).
+    function redrawProducts() {
+      const shown = Math.max(rendered, PAGE_SIZE);
+      findMatches();
+      $$('.pc', grid).forEach(card => card.remove());
+      rendered = 0;
+      do { renderMore(); } while (rendered < Math.min(shown, matches.length));
+    }
+
+    async function loadTranslations() {
+      const wanted = lang;
+      if (wanted !== 'es' && !translations[wanted]) {
+        try {
+          const response = await fetch('assets/catalog.' + wanted + '.json');
+          if (!response.ok) throw new Error('HTTP ' + response.status);
+          translations[wanted] = await response.json();
+        } catch (err) {
+          console.error('[CARBELEC] catalog.' + wanted + '.json:', err);
+          translations[wanted] = {};            // keep the Spanish names; do not ask again
+        }
+      }
+      if (wanted !== lang) return;              // the visitor switched again while this was loading
+      redrawProducts();
+      paintQuote();
+    }
+
     async function loadCatalog() {
       const response = await fetch('assets/catalog.json');
       if (!response.ok) throw new Error('catalog.json: HTTP ' + response.status);
@@ -997,7 +1049,7 @@
       quoteList.replaceChildren(...quote.map(item => {
         const row = quoteRowTpl.cloneNode(true);
         row.dataset.id = item.id;
-        $('.q-name', row).textContent = item.name;
+        $('.q-name', row).textContent = (translations[lang] && translations[lang][item.id]) || item.name;
         $('.q-price', row).textContent = item.price ? fmt(item.price) + ' ' + t('q_each') : '';
         $('input', row).value = item.qty;
         translate(row);
@@ -1083,7 +1135,7 @@
         showProducts();
         $('#productos').scrollIntoView();
       });
-      document.addEventListener('carbelec:lang', paintCount);
+      document.addEventListener('carbelec:lang', () => { paintCount(); loadTranslations(); });
       loadCatalog().catch(err => console.error('[CARBELEC] catalog:', err));
     });
 
