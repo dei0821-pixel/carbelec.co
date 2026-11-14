@@ -83,11 +83,11 @@
     .sec-lbl{font-size:12px;color:var(--gold-text);font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
     .sec-title{font-size:clamp(32px,5vw,48px);font-weight:600;letter-spacing:-.03em;line-height:1.08;margin-bottom:8px}
     .sec-title.mb{margin-bottom:32px}
-    .sec-desc{font-size:17px;color:var(--text2);max-width:440px;margin-bottom:48px}
+    .sec-desc{font-size:17px;color:var(--text2);max-width:520px;margin-bottom:48px}
     .divider{max-width:var(--maxw);margin:0 auto;height:.5px;background:var(--border-light)}
 
     /* CATEGORIES - each card filters the product grid below */
-    .cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+    .cats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
     .cat{display:block;color:inherit;text-decoration:none;background:var(--bg2);border-radius:var(--r);padding:32px 24px;transition:all .35s var(--ease);cursor:pointer}
     .cat:hover{background:var(--bg);box-shadow:0 4px 24px rgba(0,0,0,.06);transform:translateY(-4px)}
     .cat-ico{width:40px;height:40px;background:var(--gold-bg);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gold);margin-bottom:14px}
@@ -116,7 +116,12 @@
     .pc-wa:hover{background:#25D366;color:#fff}
     .pempty{grid-column:1/-1;background:var(--bg2);border-radius:var(--r);padding:44px 24px;text-align:center;font-size:15px;color:var(--text2)}
     .pempty a{color:var(--gold);font-weight:600;text-decoration:none}.pempty a:hover{text-decoration:underline}
-    .pmore{text-align:center;margin-top:40px}
+    .pmore{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:40px}
+    .pc-img a{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+    .pc-nm a{color:inherit;text-decoration:none}.pc-nm a[href]:hover{color:var(--gold-text)}
+    /* Cards in a row share one height; the price row sits at the bottom of each */
+    .pc{display:flex;flex-direction:column}.pc-body{flex:1;display:flex;flex-direction:column}.pc-ft{margin-top:auto}
+    .pc-nm{margin-bottom:12px}.pc-ds{margin-top:-9px}
 
     /* ABOUT */
     .ab-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
@@ -289,6 +294,8 @@
     <div class="cats">
       <a class="cat" href="#productos" data-cat="herramientas"><div class="cat-ico"><i class="fas fa-wrench" aria-hidden="true"></i></div><h3 data-i18n="cat_tools">Herramientas</h3><p data-i18n="cat_tools_d">1.123 productos — Taladros, compresores, llaves</p></a>
       <a class="cat" href="#productos" data-cat="seguridad"><div class="cat-ico"><i class="fas fa-shield-alt" aria-hidden="true"></i></div><h3 data-i18n="cat_safety">Seguridad Industrial</h3><p data-i18n="cat_safety_d">EPP, respiradores 3M, gafas</p></a>
+      <a class="cat" href="#productos" data-cat="electricos"><div class="cat-ico"><i class="fas fa-bolt" aria-hidden="true"></i></div><h3 data-i18n="cat_elec">Eléctricos</h3><p data-i18n="cat_elec_d">Cargadores, cables, pilas</p></a>
+      <a class="cat" href="#productos" data-cat="hogar"><div class="cat-ico"><i class="fas fa-home" aria-hidden="true"></i></div><h3 data-i18n="cat_home">Hogar</h3><p data-i18n="cat_home_d">Plomería, jardín, cocina</p></a>
     </div>
   </section>
   <div class="divider"></div>
@@ -296,11 +303,13 @@
   <section class="sec rv" id="productos">
     <p class="sec-lbl" data-i18n="prod_label">Catálogo</p>
     <h2 class="sec-title" data-i18n="prod_title">Productos destacados.</h2>
-    <p class="sec-desc" data-i18n="prod_desc">Precios en pesos colombianos (COP).</p>
+    <p class="sec-desc" data-i18n="prod_desc">Precios de referencia en pesos colombianos (COP). El precio final es el publicado en MercadoLibre.</p>
     <div class="pills">
       <button type="button" class="pill active" data-f="all" aria-pressed="true" data-i18n="pill_all">Todos</button>
       <button type="button" class="pill" data-f="herramientas" aria-pressed="false" data-i18n="cat_tools">Herramientas</button>
       <button type="button" class="pill" data-f="seguridad" aria-pressed="false" data-i18n="pill_safety">Seguridad</button>
+      <button type="button" class="pill" data-f="electricos" aria-pressed="false" data-i18n="cat_elec">Eléctricos</button>
+      <button type="button" class="pill" data-f="hogar" aria-pressed="false" data-i18n="cat_home">Hogar</button>
     </div>
     <div class="pgrid" id="pg">
       <!-- Shown when a category has no featured products yet -->
@@ -310,13 +319,13 @@
     <template id="pcTpl">
       <article class="pc">
         <div class="pc-img">
-          <img alt="" loading="lazy" decoding="async" width="800" height="800">
+          <a class="pc-link" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img alt="" loading="lazy" decoding="async" width="800" height="800"></a>
           <div class="fallback"><i class="fas" aria-hidden="true"></i><span data-i18n="pc_photo">Foto no disponible. Solicítala por WhatsApp</span></div>
           <div class="pc-badge" data-i18n="pc_best"></div>
         </div>
         <div class="pc-body">
           <div class="pc-br"></div>
-          <h3 class="pc-nm"></h3>
+          <h3 class="pc-nm"><a class="pc-link" target="_blank" rel="noopener"></a></h3>
           <p class="pc-ds"></p>
           <div class="pc-ft">
             <div class="pc-pr"></div>
@@ -325,7 +334,7 @@
         </div>
       </article>
     </template>
-    <div class="pmore"><a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener" class="btn btn-dark"><i class="fas fa-external-link-alt" aria-hidden="true"></i> <span data-i18n="prod_cta">Ver 1.645 productos en MercadoLibre</span></a></div>
+    <div class="pmore"><button type="button" class="btn btn-out" id="pgMore" hidden><i class="fas fa-plus" aria-hidden="true"></i> <span data-i18n="prod_more">Ver más productos</span></button> <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener" class="btn btn-dark"><i class="fas fa-external-link-alt" aria-hidden="true"></i> <span data-i18n="prod_cta">Ver 1.645 productos en MercadoLibre</span></a></div>
   </section>
   <div class="divider"></div>
 
@@ -437,14 +446,39 @@
     //   best   true shows the "Más vendido" badge
     //   icon   Font Awesome icon shown if the photo fails to load
     //   img    photo URL
+    //   url    optional MercadoLibre listing; makes the photo and name a link
+    //   desc is optional. Prices of products with a url were copied from MercadoLibre on 14 Nov 2026.
     const PRODUCTS = [
       { cat: 'herramientas', brand: 'Pretul', name: 'Taladro Inalámbrico 12V 3/8" Pretul 29975', desc: 'Taladro destornillador inalámbrico de 12V con broquero de 3/8". Compacto para uso doméstico.', price: 210000, icon: 'fa-screwdriver', img: 'assets/web/pretul-tali-12p-29975.webp' },
-      { cat: 'herramientas', brand: 'Total', name: 'Juego Llaves Curva Doble Corona 8 Pzas THT102486', desc: 'Set profesional de llaves doble corona para mecánica y mantenimiento industrial.', price: 168000, best: true, icon: 'fa-wrench', img: 'assets/web/total-tht102486.webp' },
+      { cat: 'herramientas', brand: 'Total', name: 'Juego Llaves Curva Doble Corona 8 Pzas THT102486', desc: 'Set profesional de llaves doble corona para mecánica y mantenimiento industrial.', price: 82450, best: true, icon: 'fa-wrench', img: 'assets/web/total-tht102486.webp', url: 'https://www.mercadolibre.com.co/juego-de-llaves-curva-doble-corona-8-piezas-total-tht102486/p/MCO34153866?pdp_filters=item_id%3AMCO1405141079' },
       { cat: 'herramientas', brand: 'Stanley', name: 'Juego de Llaves Allen 20 Und Stanley 69-255', desc: 'Set completo hexagonales métricas y pulgadas. Acero al cromo vanadio.', price: 76000, best: true, icon: 'fa-tools', img: 'assets/web/stanley-69-255.webp' },
       { cat: 'herramientas', brand: 'Truper', name: 'Cepillo Eléctrico 3-1/4" 850W Truper', desc: 'Cepillo profesional 127V para carpintería y acabados de madera.', price: 480000, icon: 'fa-hammer', img: 'assets/web/truper-planer-850w.webp' },
-      { cat: 'herramientas', brand: 'Truper', name: 'Manguera Compresor Alta Presión 1/4" 10mt', desc: 'Hule 300PSI, color negro. Resistente para uso profesional e industrial.', price: 86500, best: true, icon: 'fa-link', img: 'assets/web/truper-compressor-hose-10m.webp' },
-      { cat: 'seguridad', brand: '3M', name: 'Respirador 3M 6200 Media Cara + Filtros 6001', desc: 'Protección respiratoria reutilizable NIOSH. Cartucho doble para vapor orgánico.', price: 120000, best: true, icon: 'fa-head-side-mask', img: 'assets/web/3m-6200-respirator-6001-filters.webp' },
-      { cat: 'seguridad', brand: 'Steelpro', name: 'Monogafa de Seguridad Zex AF Steelpro', desc: 'Cristal claro, antiempañante. Protección ocular certificada.', price: 27000, icon: 'fa-glasses', img: 'assets/web/steelpro-zex-af-goggles.webp' }
+      { cat: 'herramientas', brand: 'Truper', name: 'Manguera Compresor Alta Presión 1/4" 10mt', desc: 'Hule 300PSI, color negro. Resistente para uso profesional e industrial.', price: 98500, best: true, icon: 'fa-link', img: 'assets/web/truper-compressor-hose-10m.webp', url: 'https://www.mercadolibre.com.co/manguera-compresor-alta-presion-14-hule-300psi-10-mt-truper-color-negro/p/MCO27309616?pdp_filters=item_id%3AMCO1537119107' },
+      { cat: 'seguridad', brand: '3M', name: 'Respirador 3M 6200 Media Cara + Filtros 6001', desc: 'Protección respiratoria reutilizable NIOSH. Cartucho doble para vapor orgánico.', price: 120000, best: true, icon: 'fa-head-side-mask', img: 'assets/web/3m-6200-respirator-6001-filters.webp', url: 'https://www.mercadolibre.com.co/respirador-3m-6200-de-media-cara-con-filtros-6001-para-vapores-organicos/p/MCO37303850?pdp_filters=item_id%3AMCO2741723246' },
+      { cat: 'seguridad', brand: 'Steelpro', name: 'Monogafa de Seguridad Zex AF Steelpro', desc: 'Cristal claro, antiempañante. Protección ocular certificada.', price: 27000, icon: 'fa-glasses', img: 'assets/web/steelpro-zex-af-goggles.webp' },
+      { cat: 'herramientas', brand: 'Truper', name: 'Amoladora angular Truper Profesional ESMA-4-1/2A9 de 60 Hz color naranja 800 W 127 V + accesorio', price: 199000, icon: 'fa-wrench', img: 'assets/web/ml-amoladora-angular-truper-profesional-esma-4-1-2a.webp', url: 'https://www.mercadolibre.com.co/amoladora-angular-truper-profesional-esma-4-12a9-de-60hz-color-naranja-800w-127v-accesorio/p/MCO12737742?pdp_filters=item_id%3AMCO1826876923' },
+      { cat: 'herramientas', brand: 'Total', name: 'Rotomartillo Total UTH110266 1050W SDS Plus 4.5J con 6 accesorios turquesa', price: 523000, icon: 'fa-wrench', img: 'assets/web/ml-rotomartillo-total-uth110266-1050w-sds-plus-4-5j.webp', url: 'https://www.mercadolibre.com.co/rotomartillo-total-uth110266-1050w-sds-plus-45j-con-6-accesorios-turquesa/p/MCO45860694?pdp_filters=item_id%3AMCO3503282342' },
+      { cat: 'herramientas', brand: 'Total', name: 'Rotomartillo 800 W, Total Frecuencia 60hz Uth308268 Color Turquesa', price: 435000, icon: 'fa-wrench', img: 'assets/web/ml-rotomartillo-800-w-total-frecuencia-60hz-uth3082.webp', url: 'https://www.mercadolibre.com.co/rotomartillo-800-w-total-frecuencia-60hz-uth308268-color-turquesa/p/MCO28250872?pdp_filters=item_id%3AMCO1402285837' },
+      { cat: 'herramientas', brand: 'Total', name: 'Set De Bocallaves Tubos 46 Piezas Tht141462 Total Enc 1/4 Color Azul Petróleo', price: 142000, icon: 'fa-wrench', img: 'assets/web/ml-set-de-bocallaves-tubos-46-piezas-tht141462-tota.webp', url: 'https://www.mercadolibre.com.co/set-de-bocallaves-tubos-46-piezas-tht141462-total-enc-14-color-azul-petroleo/p/MCO41214353?pdp_filters=item_id%3AMCO1587817033' },
+      { cat: 'herramientas', brand: 'Truper', name: 'Caja Para Herramientas 19 X25 3 En 1 Desmontable Truper CHP-1925R Color Negro', price: 270000, icon: 'fa-wrench', img: 'assets/web/ml-caja-para-herramientas-19-x25-3-en-1-desmontable.webp', url: 'https://www.mercadolibre.com.co/caja-para-herramientas-19-x25-3-en-1-desmontable-truper-chp-1925r-color-negro/p/MCO25434529?pdp_filters=item_id%3AMCO3093111350' },
+      { cat: 'herramientas', brand: 'Truper', name: 'Mini Pistola De Calor 350 W Profesional Truper 102578', price: 101850, icon: 'fa-wrench', img: 'assets/web/ml-mini-pistola-de-calor-350-w-profesional-truper-1.webp', url: 'https://www.mercadolibre.com.co/mini-pistola-de-calor-350-w-profesional-truper-102578/p/MCO22595321?pdp_filters=item_id%3AMCO2259356087' },
+      { cat: 'herramientas', brand: 'Truper', name: 'Torquímetro D/trueno 2 Lecturas 1/2 Truper TORQ-1/2 77-204nm', price: 299500, icon: 'fa-wrench', img: 'assets/web/ml-torquimetro-d-trueno-2-lecturas-1-2-truper-torq.webp', url: 'https://www.mercadolibre.com.co/torquimetro-dtrueno-2-lecturas-12-truper-torq-12-77-204nm/p/MCO25844416?pdp_filters=item_id%3AMCO2500126998' },
+      { cat: 'herramientas', brand: 'Total', name: 'Llaves Total THT102RK586 Combinadas Flexibles Rachet Juego De 8 A 19Mm', price: 183000, icon: 'fa-wrench', img: 'assets/web/ml-llaves-total-tht102rk586-combinadas-flexibles-ra.webp', url: 'https://www.mercadolibre.com.co/llaves-total-tht102rk586-combinadas-flexibles-rachet-juego-de-8-a-19mm/p/MCO27969558?pdp_filters=item_id%3AMCO2381286988' },
+      { cat: 'herramientas', brand: 'Truper', name: 'Juego De Llaves Allen Mm Extralargas 8 Piezas Truper 100933 Color Negro', price: 119900, icon: 'fa-wrench', img: 'assets/web/ml-juego-de-llaves-allen-mm-extralargas-8-piezas-tr.webp', url: 'https://www.mercadolibre.com.co/juego-de-llaves-allen-mm-extralargas-8-piezas-truper-100933-color-negro/p/MCO27482331?pdp_filters=item_id%3AMCO1361250949' },
+      { cat: 'herramientas', brand: 'Truper', name: 'Taladro rotomartillo atornillador eléctrico de 1/2" Truper ROTO-1/2A7, 650W, caja de cartón, 60Hz', price: 224000, icon: 'fa-wrench', img: 'assets/web/ml-taladro-rotomartillo-atornillador-electrico-de-1.webp', url: 'https://www.mercadolibre.com.co/taladro-rotomartillo-atornillador-electrico-de-12-truper-roto-12a7-650w-caja-de-carton-60hz/p/MCO17969128?pdp_filters=item_id%3AMCO1551895873' },
+      { cat: 'electricos', brand: 'DeWalt', name: 'Dewalt Dcb107 Cargador De Batería De Li-ion 12 Voltios Max. Color Negro', price: 193030, icon: 'fa-bolt', img: 'assets/web/ml-dewalt-dcb107-cargador-de-bateria-de-li-ion-12-v.webp', url: 'https://www.mercadolibre.com.co/dewalt-dcb107-cargador-de-bateria-de-li-ion-12-voltios-max-color-negro/p/MCO32287910?pdp_filters=item_id%3AMCO2387323828' },
+      { cat: 'herramientas', brand: 'Truper', name: 'Pistola De Pintura Alta Presion 1.8mm Vaso 1000cc Truper Color Plateado', price: 149500, icon: 'fa-wrench', img: 'assets/web/ml-pistola-de-pintura-alta-presion-1-8mm-vaso-1000c.webp', url: 'https://www.mercadolibre.com.co/pistola-de-pintura-alta-presion-18mm-vaso-1000cc-truper-color-plateado/p/MCO23486912?pdp_filters=item_id%3AMCO1614931965' },
+      { cat: 'herramientas', brand: 'Truper', name: 'Soldadura Resina 450g Truper', price: 148800, icon: 'fa-wrench', img: 'assets/web/ml-soldadura-resina-450g-truper.webp', url: 'https://www.mercadolibre.com.co/soldadura-resina-450g-truper/p/MCO53313670?pdp_filters=item_id%3AMCO4452360634' },
+      { cat: 'seguridad', brand: 'Truper', name: 'Rodilleras Impermeables Para Trabajos Húmedos Truper 103232', price: 86330, icon: 'fa-shield-alt', img: 'assets/web/ml-rodilleras-impermeables-para-trabajos-humedos-tr.webp', url: 'https://www.mercadolibre.com.co/rodilleras-impermeables-para-trabajos-humedos-truper-103232/p/MCO37832439?pdp_filters=item_id%3AMCO4155607558' },
+      { cat: 'hogar', brand: 'Diablo Rojo', name: 'Diablo Rojo Destapa Cañerías 350gr', price: 18430, icon: 'fa-home', img: 'assets/web/ml-diablo-rojo-destapa-canerias-350gr.webp', url: 'https://www.mercadolibre.com.co/diablo-rojo-destapa-canerias-350gr/p/MCO19990587?pdp_filters=item_id%3AMCO1171691330' },
+      { cat: 'electricos', brand: '', name: 'Cable Red Rj45 Cat 5e Patch-cord Por 10 Metros (internet)', price: 18500, icon: 'fa-bolt', img: 'assets/web/ml-cable-red-rj45-cat-5e-patch-cord-por-10-metros-i.webp', url: 'https://www.mercadolibre.com.co/cable-red-internet-utp-cat-5e-10-mts-rj45-pc-router/p/MCO2065101346?pdp_filters=item_id%3AMCO561877191' },
+      { cat: 'electricos', brand: 'Energizer', name: 'Pila Bateria Alcalina Max D2 Energizer', price: 29500, icon: 'fa-bolt', img: 'assets/web/ml-pila-bateria-alcalina-max-d2-energizer.webp', url: 'https://www.mercadolibre.com.co/pila-bateria-alcalina-max-d2-energizer/p/MCO16951754?pdp_filters=item_id%3AMCO1946324513' },
+      { cat: 'herramientas', brand: 'Truper', name: 'Bomba De Mano Para Inflar Pedal 60 Psi Truper 101667 Color Naranja BOPE-60', price: 29000, icon: 'fa-wrench', img: 'assets/web/ml-bomba-de-mano-para-inflar-pedal-60-psi-truper-10.webp', url: 'https://www.mercadolibre.com.co/bomba-de-mano-para-inflar-pedal-60-psi-truper-101667-color-naranja-bope-60/p/MCO22609134?pdp_filters=item_id%3AMCO2516171236' },
+      { cat: 'hogar', brand: 'Truper', name: 'Espuma Expansiva Poliuretano 300 Ml Truper 10919', price: 35000, icon: 'fa-home', img: 'assets/web/ml-espuma-expansiva-poliuretano-300-ml-truper-10919.webp', url: 'https://www.mercadolibre.com.co/espuma-expansiva-poliuretano-300-ml-truper-10919/p/MCO24729500?pdp_filters=item_id%3AMCO3879556978' },
+      { cat: 'hogar', brand: 'Truper', name: 'Pistola Metálica Para Manguera 2 Funciones Truper 18476', price: 41000, icon: 'fa-home', img: 'assets/web/ml-pistola-metalica-para-manguera-2-funciones-trupe.webp', url: 'https://www.mercadolibre.com.co/pistola-metalica-para-manguera-2-funciones-truper-18476/p/MCO24304158?pdp_filters=item_id%3AMCO4015784446' },
+      { cat: 'hogar', brand: 'Oster', name: 'Cuchillas Oster 4 Aspas Acero Inoxidable Batidora Licuadora', price: 33000, icon: 'fa-home', img: 'assets/web/ml-cuchillas-oster-4-aspas-acero-inoxidable-batidor.webp', url: 'https://www.mercadolibre.com.co/cuchillas-oster-4-aspas-acero-inoxidable-batidora-licuadora/p/MCO41320430?pdp_filters=item_id%3AMCO4603926616' },
+      { cat: 'herramientas', brand: 'Truper', name: 'Juego De Llaves Allen Largas Std 13 Piezas Truper 13645 Color Plateado', price: 45500, icon: 'fa-wrench', img: 'assets/web/ml-juego-de-llaves-allen-largas-std-13-piezas-trupe.webp', url: 'https://www.mercadolibre.com.co/juego-de-llaves-allen-largas-std-13-piezas-truper-13645-color-plateado/p/MCO27607194?pdp_filters=item_id%3AMCO2987597574' },
+      { cat: 'electricos', brand: 'Uyustools', name: 'Pinza Pelacable 5 Pulgadas 0.6 A 2.6mm Uyustools Pel205', price: 18000, icon: 'fa-bolt', img: 'assets/web/ml-pinza-pelacable-5-pulgadas-0-6-a-2-6mm-uyustools.webp', url: 'https://www.mercadolibre.com.co/pinza-pelacable-5-pulgadas-06-a-26mm-uyustools-pel205/p/MCO45501155?pdp_filters=item_id%3AMCO2987597564' }
     ];
 
     // Interface texts. Spanish for anything written in the HTML is read from the HTML itself,
@@ -465,10 +499,12 @@
         cat_label: 'What we offer', cat_title: 'Our categories.', cat_desc: 'Everything you need for your projects.',
         cat_tools: 'Tools', cat_tools_d: '1,123 products — Drills, compressors, wrenches',
         cat_safety: 'Industrial Safety', cat_safety_d: 'PPE, 3M respirators, safety glasses',
-        prod_label: 'Catalogue', prod_title: 'Featured products.', prod_desc: 'Prices in Colombian pesos (COP).',
+        cat_elec: 'Electrical', cat_elec_d: 'Chargers, cables, batteries',
+        cat_home: 'Home', cat_home_d: 'Plumbing, garden, kitchen',
+        prod_label: 'Catalogue', prod_title: 'Featured products.', prod_desc: 'Reference prices in Colombian pesos (COP). The final price is the one listed on MercadoLibre.',
         pill_all: 'All', pill_safety: 'Safety',
         prod_cta: 'See all 1,645 products on MercadoLibre',
-        pc_best: 'Best Seller', pc_ask: 'Ask for price', pc_wa: 'Ask on WhatsApp', wa_fab: 'Message us on WhatsApp', hero_btn_chat: 'Message us on WhatsApp', form_alt: 'Prefer a faster answer?',
+        prod_more: 'Show more products', pc_best: 'Best Seller', pc_ask: 'Ask for price', pc_wa: 'Ask on WhatsApp', wa_fab: 'Message us on WhatsApp', hero_btn_chat: 'Message us on WhatsApp', form_alt: 'Prefer a faster answer?',
         empty_a: 'No featured products in this category yet. Find them on', empty_b: 'or ask for them on',
         about_label: 'Our story', about_title: 'More than a hardware store.', about_desc: 'Your ally for professional and home projects.',
         about_p1: '<strong>CARBELEC — Carbon Electric S.A.S.</strong> We sell, distribute and import hardware, electrical supplies and spare parts. Electronic invoicing and a physical store in Bogotá.',
@@ -496,10 +532,12 @@
         cat_label: 'O que oferecemos', cat_title: 'Nossas categorias.', cat_desc: 'Tudo o que você precisa para seus projetos.',
         cat_tools: 'Ferramentas', cat_tools_d: '1.123 produtos — Furadeiras, compressores, chaves',
         cat_safety: 'Segurança Industrial', cat_safety_d: 'EPI, respiradores 3M, óculos',
-        prod_label: 'Catálogo', prod_title: 'Produtos em destaque.', prod_desc: 'Preços em pesos colombianos (COP).',
+        cat_elec: 'Elétricos', cat_elec_d: 'Carregadores, cabos, pilhas',
+        cat_home: 'Casa', cat_home_d: 'Encanamento, jardim, cozinha',
+        prod_label: 'Catálogo', prod_title: 'Produtos em destaque.', prod_desc: 'Preços de referência em pesos colombianos (COP). O preço final é o publicado no MercadoLibre.',
         pill_all: 'Todos', pill_safety: 'Segurança',
         prod_cta: 'Ver 1.645 produtos no MercadoLibre',
-        pc_best: 'Mais Vendido', pc_ask: 'Consultar preço', pc_wa: 'Perguntar pelo WhatsApp', wa_fab: 'Fale conosco pelo WhatsApp', hero_btn_chat: 'Fale pelo WhatsApp', form_alt: 'Prefere uma resposta mais rápida?',
+        prod_more: 'Ver mais produtos', pc_best: 'Mais Vendido', pc_ask: 'Consultar preço', pc_wa: 'Perguntar pelo WhatsApp', wa_fab: 'Fale conosco pelo WhatsApp', hero_btn_chat: 'Fale pelo WhatsApp', form_alt: 'Prefere uma resposta mais rápida?',
         empty_a: 'Ainda não temos produtos em destaque nesta categoria. Encontre-os no', empty_b: 'ou peça pelo',
         about_label: 'Nossa história', about_title: 'Mais que uma ferragem.', about_desc: 'Seu aliado para projetos profissionais e domésticos.',
         about_p1: '<strong>CARBELEC — Carbon Electric S.A.S.</strong> Somos comerciantes, distribuidores e importadores de ferragens, materiais elétricos e peças de reposição. Fatura eletrônica e loja física em Bogotá.',
@@ -589,9 +627,18 @@
         if (p.img) img.src = p.img; else { img.remove(); frame.classList.add('noimg'); }
 
         $('.pc-badge', card).hidden = !p.best;
-        $('.pc-br', card).textContent = p.brand;
-        $('.pc-nm', card).textContent = p.name;
-        $('.pc-ds', card).textContent = p.desc;
+        const brand = $('.pc-br', card);
+        brand.textContent = p.brand || '';
+        brand.hidden = !p.brand;
+        const desc = $('.pc-ds', card);
+        desc.textContent = p.desc || '';
+        desc.hidden = !p.desc;
+        $('.pc-nm a', card).textContent = p.name;
+        // With a MercadoLibre listing the photo and the name open it; without one they are plain content.
+        $$('.pc-link', card).forEach(link => {
+          if (p.url) link.href = p.url;
+          else { link.removeAttribute('target'); link.removeAttribute('rel'); }
+        });
 
         const price = $('.pc-pr', card);
         if (p.price) {
@@ -608,13 +655,22 @@
       translate(grid);
     }
 
-    function setFilter(filter) {
+    // The grid shows PAGE_SIZE products at a time; "Ver más productos" reveals the next batch.
+    const PAGE_SIZE = 12;
+    const moreBtn = $('#pgMore');
+    let currentFilter = 'all';
+    let limit = PAGE_SIZE;
+
+    function setFilter(filter, keepLimit = false) {
+      currentFilter = filter;
+      if (!keepLimit) limit = PAGE_SIZE;
       let shown = 0;
       $$('.pc', grid).forEach(card => {
         const on = filter === 'all' || card.dataset.cat === filter;
-        card.hidden = !on;
         if (on) shown++;
+        card.hidden = !on || shown > limit;
       });
+      moreBtn.hidden = shown <= limit;
       let label = '';
       $$('.pill').forEach(btn => {
         const on = btn.dataset.f === filter;
@@ -651,6 +707,14 @@
 
     start('products', () => {
       buildProducts();
+      setFilter('all');
+      moreBtn.addEventListener('click', () => {
+        const firstNew = limit;
+        limit += PAGE_SIZE;
+        setFilter(currentFilter, true);
+        const next = $$('.pc:not([hidden])', grid)[firstNew];
+        if (next) $('.pc-nm a', next).focus({ preventScroll: true });
+      });
       $$('.pill').forEach(btn => btn.addEventListener('click', () => setFilter(btn.dataset.f)));
       // Category cards are links to #productos; on the way there they also apply their filter.
       $$('.cat[data-cat]').forEach(card => card.addEventListener('click', () => setFilter(card.dataset.cat)));
