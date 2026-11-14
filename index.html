@@ -61,6 +61,11 @@
     .hero-logo img{display:block;width:100%;height:auto;transform:translateY(-28%)}
     .hero h1{font-size:clamp(44px,7.5vw,80px);font-weight:600;line-height:1.05;letter-spacing:-.04em;max-width:700px;margin-bottom:12px;opacity:0;animation:fadeUp .7s .25s var(--ease) forwards}
     .hero-sub{font-size:clamp(17px,2vw,21px);color:var(--text2);max-width:460px;line-height:1.45;font-weight:400;margin-bottom:32px;opacity:0;animation:fadeUp .7s .4s var(--ease) forwards}
+    .hero-search{position:relative;display:flex;gap:8px;width:min(520px,100%);margin-bottom:20px;opacity:0;animation:fadeUp .7s .5s var(--ease) forwards}
+    .hero-search i{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:14px;pointer-events:none}
+    .hero-search input{flex:1;min-width:0;background:var(--bg2);border:1px solid var(--border-light);border-radius:100px;padding:13px 16px 13px 44px;font-size:16px;font-family:inherit;color:var(--text);outline:none;transition:border-color .2s,background .2s}
+    .hero-search input::placeholder{color:var(--text3)}
+    .hero-search input:focus{border-color:var(--gold);background:var(--bg)}
     .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:56px;opacity:0;animation:fadeUp .7s .55s var(--ease) forwards}
     .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:100px;font-size:17px;font-weight:400;text-decoration:none;cursor:pointer;transition:all .3s;font-family:inherit;border:none}
     .btn-gold{background:var(--gold);color:var(--text)}.btn-gold:hover{background:var(--gold-light)}
@@ -100,7 +105,13 @@
     .psearch input::placeholder{color:var(--text3)}
     .psearch input:focus{border-color:var(--gold);background:var(--bg)}
     .pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-    .pcount{font-size:13px;color:var(--text3);margin-bottom:20px;min-height:1.6em}
+    .psubs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+    .psubs .pill{padding:5px 13px;font-size:12px}
+    .ptools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+    .pcount{font-size:13px;color:var(--text3);margin-right:auto;min-height:1.6em}
+    .psel select{appearance:none;-webkit-appearance:none;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%236e6e73' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 14px center;border:1px solid var(--border-light);border-radius:100px;padding:8px 34px 8px 14px;font-size:13px;font-family:inherit;color:var(--text);cursor:pointer;max-width:100%}
+    .psel select:hover{border-color:var(--border)}
+    .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
     .pill{padding:7px 16px;background:transparent;border:1px solid var(--border-light);border-radius:100px;color:var(--text2);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit}
     .pill:hover{border-color:var(--border);color:var(--text)}.pill.active{background:var(--text);border-color:var(--text);color:#fff}
     .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
@@ -120,6 +131,10 @@
     .pc-pr{font-size:18px;font-weight:600}.pc-pr.ask{font-size:13px;color:var(--text3);font-weight:400}
     .pc-wa{width:32px;height:32px;background:var(--gold-bg);border:none;border-radius:8px;color:var(--gold);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;text-decoration:none}
     .pc-wa:hover{background:#25D366;color:#fff}
+    .pc-acts{display:flex;gap:6px}
+    .pc-add{width:32px;height:32px;background:var(--bg2);border:none;border-radius:8px;color:var(--text2);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .pc-add:hover{background:var(--gold);color:var(--text)}
+    .pc-add.on{background:var(--text);color:#fff}
     .pempty{grid-column:1/-1;background:var(--bg2);border-radius:var(--r);padding:44px 24px;text-align:center;font-size:15px;color:var(--text2)}
     .pempty a{color:var(--gold);font-weight:600;text-decoration:none}.pempty a:hover{text-decoration:underline}
     .pmore{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:40px}
@@ -175,6 +190,36 @@
     .co-alt{margin-top:18px;padding-top:18px;border-top:1px solid var(--border-light);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--text2)}
     .btn-wa{background:#128c4a;color:#fff}.btn-wa:hover{background:#0f7a40}
     .btn-sm{padding:9px 18px;font-size:14px}
+    /* Quote list */
+    .q-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:950;display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 18px;border:none;border-radius:100px;background:var(--text);color:#fff;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.25);white-space:nowrap}
+    .q-bar:hover{background:#000}
+    .q-n{min-width:22px;height:22px;padding:0 6px;border-radius:100px;background:var(--gold);color:var(--text);font-size:12px;display:inline-flex;align-items:center;justify-content:center}
+    .q-overlay{position:fixed;inset:0;z-index:15000;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;padding:0}
+    .q-panel{background:var(--bg);width:min(560px,100%);max-height:88vh;max-height:88dvh;display:flex;flex-direction:column;border-radius:20px 20px 0 0;box-shadow:0 -8px 40px rgba(0,0,0,.2)}
+    .q-hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--border-light)}
+    .q-hdr h2{font-size:18px;font-weight:600}
+    .q-close,.q-del{width:32px;height:32px;border:none;border-radius:50%;background:var(--bg2);color:var(--text2);cursor:pointer;font-size:14px;flex-shrink:0}
+    .q-close:hover,.q-del:hover{background:var(--border-light);color:var(--text)}
+    .q-list{list-style:none;overflow-y:auto;overscroll-behavior:contain;padding:6px 22px;flex:1;min-height:60px}
+    .q-item{display:grid;grid-template-columns:1fr auto auto;gap:4px 12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--border-light)}
+    .q-item:last-child{border-bottom:none}
+    .q-name{font-size:14px;font-weight:600;line-height:1.3}
+    .q-price{grid-column:1;font-size:12px;color:var(--text3)}
+    .q-qty{grid-column:2;grid-row:1/3;display:flex;align-items:center;border:1px solid var(--border-light);border-radius:100px;overflow:hidden}
+    .q-qty button{width:32px;height:34px;border:none;background:none;font-size:16px;color:var(--text);cursor:pointer;font-family:inherit}
+    .q-qty button:hover{background:var(--bg2)}
+    .q-qty input{width:44px;border:none;text-align:center;font-size:16px;font-family:inherit;color:var(--text);background:none;outline:none;-moz-appearance:textfield}
+    .q-qty input::-webkit-outer-spin-button,.q-qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+    .q-del{grid-column:3;grid-row:1/3}
+    .q-foot{padding:14px 22px calc(18px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--border-light)}
+    .q-total{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:var(--text2)}
+    .q-total strong{font-size:20px;color:var(--text)}
+    .q-note{font-size:12px;color:var(--text3);line-height:1.5;margin:4px 0 12px}
+    .q-acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .q-acts .btn{flex:1;justify-content:center;white-space:nowrap}
+    .q-clear{background:none;border:none;color:var(--text3);font-size:13px;font-family:inherit;cursor:pointer;text-decoration:underline;padding:8px 4px;margin:0 auto}
+    .co-map{color:var(--gold-text)!important;font-weight:600}
+    @media(min-width:700px){.q-overlay{align-items:center;padding:24px}.q-panel{border-radius:20px}}
     .wa-fab{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:900;display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 18px 0 14px;border-radius:100px;background:#128c4a;color:#fff;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 4px 18px rgba(0,0,0,.22);transition:background .2s,transform .2s}
     .wa-fab:hover{background:#0f7a40;transform:translateY(-2px)}
     .wa-fab i{font-size:22px}
@@ -230,6 +275,7 @@
       .cats,.pgrid{grid-template-columns:1fr}.cfr,.ab-feats{grid-template-columns:1fr}
       .ft-inner{grid-template-columns:1fr}.ft-btm{flex-direction:column;gap:10px;text-align:center}
       .hero h1{font-size:36px}
+      .ptools .psel{flex:1}.ptools .psel select{width:100%}.pcount{flex-basis:100%}
       .co-form{padding:22px 18px}.cf .btn{align-self:stretch;justify-content:center}
       .hero-actions .btn{width:100%;max-width:320px;justify-content:center}
       .wa-fab{width:46px;height:46px;padding:0;justify-content:center;left:12px}.wa-fab span{display:none}
@@ -276,6 +322,11 @@
     <div class="hero-logo"><img src="assets/logo.png" alt="CARBELEC - Carbon Electric" width="586" height="450"></div>
     <h1 data-i18n="hero_title">Tu ferretería de confianza.</h1>
     <p class="hero-sub" data-i18n="hero_sub">Herramientas profesionales, eléctricos, repuestos y seguridad industrial. Desde Bogotá a todo Colombia.</p>
+    <form class="hero-search" id="heroSearch" role="search">
+      <i class="fas fa-search" aria-hidden="true"></i>
+      <input type="search" id="heroQ" autocomplete="off" enterkeyhint="search" maxlength="80" placeholder="¿Qué producto buscas?" aria-label="¿Qué producto buscas?" data-i18n-attr="placeholder:hero_search;aria-label:hero_search">
+      <button type="submit" class="btn btn-gold btn-sm" data-i18n="hero_search_btn">Buscar</button>
+    </form>
     <div class="hero-actions">
       <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener" class="btn btn-gold"><i class="fas fa-shopping-bag" aria-hidden="true"></i> <span data-i18n="hero_btn_ml">Comprar en MercadoLibre</span></a>
       <a href="#cotizacion" class="btn btn-out"><i class="fas fa-envelope" aria-hidden="true"></i> <span data-i18n="hero_btn_wa">Solicitar cotización</span></a>
@@ -322,7 +373,17 @@
       <button type="button" class="pill" data-f="construccion" aria-pressed="false" data-i18n="cat_build">Construcción</button>
       <button type="button" class="pill" data-f="seguridad" aria-pressed="false" data-i18n="pill_safety">Seguridad</button>
     </div>
-    <p class="pcount" id="pgCount" role="status" aria-live="polite"></p>
+    <div class="psubs" id="pgSubs" hidden></div>
+    <div class="ptools">
+      <p class="pcount" id="pgCount" role="status" aria-live="polite"></p>
+      <label class="psel"><span class="sr" data-i18n="pg_brand">Marca</span><select id="pgBrand"><option value="" data-i18n="pg_brand_all">Todas las marcas</option></select></label>
+      <label class="psel"><span class="sr" data-i18n="pg_sort">Ordenar</span><select id="pgSort">
+        <option value="" data-i18n="sort_rel">Destacados primero</option>
+        <option value="asc" data-i18n="sort_asc">Precio: menor a mayor</option>
+        <option value="desc" data-i18n="sort_desc">Precio: mayor a menor</option>
+        <option value="az" data-i18n="sort_az">Nombre: A a Z</option>
+      </select></label>
+    </div>
     <div class="pgrid" id="pg">
       <!-- Shown when a category has no featured products yet -->
       <p class="pempty" id="pgEmpty" hidden><span data-i18n="empty_a">No encontramos productos para esa búsqueda. Búscalos en</span> <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener">MercadoLibre</a> <span data-i18n="empty_b">o pídelos por</span> <a id="pgEmptyWa" href="https://wa.me/573153899483" target="_blank" rel="noopener">WhatsApp</a>.</p>
@@ -341,7 +402,10 @@
           <p class="pc-ds"></p>
           <div class="pc-ft">
             <div class="pc-pr"></div>
-            <a class="pc-wa" target="_blank" rel="noopener" data-i18n-attr="aria-label:pc_wa"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+            <div class="pc-acts">
+              <button type="button" class="pc-add" aria-pressed="false" data-i18n-attr="aria-label:pc_add;title:pc_add"><i class="fas fa-plus" aria-hidden="true"></i></button>
+              <a class="pc-wa" target="_blank" rel="noopener" data-i18n-attr="aria-label:pc_wa"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+            </div>
           </div>
         </div>
       </article>
@@ -391,7 +455,7 @@
     <p class="sec-desc" data-i18n="contact_desc">Compra en MercadoLibre o solicita una cotización por correo desde este formulario.</p>
     <div class="co-grid">
       <div class="co-card">
-        <div class="co-item"><div class="co-ico"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div><div><h3 data-i18n="co_addr">Dirección</h3><p>Cra. 81 #73F Sur 57<br>Bogotá, Cundinamarca</p></div></div>
+        <div class="co-item"><div class="co-ico"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div><div><h3 data-i18n="co_addr">Dirección</h3><p>Cra. 81 #73F Sur 57<br>Bogotá, Cundinamarca<br><a class="co-map" href="https://www.google.com/maps/search/?api=1&amp;query=Cra.+81+%2373F+Sur+57%2C+Bogot%C3%A1" target="_blank" rel="noopener" data-i18n="co_map">Cómo llegar</a></p></div></div>
         <div class="co-item"><div class="co-ico"><i class="fas fa-phone-alt" aria-hidden="true"></i></div><div><h3 data-i18n="co_phones">Teléfonos</h3><p><a href="tel:+576016484985">+57 601 648 4985</a><br><a href="tel:+573153899483">+57 315 389 9483</a></p></div></div>
         <div class="co-item"><div class="co-ico"><i class="fab fa-whatsapp" aria-hidden="true"></i></div><div><h3>WhatsApp</h3><p><a href="https://wa.me/573153899483" target="_blank" rel="noopener">+57 315 389 9483</a><br><span data-i18n="co_wa_d">Cotizaciones rápidas</span></p></div></div>
         <div class="co-item"><div class="co-ico"><i class="fas fa-clock" aria-hidden="true"></i></div><div><h3 data-i18n="co_hours">Horario</h3><p data-i18n-html="co_hours_d">Lun — Vie: 8:30am – 7:00pm<br>Sábados: 9:30am – 6:00pm</p></div></div>
@@ -427,7 +491,7 @@
     <div class="ft-inner">
       <div class="ft-brand"><p data-i18n-html="ft_desc"><strong>CARBELEC — Carbon Electric S.A.S.</strong><br>Comercializadores, distribuidores e importadores de ferretería, eléctricos y repuestos. Bogotá, Colombia.</p></div>
       <div class="ft-col"><h2 data-i18n="ft_nav">Navegación</h2><a href="#inicio" data-i18n="nav_home">Inicio</a><a href="#categorias" data-i18n="nav_cat">Categorías</a><a href="#productos" data-i18n="nav_prod">Productos</a><a href="#nosotros" data-i18n="nav_about">Nosotros</a><a href="#contacto" data-i18n="nav_contact">Contacto</a></div>
-      <div class="ft-col"><h2 data-i18n="ft_buy">Comprar</h2><a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener">MercadoLibre</a><a href="https://wa.me/573153899483" target="_blank" rel="noopener">WhatsApp</a></div>
+      <div class="ft-col"><h2 data-i18n="ft_buy">Comprar</h2><a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener">MercadoLibre</a><a href="https://wa.me/573153899483" target="_blank" rel="noopener">WhatsApp</a><a href="catalogo/" data-i18n="ft_catalog">Catálogo completo</a></div>
       <div class="ft-col"><h2 data-i18n="nav_contact">Contacto</h2><a href="tel:+576016484985">601 648 4985</a><a href="tel:+573153899483">315 389 9483</a><a href="https://wa.me/573153899483" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.facebook.com/p/Ferreter%C3%ADa-Carbelec-100056033332482/" target="_blank" rel="noopener">Facebook</a></div>
     </div>
     <div class="ft-btm">
@@ -439,6 +503,32 @@
       </div>
     </div>
   </footer>
+
+  <!-- Quote list: products the visitor picked, sent by WhatsApp or through the quote form -->
+  <button type="button" class="q-bar" id="qBar" aria-haspopup="dialog" hidden><i class="fas fa-clipboard-list" aria-hidden="true"></i> <span data-i18n="q_title">Mi cotización</span> <span class="q-n" id="qBarN">0</span></button>
+  <div class="q-overlay" id="qOverlay" hidden>
+    <div class="q-panel" role="dialog" aria-modal="true" aria-labelledby="qTitle">
+      <div class="q-hdr"><h2 id="qTitle" data-i18n="q_title">Mi cotización</h2><button type="button" class="q-close" id="qClose" aria-label="Cerrar" data-i18n-attr="aria-label:q_close">✕</button></div>
+      <ul class="q-list" id="qList"></ul>
+      <div class="q-foot">
+        <p class="q-total"><span data-i18n="q_total">Total de referencia</span> <strong id="qTotal"></strong></p>
+        <p class="q-note" data-i18n="q_note">Los precios son de referencia. Te confirmamos disponibilidad y precio final al responder.</p>
+        <div class="q-acts">
+          <a class="btn btn-wa btn-sm" id="qWa" target="_blank" rel="noopener"><i class="fab fa-whatsapp" aria-hidden="true"></i> <span data-i18n="q_wa">Enviar por WhatsApp</span></a>
+          <button type="button" class="btn btn-out btn-sm" id="qMail"><i class="fas fa-envelope" aria-hidden="true"></i> <span data-i18n="q_mail">Enviar por correo</span></button>
+          <button type="button" class="q-clear" id="qClear" data-i18n="q_clear">Vaciar lista</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <template id="qTpl">
+    <li class="q-item">
+      <span class="q-name"></span>
+      <span class="q-price"></span>
+      <span class="q-qty"><button type="button" class="q-dec" aria-label="−">−</button><input type="number" min="1" max="9999" inputmode="numeric" data-i18n-attr="aria-label:q_qty"><button type="button" class="q-inc" aria-label="+">+</button></span>
+      <button type="button" class="q-del" data-i18n-attr="aria-label:q_remove">✕</button>
+    </li>
+  </template>
 
   <a class="wa-fab" href="https://wa.me/573153899483?text=Hola%2C%20vengo%20de%20carbelec.co%20y%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener" data-i18n-attr="aria-label:wa_fab"><i class="fab fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span></a>
 
@@ -452,6 +542,7 @@
     const LANG_KEY = 'carbelec_lang';
 
     // Featured products. Fields:
+    //   id     MercadoLibre listing id; also names the product page (p/<id>.html)
     //   cat    category key; must match the data-f of a filter button
     //   brand, name, desc
     //   price  in COP, or null to show "Consultar precio";  unit: optional suffix such as '/par'
@@ -461,40 +552,44 @@
     //   url    optional MercadoLibre listing; makes the photo and name a link
     //   desc is optional. Prices of products with a url were copied from MercadoLibre on 14 Nov 2026.
     const PRODUCTS = [
-      { cat: 'herramientas', brand: 'Pretul', name: 'Taladro Inalámbrico 12V 3/8" Pretul 29975', desc: 'Taladro destornillador inalámbrico de 12V con broquero de 3/8". Compacto para uso doméstico.', price: 230000, icon: 'fa-screwdriver', img: 'assets/web/pretul-tali-12p-29975.webp', url: 'https://www.mercadolibre.com.co/taladro-inalambrico-y-destornillador-38-pretul-29975-color-amarillo-frecuencia-60-hz/p/MCO15452104?pdp_filters=seller_id%3A272993470' },
-      { cat: 'herramientas', brand: 'Total', name: 'Juego Llaves Curva Doble Corona 8 Pzas THT102486', desc: 'Set profesional de llaves doble corona para mecánica y mantenimiento industrial.', price: 82450, best: true, icon: 'fa-wrench', img: 'assets/web/total-tht102486.webp', url: 'https://www.mercadolibre.com.co/juego-de-llaves-curva-doble-corona-8-piezas-total-tht102486/p/MCO34153866?pdp_filters=item_id%3AMCO1405141079' },
-      { cat: 'herramientas', brand: 'Truper', name: 'Manguera Compresor Alta Presión 1/4" 10mt', desc: 'Hule 300PSI, color negro. Resistente para uso profesional e industrial.', price: 98500, best: true, icon: 'fa-link', img: 'assets/web/truper-compressor-hose-10m.webp', url: 'https://www.mercadolibre.com.co/manguera-compresor-alta-presion-14-hule-300psi-10-mt-truper-color-negro/p/MCO27309616?pdp_filters=item_id%3AMCO1537119107' },
-      { cat: 'seguridad', brand: '3M', name: 'Respirador 3M 6200 Media Cara + Filtros 6001', desc: 'Protección respiratoria reutilizable NIOSH. Cartucho doble para vapor orgánico.', price: 120000, best: true, icon: 'fa-head-side-mask', img: 'assets/web/3m-6200-respirator-6001-filters.webp', url: 'https://www.mercadolibre.com.co/respirador-3m-6200-de-media-cara-con-filtros-6001-para-vapores-organicos/p/MCO37303850?pdp_filters=item_id%3AMCO2741723246' },
-      { cat: 'herramientas', brand: 'Truper', name: 'Amoladora Angular Truper ESMA-4-1/2A9, 800W', price: 199000, icon: 'fa-wrench', img: 'assets/web/ml-amoladora-angular-truper-profesional-esma-4-1-2a.webp', url: 'https://www.mercadolibre.com.co/amoladora-angular-truper-profesional-esma-4-12a9-de-60hz-color-naranja-800w-127v-accesorio/p/MCO12737742?pdp_filters=item_id%3AMCO1826876923' },
-      { cat: 'herramientas', brand: 'Total', name: 'Rotomartillo Total UTH110266, 1050W SDS Plus', price: 523000, icon: 'fa-wrench', img: 'assets/web/ml-rotomartillo-total-uth110266-1050w-sds-plus-4-5j.webp', url: 'https://www.mercadolibre.com.co/rotomartillo-total-uth110266-1050w-sds-plus-45j-con-6-accesorios-turquesa/p/MCO45860694?pdp_filters=item_id%3AMCO3503282342' },
-      { cat: 'herramientas', brand: 'Total', name: 'Rotomartillo Total UTH308268, 800W', price: 435000, icon: 'fa-wrench', img: 'assets/web/ml-rotomartillo-800-w-total-frecuencia-60hz-uth3082.webp', url: 'https://www.mercadolibre.com.co/rotomartillo-800-w-total-frecuencia-60hz-uth308268-color-turquesa/p/MCO28250872?pdp_filters=item_id%3AMCO1402285837' },
-      { cat: 'herramientas', brand: 'Total', name: 'Set de Bocallaves 46 Piezas 1/4" Total THT141462', price: 142000, icon: 'fa-wrench', img: 'assets/web/ml-set-de-bocallaves-tubos-46-piezas-tht141462-tota.webp', url: 'https://www.mercadolibre.com.co/set-de-bocallaves-tubos-46-piezas-tht141462-total-enc-14-color-azul-petroleo/p/MCO41214353?pdp_filters=item_id%3AMCO1587817033' },
-      { cat: 'herramientas', brand: 'Truper', name: 'Caja para Herramientas 3 en 1 Truper CHP-1925R', price: 270000, icon: 'fa-wrench', img: 'assets/web/ml-caja-para-herramientas-19-x25-3-en-1-desmontable.webp', url: 'https://www.mercadolibre.com.co/caja-para-herramientas-19-x25-3-en-1-desmontable-truper-chp-1925r-color-negro/p/MCO25434529?pdp_filters=item_id%3AMCO3093111350' },
-      { cat: 'herramientas', brand: 'Truper', name: 'Mini Pistola de Calor 350W Truper 102578', price: 101850, icon: 'fa-wrench', img: 'assets/web/ml-mini-pistola-de-calor-350-w-profesional-truper-1.webp', url: 'https://www.mercadolibre.com.co/mini-pistola-de-calor-350-w-profesional-truper-102578/p/MCO22595321?pdp_filters=item_id%3AMCO2259356087' },
-      { cat: 'herramientas', brand: 'Truper', name: 'Torquímetro de Trueno 1/2" Truper TORQ-1/2', price: 299500, icon: 'fa-wrench', img: 'assets/web/ml-torquimetro-d-trueno-2-lecturas-1-2-truper-torq.webp', url: 'https://www.mercadolibre.com.co/torquimetro-dtrueno-2-lecturas-12-truper-torq-12-77-204nm/p/MCO25844416?pdp_filters=item_id%3AMCO2500126998' },
-      { cat: 'herramientas', brand: 'Total', name: 'Juego Llaves Combinadas Ratchet 8-19mm Total THT102RK586', price: 183000, icon: 'fa-wrench', img: 'assets/web/ml-llaves-total-tht102rk586-combinadas-flexibles-ra.webp', url: 'https://www.mercadolibre.com.co/llaves-total-tht102rk586-combinadas-flexibles-rachet-juego-de-8-a-19mm/p/MCO27969558?pdp_filters=item_id%3AMCO2381286988' },
-      { cat: 'herramientas', brand: 'Truper', name: 'Juego Llaves Allen Extralargas 8 Piezas Truper 100933', price: 119900, icon: 'fa-wrench', img: 'assets/web/ml-juego-de-llaves-allen-mm-extralargas-8-piezas-tr.webp', url: 'https://www.mercadolibre.com.co/juego-de-llaves-allen-mm-extralargas-8-piezas-truper-100933-color-negro/p/MCO27482331?pdp_filters=item_id%3AMCO1361250949' },
-      { cat: 'herramientas', brand: 'Truper', name: 'Taladro Rotomartillo 1/2" Truper ROTO-1/2A7, 650W', price: 224000, icon: 'fa-wrench', img: 'assets/web/ml-taladro-rotomartillo-atornillador-electrico-de-1.webp', url: 'https://www.mercadolibre.com.co/taladro-rotomartillo-atornillador-electrico-de-12-truper-roto-12a7-650w-caja-de-carton-60hz/p/MCO17969128?pdp_filters=item_id%3AMCO1551895873' },
-      { cat: 'electricos', brand: 'DeWalt', name: 'Cargador de Batería Li-ion 12V DeWalt DCB107', price: 193030, icon: 'fa-bolt', img: 'assets/web/ml-dewalt-dcb107-cargador-de-bateria-de-li-ion-12-v.webp', url: 'https://www.mercadolibre.com.co/dewalt-dcb107-cargador-de-bateria-de-li-ion-12-voltios-max-color-negro/p/MCO32287910?pdp_filters=item_id%3AMCO2387323828' },
-      { cat: 'herramientas', brand: 'Truper', name: 'Pistola de Pintura Alta Presión 1.8mm, 1000cc Truper', price: 149500, icon: 'fa-wrench', img: 'assets/web/ml-pistola-de-pintura-alta-presion-1-8mm-vaso-1000c.webp', url: 'https://www.mercadolibre.com.co/pistola-de-pintura-alta-presion-18mm-vaso-1000cc-truper-color-plateado/p/MCO23486912?pdp_filters=item_id%3AMCO1614931965' },
-      { cat: 'herramientas', brand: 'Truper', name: 'Soldadura con Resina 450g Truper', price: 148800, icon: 'fa-wrench', img: 'assets/web/ml-soldadura-resina-450g-truper.webp', url: 'https://www.mercadolibre.com.co/soldadura-resina-450g-truper/p/MCO53313670?pdp_filters=item_id%3AMCO4452360634' },
-      { cat: 'seguridad', brand: 'Truper', name: 'Rodilleras Impermeables Truper 103232', price: 86330, icon: 'fa-shield-alt', img: 'assets/web/ml-rodilleras-impermeables-para-trabajos-humedos-tr.webp', url: 'https://www.mercadolibre.com.co/rodilleras-impermeables-para-trabajos-humedos-truper-103232/p/MCO37832439?pdp_filters=item_id%3AMCO4155607558' },
-      { cat: 'hogar', brand: 'Diablo Rojo', name: 'Destapa Cañerías Diablo Rojo 350g', price: 18430, icon: 'fa-home', img: 'assets/web/ml-diablo-rojo-destapa-canerias-350gr.webp', url: 'https://www.mercadolibre.com.co/diablo-rojo-destapa-canerias-350gr/p/MCO19990587?pdp_filters=item_id%3AMCO1171691330' },
-      { cat: 'electricos', brand: '', name: 'Cable de Red RJ45 Cat 5e, 10 Metros', price: 18500, icon: 'fa-bolt', img: 'assets/web/ml-cable-red-rj45-cat-5e-patch-cord-por-10-metros-i.webp', url: 'https://www.mercadolibre.com.co/cable-red-internet-utp-cat-5e-10-mts-rj45-pc-router/p/MCO2065101346?pdp_filters=item_id%3AMCO561877191' },
-      { cat: 'electricos', brand: 'Energizer', name: 'Pilas Alcalinas D Energizer Max', price: 29500, icon: 'fa-bolt', img: 'assets/web/ml-pila-bateria-alcalina-max-d2-energizer.webp', url: 'https://www.mercadolibre.com.co/pila-bateria-alcalina-max-d2-energizer/p/MCO16951754?pdp_filters=item_id%3AMCO1946324513' },
-      { cat: 'herramientas', brand: 'Truper', name: 'Bomba de Pedal para Inflar 60 PSI Truper BOPE-60', price: 29000, icon: 'fa-wrench', img: 'assets/web/ml-bomba-de-mano-para-inflar-pedal-60-psi-truper-10.webp', url: 'https://www.mercadolibre.com.co/bomba-de-mano-para-inflar-pedal-60-psi-truper-101667-color-naranja-bope-60/p/MCO22609134?pdp_filters=item_id%3AMCO2516171236' },
-      { cat: 'hogar', brand: 'Truper', name: 'Espuma Expansiva de Poliuretano 300ml Truper 10919', price: 35000, icon: 'fa-home', img: 'assets/web/ml-espuma-expansiva-poliuretano-300-ml-truper-10919.webp', url: 'https://www.mercadolibre.com.co/espuma-expansiva-poliuretano-300-ml-truper-10919/p/MCO24729500?pdp_filters=item_id%3AMCO3879556978' },
-      { cat: 'hogar', brand: 'Truper', name: 'Pistola Metálica para Manguera Truper 18476', price: 41000, icon: 'fa-home', img: 'assets/web/ml-pistola-metalica-para-manguera-2-funciones-trupe.webp', url: 'https://www.mercadolibre.com.co/pistola-metalica-para-manguera-2-funciones-truper-18476/p/MCO24304158?pdp_filters=item_id%3AMCO4015784446' },
-      { cat: 'hogar', brand: 'Oster', name: 'Cuchillas para Licuadora Oster, 4 Aspas', price: 33000, icon: 'fa-home', img: 'assets/web/ml-cuchillas-oster-4-aspas-acero-inoxidable-batidor.webp', url: 'https://www.mercadolibre.com.co/cuchillas-oster-4-aspas-acero-inoxidable-batidora-licuadora/p/MCO41320430?pdp_filters=item_id%3AMCO4603926616' },
-      { cat: 'herramientas', brand: 'Truper', name: 'Juego Llaves Allen Largas 13 Piezas Truper 13645', price: 45500, icon: 'fa-wrench', img: 'assets/web/ml-juego-de-llaves-allen-largas-std-13-piezas-trupe.webp', url: 'https://www.mercadolibre.com.co/juego-de-llaves-allen-largas-std-13-piezas-truper-13645-color-plateado/p/MCO27607194?pdp_filters=item_id%3AMCO2987597574' },
-      { cat: 'electricos', brand: 'Uyustools', name: 'Pinza Pelacable 5" Uyustools PEL205', price: 18000, icon: 'fa-bolt', img: 'assets/web/ml-pinza-pelacable-5-pulgadas-0-6-a-2-6mm-uyustools.webp', url: 'https://www.mercadolibre.com.co/pinza-pelacable-5-pulgadas-06-a-26mm-uyustools-pel205/p/MCO45501155?pdp_filters=item_id%3AMCO2987597564' }
+      { id: 'MCO854831192', cat: 'herramientas', brand: 'Pretul', name: 'Taladro Inalámbrico 12V 3/8" Pretul 29975', desc: 'Taladro destornillador inalámbrico de 12V con broquero de 3/8". Compacto para uso doméstico.', price: 230000, icon: 'fa-screwdriver', img: 'assets/web/pretul-tali-12p-29975.webp', url: 'https://www.mercadolibre.com.co/taladro-inalambrico-y-destornillador-38-pretul-29975-color-amarillo-frecuencia-60-hz/p/MCO15452104?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO1405141079', cat: 'herramientas', brand: 'Total', name: 'Juego Llaves Curva Doble Corona 8 Pzas THT102486', desc: 'Set profesional de llaves doble corona para mecánica y mantenimiento industrial.', price: 82450, best: true, icon: 'fa-wrench', img: 'assets/web/total-tht102486.webp', url: 'https://www.mercadolibre.com.co/juego-de-llaves-curva-doble-corona-8-piezas-total-tht102486/p/MCO34153866?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO1537119107', cat: 'herramientas', brand: 'Truper', name: 'Manguera Compresor Alta Presión 1/4" 10mt', desc: 'Hule 300PSI, color negro. Resistente para uso profesional e industrial.', price: 98500, best: true, icon: 'fa-link', img: 'assets/web/truper-compressor-hose-10m.webp', url: 'https://www.mercadolibre.com.co/manguera-compresor-alta-presion-14-hule-300psi-10-mt-truper-color-negro/p/MCO27309616?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO2741723246', cat: 'seguridad', brand: '3M', name: 'Respirador 3M 6200 Media Cara + Filtros 6001', desc: 'Protección respiratoria reutilizable NIOSH. Cartucho doble para vapor orgánico.', price: 120000, best: true, icon: 'fa-head-side-mask', img: 'assets/web/3m-6200-respirator-6001-filters.webp', url: 'https://www.mercadolibre.com.co/respirador-3m-6200-de-media-cara-con-filtros-6001-para-vapores-organicos/p/MCO37303850?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO1826876923', cat: 'herramientas', brand: 'Truper', name: 'Amoladora Angular Truper ESMA-4-1/2A9, 800W', price: 199000, icon: 'fa-wrench', img: 'assets/web/ml-amoladora-angular-truper-profesional-esma-4-1-2a.webp', url: 'https://www.mercadolibre.com.co/amoladora-angular-truper-profesional-esma-4-12a9-de-60hz-color-naranja-800w-127v-accesorio/p/MCO12737742?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO3503282342', cat: 'herramientas', brand: 'Total', name: 'Rotomartillo Total UTH110266, 1050W SDS Plus', price: 523000, icon: 'fa-wrench', img: 'assets/web/ml-rotomartillo-total-uth110266-1050w-sds-plus-4-5j.webp', url: 'https://www.mercadolibre.com.co/rotomartillo-total-uth110266-1050w-sds-plus-45j-con-6-accesorios-turquesa/p/MCO45860694?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO1402285837', cat: 'herramientas', brand: 'Total', name: 'Rotomartillo Total UTH308268, 800W', price: 435000, icon: 'fa-wrench', img: 'assets/web/ml-rotomartillo-800-w-total-frecuencia-60hz-uth3082.webp', url: 'https://www.mercadolibre.com.co/rotomartillo-800-w-total-frecuencia-60hz-uth308268-color-turquesa/p/MCO28250872?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO1587817033', cat: 'herramientas', brand: 'Total', name: 'Set de Bocallaves 46 Piezas 1/4" Total THT141462', price: 142000, icon: 'fa-wrench', img: 'assets/web/ml-set-de-bocallaves-tubos-46-piezas-tht141462-tota.webp', url: 'https://www.mercadolibre.com.co/set-de-bocallaves-tubos-46-piezas-tht141462-total-enc-14-color-azul-petroleo/p/MCO41214353?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO3093111350', cat: 'herramientas', brand: 'Truper', name: 'Caja para Herramientas 3 en 1 Truper CHP-1925R', price: 270000, icon: 'fa-wrench', img: 'assets/web/ml-caja-para-herramientas-19-x25-3-en-1-desmontable.webp', url: 'https://www.mercadolibre.com.co/caja-para-herramientas-19-x25-3-en-1-desmontable-truper-chp-1925r-color-negro/p/MCO25434529?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO2259356087', cat: 'herramientas', brand: 'Truper', name: 'Mini Pistola de Calor 350W Truper 102578', price: 101850, icon: 'fa-wrench', img: 'assets/web/ml-mini-pistola-de-calor-350-w-profesional-truper-1.webp', url: 'https://www.mercadolibre.com.co/mini-pistola-de-calor-350-w-profesional-truper-102578/p/MCO22595321?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO2500126998', cat: 'herramientas', brand: 'Truper', name: 'Torquímetro de Trueno 1/2" Truper TORQ-1/2', price: 299500, icon: 'fa-wrench', img: 'assets/web/ml-torquimetro-d-trueno-2-lecturas-1-2-truper-torq.webp', url: 'https://www.mercadolibre.com.co/torquimetro-dtrueno-2-lecturas-12-truper-torq-12-77-204nm/p/MCO25844416?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO2381286988', cat: 'herramientas', brand: 'Total', name: 'Juego Llaves Combinadas Ratchet 8-19mm Total THT102RK586', price: 183000, icon: 'fa-wrench', img: 'assets/web/ml-llaves-total-tht102rk586-combinadas-flexibles-ra.webp', url: 'https://www.mercadolibre.com.co/llaves-total-tht102rk586-combinadas-flexibles-rachet-juego-de-8-a-19mm/p/MCO27969558?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO1361250949', cat: 'herramientas', brand: 'Truper', name: 'Juego Llaves Allen Extralargas 8 Piezas Truper 100933', price: 119900, icon: 'fa-wrench', img: 'assets/web/ml-juego-de-llaves-allen-mm-extralargas-8-piezas-tr.webp', url: 'https://www.mercadolibre.com.co/juego-de-llaves-allen-mm-extralargas-8-piezas-truper-100933-color-negro/p/MCO27482331?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO1551895873', cat: 'herramientas', brand: 'Truper', name: 'Taladro Rotomartillo 1/2" Truper ROTO-1/2A7, 650W', price: 224000, icon: 'fa-wrench', img: 'assets/web/ml-taladro-rotomartillo-atornillador-electrico-de-1.webp', url: 'https://www.mercadolibre.com.co/taladro-rotomartillo-atornillador-electrico-de-12-truper-roto-12a7-650w-caja-de-carton-60hz/p/MCO17969128?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO2387323828', cat: 'electricos', brand: 'DeWalt', name: 'Cargador de Batería Li-ion 12V DeWalt DCB107', price: 193030, icon: 'fa-bolt', img: 'assets/web/ml-dewalt-dcb107-cargador-de-bateria-de-li-ion-12-v.webp', url: 'https://www.mercadolibre.com.co/dewalt-dcb107-cargador-de-bateria-de-li-ion-12-voltios-max-color-negro/p/MCO32287910?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO1614931965', cat: 'herramientas', brand: 'Truper', name: 'Pistola de Pintura Alta Presión 1.8mm, 1000cc Truper', price: 149500, icon: 'fa-wrench', img: 'assets/web/ml-pistola-de-pintura-alta-presion-1-8mm-vaso-1000c.webp', url: 'https://www.mercadolibre.com.co/pistola-de-pintura-alta-presion-18mm-vaso-1000cc-truper-color-plateado/p/MCO23486912?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO4452360634', cat: 'herramientas', brand: 'Truper', name: 'Soldadura con Resina 450g Truper', price: 148800, icon: 'fa-wrench', img: 'assets/web/ml-soldadura-resina-450g-truper.webp', url: 'https://www.mercadolibre.com.co/soldadura-resina-450g-truper/p/MCO53313670?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO4155607558', cat: 'seguridad', brand: 'Truper', name: 'Rodilleras Impermeables Truper 103232', price: 86330, icon: 'fa-shield-alt', img: 'assets/web/ml-rodilleras-impermeables-para-trabajos-humedos-tr.webp', url: 'https://www.mercadolibre.com.co/rodilleras-impermeables-para-trabajos-humedos-truper-103232/p/MCO37832439?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO1171691330', cat: 'hogar', brand: 'Diablo Rojo', name: 'Destapa Cañerías Diablo Rojo 350g', price: 18430, icon: 'fa-home', img: 'assets/web/ml-diablo-rojo-destapa-canerias-350gr.webp', url: 'https://www.mercadolibre.com.co/diablo-rojo-destapa-canerias-350gr/p/MCO19990587?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO561877191', cat: 'electricos', brand: '', name: 'Cable de Red RJ45 Cat 5e, 10 Metros', price: 18500, icon: 'fa-bolt', img: 'assets/web/ml-cable-red-rj45-cat-5e-patch-cord-por-10-metros-i.webp', url: 'https://www.mercadolibre.com.co/cable-red-internet-utp-cat-5e-10-mts-rj45-pc-router/p/MCO2065101346?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO1946324513', cat: 'electricos', brand: 'Energizer', name: 'Pilas Alcalinas D Energizer Max', price: 29500, icon: 'fa-bolt', img: 'assets/web/ml-pila-bateria-alcalina-max-d2-energizer.webp', url: 'https://www.mercadolibre.com.co/pila-bateria-alcalina-max-d2-energizer/p/MCO16951754?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO2516171236', cat: 'herramientas', brand: 'Truper', name: 'Bomba de Pedal para Inflar 60 PSI Truper BOPE-60', price: 29000, icon: 'fa-wrench', img: 'assets/web/ml-bomba-de-mano-para-inflar-pedal-60-psi-truper-10.webp', url: 'https://www.mercadolibre.com.co/bomba-de-mano-para-inflar-pedal-60-psi-truper-101667-color-naranja-bope-60/p/MCO22609134?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO3879556978', cat: 'hogar', brand: 'Truper', name: 'Espuma Expansiva de Poliuretano 300ml Truper 10919', price: 35000, icon: 'fa-home', img: 'assets/web/ml-espuma-expansiva-poliuretano-300-ml-truper-10919.webp', url: 'https://www.mercadolibre.com.co/espuma-expansiva-poliuretano-300-ml-truper-10919/p/MCO24729500?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO4015784446', cat: 'hogar', brand: 'Truper', name: 'Pistola Metálica para Manguera Truper 18476', price: 41000, icon: 'fa-home', img: 'assets/web/ml-pistola-metalica-para-manguera-2-funciones-trupe.webp', url: 'https://www.mercadolibre.com.co/pistola-metalica-para-manguera-2-funciones-truper-18476/p/MCO24304158?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO4603926616', cat: 'hogar', brand: 'Oster', name: 'Cuchillas para Licuadora Oster, 4 Aspas', price: 33000, icon: 'fa-home', img: 'assets/web/ml-cuchillas-oster-4-aspas-acero-inoxidable-batidor.webp', url: 'https://www.mercadolibre.com.co/cuchillas-oster-4-aspas-acero-inoxidable-batidora-licuadora/p/MCO41320430?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO2987597574', cat: 'herramientas', brand: 'Truper', name: 'Juego Llaves Allen Largas 13 Piezas Truper 13645', price: 45500, icon: 'fa-wrench', img: 'assets/web/ml-juego-de-llaves-allen-largas-std-13-piezas-trupe.webp', url: 'https://www.mercadolibre.com.co/juego-de-llaves-allen-largas-std-13-piezas-truper-13645-color-plateado/p/MCO27607194?pdp_filters=seller_id%3A272993470' },
+      { id: 'MCO2987597564', cat: 'electricos', brand: 'Uyustools', name: 'Pinza Pelacable 5" Uyustools PEL205', price: 18000, icon: 'fa-bolt', img: 'assets/web/ml-pinza-pelacable-5-pulgadas-0-6-a-2-6mm-uyustools.webp', url: 'https://www.mercadolibre.com.co/pinza-pelacable-5-pulgadas-06-a-26mm-uyustools-pel205/p/MCO45501155?pdp_filters=seller_id%3A272993470' }
     ];
 
     // Interface texts. Spanish for anything written in the HTML is read from the HTML itself,
     // so `es` only lists the texts that are created by this script.
     const I18N = {
       es: {
-        pg_count: '{n} productos', pc_best: 'Más Vendido', pc_ask: 'Consultar precio', pc_wa: 'Preguntar por WhatsApp', wa_fab: 'Escribir por WhatsApp',
+        pg_count: '{n} productos', pc_add: 'Agregar a mi cotización', pc_added: 'Quitar de mi cotización',
+        q_qty: 'Cantidad', q_remove: 'Quitar', q_each: 'c/u', sub_all: 'Todos',
+        sub_escobillas: 'Escobillas y carbones', sub_inducidos: 'Inducidos y rotores', sub_interruptores: 'Interruptores',
+        sub_rodamientos: 'Rodamientos', sub_campos: 'Campos y bobinas', sub_mandriles: 'Mandriles', sub_otros: 'Otros repuestos',
+        pc_best: 'Más Vendido', pc_ask: 'Consultar precio', pc_wa: 'Preguntar por WhatsApp', wa_fab: 'Escribir por WhatsApp',
         meta_title: document.title, meta_desc: document.querySelector('meta[name="description"]').content
       },
       en: {
@@ -513,6 +608,16 @@
         cat_parts: 'Spare Parts', cat_parts_d: 'Carbon brushes, armatures, switches',
         cat_build: 'Construction', cat_build_d: 'Tapes, adhesives, sealants',
         pg_search: 'Search by name, brand or reference', pg_count: '{n} products',
+        hero_search: 'What product are you looking for?', hero_search_btn: 'Search',
+        pg_brand: 'Brand', pg_brand_all: 'All brands', pg_sort: 'Sort',
+        sort_rel: 'Featured first', sort_asc: 'Price: low to high', sort_desc: 'Price: high to low', sort_az: 'Name: A to Z',
+        pc_add: 'Add to my quote', pc_added: 'Remove from my quote',
+        q_title: 'My quote', q_close: 'Close', q_total: 'Reference total', q_qty: 'Quantity', q_remove: 'Remove', q_each: 'each',
+        q_note: 'Prices are for reference. We confirm availability and the final price when we reply.',
+        q_wa: 'Send via WhatsApp', q_mail: 'Send by email', q_clear: 'Empty list',
+        sub_all: 'All', sub_escobillas: 'Carbon brushes', sub_inducidos: 'Armatures and rotors', sub_interruptores: 'Switches',
+        sub_rodamientos: 'Bearings', sub_campos: 'Field coils', sub_mandriles: 'Chucks', sub_otros: 'Other parts',
+        co_map: 'Get directions', ft_catalog: 'Full catalogue',
         prod_label: 'Catalogue', prod_title: 'Our products.', prod_desc: 'Reference prices in Colombian pesos (COP). The final price is the one listed on MercadoLibre.',
         pill_all: 'All', pill_safety: 'Safety',
         prod_cta: 'See all 1,665 products on MercadoLibre',
@@ -549,6 +654,16 @@
         cat_parts: 'Peças de Reposição', cat_parts_d: 'Escovas de carvão, induzidos, interruptores',
         cat_build: 'Construção', cat_build_d: 'Fitas, adesivos, selantes',
         pg_search: 'Buscar por nome, marca ou referência', pg_count: '{n} produtos',
+        hero_search: 'Que produto você procura?', hero_search_btn: 'Buscar',
+        pg_brand: 'Marca', pg_brand_all: 'Todas as marcas', pg_sort: 'Ordenar',
+        sort_rel: 'Destaques primeiro', sort_asc: 'Preço: menor para maior', sort_desc: 'Preço: maior para menor', sort_az: 'Nome: A a Z',
+        pc_add: 'Adicionar ao meu orçamento', pc_added: 'Remover do meu orçamento',
+        q_title: 'Meu orçamento', q_close: 'Fechar', q_total: 'Total de referência', q_qty: 'Quantidade', q_remove: 'Remover', q_each: 'cada',
+        q_note: 'Os preços são de referência. Confirmamos disponibilidade e preço final na resposta.',
+        q_wa: 'Enviar pelo WhatsApp', q_mail: 'Enviar por e-mail', q_clear: 'Esvaziar lista',
+        sub_all: 'Todos', sub_escobillas: 'Escovas de carvão', sub_inducidos: 'Induzidos e rotores', sub_interruptores: 'Interruptores',
+        sub_rodamientos: 'Rolamentos', sub_campos: 'Bobinas de campo', sub_mandriles: 'Mandris', sub_otros: 'Outras peças',
+        co_map: 'Como chegar', ft_catalog: 'Catálogo completo',
         prod_label: 'Catálogo', prod_title: 'Nossos produtos.', prod_desc: 'Preços de referência em pesos colombianos (COP). O preço final é o publicado no MercadoLibre.',
         pill_all: 'Todos', pill_safety: 'Segurança',
         prod_cta: 'Ver 1.665 produtos no MercadoLibre',
@@ -642,6 +757,18 @@
     let rendered = 0;
     let currentFilter = 'all';
     let query = '';
+    let brandFilter = '';
+    let sortOrder = '';                         // '' (featured first), 'asc', 'desc' or 'az'
+    let subFilter = '';                         // kind of spare part, only inside Repuestos
+    const brandBox = $('#pgBrand');
+    const sortBox = $('#pgSort');
+    const subsRow = $('#pgSubs');
+    // Kinds of spare parts, matched against the product name (first match wins; the rest are "otros").
+    const SUBS = [
+      ['escobillas', /escobilla|carbon/], ['inducidos', /inducido|armadura|rotor/], ['interruptores', /interruptor|switch|gatillo|boton/],
+      ['rodamientos', /rodamiento|balinera/], ['campos', /campo|bobina|estator/], ['mandriles', /mandril|broquero|portabroca/]
+    ];
+    const subOf = p => p.sub || (p.sub = (SUBS.find(([, pattern]) => pattern.test(searchText(p))) || ['otros'])[0]);
 
     // Lower case without accents, so "electrico" finds "Eléctrico".
     const fold = text => text.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -649,6 +776,7 @@
 
     function makeCard(p) {
       const card = cardTpl.cloneNode(true);
+      card.dataset.id = p.id;
       const frame = $('.pc-img', card);
       const img = $('img', card);
       $('.fallback i', card).classList.add(p.icon || CAT_ICONS[p.cat] || 'fa-box');
@@ -680,12 +808,81 @@
       // The WhatsApp message stays in Spanish: it is read by the store, not by the visitor.
       $('.pc-wa', card).href = waUrl('Hola, me interesa: ' + p.name + (p.price ? ' (' + fmt(p.price) + ')' : ''));
       translate(card);
+      paintAddButton(card);
       return card;
     }
 
     function findMatches() {
       const words = fold(query).split(/\s+/).filter(Boolean);
-      matches = catalog.filter(p => (currentFilter === 'all' || p.cat === currentFilter) && words.every(word => searchText(p).includes(word)));
+      matches = catalog.filter(p => (currentFilter === 'all' || p.cat === currentFilter)
+        && (!brandFilter || p.brand === brandFilter)
+        && (!subFilter || currentFilter !== 'repuestos' || subOf(p) === subFilter)
+        && words.every(word => searchText(p).includes(word)));
+      if (sortOrder === 'asc') matches.sort((a, b) => a.price - b.price);
+      else if (sortOrder === 'desc') matches.sort((a, b) => b.price - a.price);
+      else if (sortOrder === 'az') matches.sort((a, b) => a.name.localeCompare(b.name, 'es'));
+    }
+
+    // Brand list for the products of the current category, most common first.
+    function paintBrands() {
+      const counts = new Map();
+      catalog.forEach(p => { if (p.brand && (currentFilter === 'all' || p.cat === currentFilter)) counts.set(p.brand, (counts.get(p.brand) || 0) + 1); });
+      if (brandFilter && !counts.has(brandFilter)) brandFilter = '';
+      const options = [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([brand, count]) => {
+        const option = document.createElement('option');
+        option.value = brand;
+        option.textContent = brand + ' (' + count + ')';
+        return option;
+      });
+      brandBox.replaceChildren(brandBox.options[0], ...options);
+      brandBox.value = brandFilter;
+    }
+
+    function paintSubs() {
+      const on = currentFilter === 'repuestos';
+      subsRow.hidden = !on;
+      if (!on) { subFilter = ''; return; }
+      if (!subsRow.childElementCount) {
+        subsRow.append(...[''].concat(SUBS.map(([key]) => key), 'otros').map(key => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'pill';
+          btn.dataset.sub = key;
+          btn.dataset.i18n = 'sub_' + (key || 'all');
+          return btn;
+        }));
+        translate(subsRow);
+      }
+      $$('.pill', subsRow).forEach(btn => {
+        const active = btn.dataset.sub === subFilter;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', active);
+      });
+    }
+
+    // The search, category, brand and order live in the address, so a filtered view can be shared or bookmarked.
+    function readAddress() {
+      const params = new URLSearchParams(location.search);
+      const cat = params.get('cat');
+      if (cat && $('.pill[data-f="' + CSS.escape(cat) + '"]')) currentFilter = cat;
+      query = (params.get('q') || '').slice(0, 80);
+      brandFilter = (params.get('marca') || '').slice(0, 40);
+      subFilter = SUBS.some(([key]) => key === params.get('tipo')) || params.get('tipo') === 'otros' ? params.get('tipo') : '';
+      sortOrder = ['asc', 'desc', 'az'].includes(params.get('orden')) ? params.get('orden') : '';
+      searchBox.value = query;
+      sortBox.value = sortOrder;
+      return [...params.keys()].some(key => ['cat', 'q', 'marca', 'tipo', 'orden'].includes(key));
+    }
+
+    function writeAddress() {
+      const params = new URLSearchParams();
+      if (query.trim()) params.set('q', query.trim());
+      if (currentFilter !== 'all') params.set('cat', currentFilter);
+      if (subFilter) params.set('tipo', subFilter);
+      if (brandFilter) params.set('marca', brandFilter);
+      if (sortOrder) params.set('orden', sortOrder);
+      const text = params.toString();
+      try { history.replaceState(null, '', location.pathname + (text ? '?' + text : '') + location.hash); } catch (e) { /* file:// pages cannot change it */ }
     }
 
     function paintCount() {
@@ -704,7 +901,10 @@
     }
 
     function showProducts() {
+      paintSubs();
+      paintBrands();
       findMatches();
+      writeAddress();
       $$('.pc', grid).forEach(card => card.remove());
       rendered = 0;
       renderMore();
@@ -715,10 +915,10 @@
         btn.setAttribute('aria-pressed', on);
         if (on && currentFilter !== 'all') label = I18N.es[btn.dataset.i18n] || '';
       });
-      if (!matches.length) $('#pgEmptyWa').href = waUrl('Hola, busco: ' + [query.trim(), label].filter(Boolean).join(' — '));
+      if (!matches.length) $('#pgEmptyWa').href = waUrl('Hola, busco: ' + [query.trim(), brandFilter, label].filter(Boolean).join(' — '));
     }
 
-    function setFilter(filter) { currentFilter = filter; showProducts(); }
+    function setFilter(filter) { currentFilter = filter; subFilter = ''; showProducts(); }
 
     async function loadCatalog() {
       const response = await fetch('assets/catalog.json');
@@ -726,13 +926,106 @@
       // Each row: [id, name, price, category, brand, MercadoLibre address without "https://"]
       const rows = await response.json();
       catalog = PRODUCTS.concat(rows.map(([id, name, price, cat, brand, path]) => ({
-        cat, brand, name, price,
+        id, cat, brand, name, price,
         img: 'assets/catalog/' + id + '.webp',
         url: 'https://' + path + (path.startsWith('www.') ? ML_SELLER : '')
       })));
       // The featured products stay first, so the cards already on screen are still the right ones.
+      // With a search, a brand or an order chosen, the full catalog changes which products come first.
+      const before = matches.slice(0, rendered);
+      paintBrands();
       findMatches();
-      if (rendered < Math.min(PAGE_SIZE, matches.length)) showProducts(); else paintCount();
+      if (rendered < Math.min(PAGE_SIZE, matches.length) || before.some((p, i) => matches[i] !== p)) showProducts(); else paintCount();
+    }
+
+    /* ── Quote list ─────────────────────────────────────────── */
+    // Products picked with the "+" button. Kept in the browser so the list survives a reload; it is only
+    // sent anywhere when the visitor presses one of the two send buttons.
+    const QUOTE_KEY = 'carbelec_quote';
+    const QUOTE_MAX = 100;
+    const quoteBar = $('#qBar');
+    const quoteOverlay = $('#qOverlay');
+    const quoteList = $('#qList');
+    const quoteRowTpl = $('#qTpl').content.firstElementChild;
+    const clampQty = value => Math.min(9999, Math.max(1, Math.round(Number(value)) || 1));
+    let quote = [];                             // [{ id, name, price, qty }]
+    let quoteOpener = null;
+
+    function loadQuote() {
+      try {
+        const saved = JSON.parse(store.get(QUOTE_KEY) || '[]');
+        quote = (Array.isArray(saved) ? saved : [])
+          .filter(item => item && typeof item.id === 'string' && typeof item.name === 'string')
+          .slice(0, QUOTE_MAX)
+          .map(item => ({ id: item.id.slice(0, 40), name: item.name.slice(0, 200), price: Math.max(0, Number(item.price) || 0), qty: clampQty(item.qty) }));
+      } catch (e) { quote = []; }
+    }
+
+    const inQuote = id => quote.some(item => item.id === id);
+
+    function paintAddButton(card) {
+      const btn = $('.pc-add', card);
+      const on = inQuote(card.dataset.id);
+      btn.classList.toggle('on', on);
+      btn.setAttribute('aria-pressed', on);
+      $('i', btn).className = 'fas ' + (on ? 'fa-check' : 'fa-plus');
+      const label = t(on ? 'pc_added' : 'pc_add');
+      btn.setAttribute('aria-label', label);
+      btn.title = label;
+    }
+
+    // The message stays in Spanish: it is read by the store. Long lists are cut so the WhatsApp link stays valid.
+    function quoteLines(limit) {
+      const lines = [];
+      let used = 0;
+      for (const item of quote) {
+        const line = '• ' + item.qty + ' × ' + item.name + (item.price ? ' (' + fmt(item.price) + ' c/u)' : '');
+        if (used + line.length > limit) { lines.push('… y ' + (quote.length - lines.length) + ' productos más'); break; }
+        lines.push(line);
+        used += line.length + 1;
+      }
+      return lines.join('\n');
+    }
+
+    function paintQuote() {
+      store.set(QUOTE_KEY, JSON.stringify(quote));
+      const units = quote.reduce((sum, item) => sum + item.qty, 0);
+      quoteBar.hidden = !quote.length;
+      $('#qBarN').textContent = units;
+      $('#qTotal').textContent = fmt(quote.reduce((sum, item) => sum + item.qty * item.price, 0));
+      $('#qWa').href = waUrl('Hola, quiero cotizar estos productos:\n' + quoteLines(1500));
+      quoteList.replaceChildren(...quote.map(item => {
+        const row = quoteRowTpl.cloneNode(true);
+        row.dataset.id = item.id;
+        $('.q-name', row).textContent = item.name;
+        $('.q-price', row).textContent = item.price ? fmt(item.price) + ' ' + t('q_each') : '';
+        $('input', row).value = item.qty;
+        translate(row);
+        return row;
+      }));
+      $$('.pc', grid).forEach(paintAddButton);
+      if (!quote.length) closeQuote();
+    }
+
+    function toggleQuote(product) {
+      if (inQuote(product.id)) quote = quote.filter(item => item.id !== product.id);
+      else if (quote.length < QUOTE_MAX) quote.push({ id: product.id, name: product.name, price: product.price || 0, qty: 1 });
+      paintQuote();
+    }
+
+    function openQuote() {
+      quoteOpener = document.activeElement;
+      quoteOverlay.hidden = false;
+      document.body.style.overflow = 'hidden';
+      $('#qClose').focus();
+    }
+
+    function closeQuote() {
+      if (quoteOverlay.hidden) return;
+      quoteOverlay.hidden = true;
+      document.body.style.overflow = '';
+      if (quoteOpener && quoteOpener.isConnected && !quoteOpener.hidden) quoteOpener.focus();
+      quoteOpener = null;
     }
 
     /* ── Start ──────────────────────────────────────────────── */
@@ -759,21 +1052,79 @@
     start('texts', readSpanishFromPage);
 
     start('products', () => {
+      loadQuote();
+      const shared = readAddress();
       showProducts();
+      // A link that carries a search or a category opens on the catalog, not on the top of the page.
+      if (shared && !location.hash) $('#productos').scrollIntoView();
       moreBtn.addEventListener('click', () => {
         const first = renderMore();
         if (first) $('.pc-nm a', first).focus({ preventScroll: true });
       });
-      $$('.pill').forEach(btn => btn.addEventListener('click', () => setFilter(btn.dataset.f)));
+      $$('.pills .pill').forEach(btn => btn.addEventListener('click', () => setFilter(btn.dataset.f)));
+      subsRow.addEventListener('click', e => {
+        const btn = e.target.closest('.pill');
+        if (btn) { subFilter = btn.dataset.sub; showProducts(); }
+      });
       // Category cards are links to #productos; on the way there they also apply their filter.
       $$('.cat[data-cat]').forEach(card => card.addEventListener('click', () => setFilter(card.dataset.cat)));
+      brandBox.addEventListener('change', () => { brandFilter = brandBox.value; showProducts(); });
+      sortBox.addEventListener('change', () => { sortOrder = sortBox.value; showProducts(); });
       let typing;
       searchBox.addEventListener('input', () => {
         clearTimeout(typing);
         typing = setTimeout(() => { query = searchBox.value; showProducts(); }, 150);
       });
+      $('#heroSearch').addEventListener('submit', e => {
+        e.preventDefault();
+        query = searchBox.value = $('#heroQ').value;
+        currentFilter = 'all';
+        brandFilter = subFilter = '';
+        showProducts();
+        $('#productos').scrollIntoView();
+      });
       document.addEventListener('carbelec:lang', paintCount);
       loadCatalog().catch(err => console.error('[CARBELEC] catalog:', err));
+    });
+
+    start('quote list', () => {
+      paintQuote();
+      grid.addEventListener('click', e => {
+        const btn = e.target.closest('.pc-add');
+        if (!btn) return;
+        const product = catalog.find(p => p.id === btn.closest('.pc').dataset.id);
+        if (product) toggleQuote(product);
+      });
+      quoteBar.addEventListener('click', openQuote);
+      $('#qClose').addEventListener('click', closeQuote);
+      quoteOverlay.addEventListener('click', e => { if (e.target === quoteOverlay) closeQuote(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && !quoteOverlay.hidden) closeQuote(); });
+      quoteList.addEventListener('click', e => {
+        const row = e.target.closest('.q-item');
+        const item = row && quote.find(entry => entry.id === row.dataset.id);
+        if (!item) return;
+        if (e.target.closest('.q-del')) quote = quote.filter(entry => entry !== item);
+        else if (e.target.closest('.q-inc')) item.qty = clampQty(item.qty + 1);
+        else if (e.target.closest('.q-dec')) item.qty = clampQty(item.qty - 1);
+        else return;
+        paintQuote();
+      });
+      quoteList.addEventListener('change', e => {
+        const row = e.target.closest('.q-item');
+        const item = row && quote.find(entry => entry.id === row.dataset.id);
+        if (item) { item.qty = clampQty(e.target.value); paintQuote(); }
+      });
+      $('#qClear').addEventListener('click', () => { quote = []; paintQuote(); });
+      // "Enviar por correo" writes the list into the quote form, which the visitor completes and sends.
+      $('#qMail').addEventListener('click', () => {
+        const box = $('#fM');
+        const text = quoteLines(3500);
+        box.value = box.value.trim() ? box.value.trim() + '\n' + text : text;
+        closeQuote();
+        $('#cotizacion').scrollIntoView();
+        $('#fN').focus({ preventScroll: true });
+      });
+      document.addEventListener('carbelec:lang', paintQuote);
     });
 
     start('languages', () => {
@@ -1034,6 +1385,7 @@
           <li>Mejorar nuestros productos y servicios</li>
           <li>Cumplir con obligaciones legales y tributarias</li>
         </ul>
+        <p>El formulario de cotización de este sitio se envía mediante el servicio FormSubmit (formsubmit.co), que procesa los datos ingresados para entregarlos por correo electrónico a CARBELEC. La lista de cotización que arma en el catálogo se guarda únicamente en su navegador hasta que usted decide enviarla.</p>
 
         <h3>4. Asistente virtual con inteligencia artificial</h3>
         <p>CARBELEC utiliza un asistente virtual basado en inteligencia artificial para atender consultas en WhatsApp y en nuestro sitio web. Al interactuar con este asistente:</p>
@@ -1064,7 +1416,7 @@
         <h3>8. Vigencia y modificaciones</h3>
         <p>Esta política entra en vigencia a partir de su publicación y podrá ser actualizada en cualquier momento. Las modificaciones serán publicadas en este mismo sitio web.</p>
 
-        <p class="priv-upd">Última actualización: Marzo 2026</p>
+        <p class="priv-upd">Última actualización: Noviembre 2026</p>
       </div>
       <div class="priv-ft">
         <p>CARBELEC — Carbon Electric S.A.S. • Bogotá, Colombia • Ley 1581 de 2012</p>
