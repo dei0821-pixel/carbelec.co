@@ -120,7 +120,7 @@ Downloaded 14 November 2026 from the public seller page https://www.mercadolibre
 
 ## Full catalog
 
-- **catalog.json** — 1,348 products read from the store's MercadoLibre listing on 14 November 2026. Each row is `[id, name, price in COP, category, brand, MercadoLibre address]`. The page loads this file after the featured products written in `index.html`.
+- **catalog.json** — 1,638 products read from the store's MercadoLibre listing on 14 November 2026. Each row is `[id, name, price in COP, category, brand, MercadoLibre address]`. The page loads this file after the featured products written in `index.html`.
 - **catalog/** — one photo per product, named by its MercadoLibre listing id, resized to at most 640 px (WebP). Sources are the full-size listing photos on `http2.mlstatic.com`.
 
-Only listings whose photo is at least 800 px on its longest side were included (1,374 of 1,665); 26 of those were already featured on the page. Categories and brands were assigned automatically from the product names, so some may need correcting by editing the row in `catalog.json`. Prices are a snapshot and do not update on their own.
+All 1,665 listings are included; 27 of them were already featured on the page. Photos of 291 listings are smaller than 800 px on their longest side (two are under 500 px). Categories and brands were assigned automatically from the product names, so some may need correcting by editing the row in `catalog.json`. Prices are a snapshot and do not update on their own.
