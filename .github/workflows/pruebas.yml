@@ -1,0 +1,28 @@
+# Runs on every pull request and on main: the generated pages must match their sources, and the site must
+# pass the smoke tests in a real browser.
+name: Pruebas
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  pruebas:
+    # Pinned: the Playwright version in package.json installs its browser on Ubuntu 24.04, not on newer images.
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Las páginas generadas están al día
+        run: npm run build && git diff --exit-code
+      - name: Pruebas del sitio
+        run: npm test

@@ -1,0 +1,33 @@
+<section class="sec" id="productos">
+  <p class="crumbs"><a href="/" data-i18n="nav_home">Inicio</a> › <span data-i18n="prod_label">Catálogo</span></p>
+  <h1 class="sec-title" data-i18n="prod_title">Nuestros productos.</h1>
+  <p class="sec-desc" data-i18n="prod_desc">Precios de referencia en pesos colombianos (COP). El precio final es el publicado en MercadoLibre.</p>
+  <div class="psearch"><svg class="ico" aria-hidden="true"><use href="/assets/icons.svg#search"/></svg><input type="search" id="pgSearch" autocomplete="off" enterkeyhint="search" maxlength="80" placeholder="Buscar por nombre, marca o referencia" aria-label="Buscar por nombre, marca o referencia" data-i18n-attr="placeholder:pg_search;aria-label:pg_search"></div>
+  <div class="pills">
+    <button type="button" class="pill active" data-f="all" aria-pressed="true" data-i18n="pill_all">Todos</button>
+    <button type="button" class="pill" data-f="herramientas" aria-pressed="false" data-i18n="cat_tools">Herramientas</button>
+    <button type="button" class="pill" data-f="repuestos" aria-pressed="false" data-i18n="cat_parts">Repuestos</button>
+    <button type="button" class="pill" data-f="electricos" aria-pressed="false" data-i18n="cat_elec">Eléctricos</button>
+    <button type="button" class="pill" data-f="hogar" aria-pressed="false" data-i18n="cat_home">Hogar</button>
+    <button type="button" class="pill" data-f="construccion" aria-pressed="false" data-i18n="cat_build">Construcción</button>
+    <button type="button" class="pill" data-f="seguridad" aria-pressed="false" data-i18n="pill_safety">Seguridad</button>
+  </div>
+  <div class="psubs" id="pgSubs" hidden></div>
+  <div class="ptools">
+    <p class="pcount" id="pgCount" role="status" aria-live="polite"></p>
+    <label class="psel"><span class="sr" data-i18n="pg_brand">Marca</span><select id="pgBrand"><option value="" data-i18n="pg_brand_all">Todas las marcas</option></select></label>
+    <label class="psel"><span class="sr" data-i18n="pg_sort">Ordenar</span><select id="pgSort">
+      <option value="" data-i18n="sort_rel">Destacados primero</option>
+      <option value="asc" data-i18n="sort_asc">Precio: menor a mayor</option>
+      <option value="desc" data-i18n="sort_desc">Precio: mayor a menor</option>
+      <option value="az" data-i18n="sort_az">Nombre: A a Z</option>
+    </select></label>
+  </div>
+  <div class="pgrid" id="pg">
+    <!-- Shown when a search or filter finds nothing -->
+    <p class="pempty" id="pgEmpty" hidden><span data-i18n="empty_a">No encontramos productos para esa búsqueda. Búscalos en</span> <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener">MercadoLibre</a> <span data-i18n="empty_b">o pídelos por</span> <a id="pgEmptyWa" href="https://wa.me/573153899483" target="_blank" rel="noopener">WhatsApp</a>.</p>
+  </div>
+  <p class="pempty" id="pgFail" data-i18n="pg_fail" hidden>No pudimos cargar el catálogo. Recarga la página o consúltalo por categoría más abajo.</p>
+  <div class="pmore"><button type="button" class="btn btn-out" id="pgMore" hidden><svg class="ico" aria-hidden="true"><use href="/assets/icons.svg#plus"/></svg> <span data-i18n="prod_more">Ver más productos</span></button> <a href="https://www.mercadolibre.com.co/pagina/ferreteriacarbelec" target="_blank" rel="noopener" class="btn btn-dark"><svg class="ico" aria-hidden="true"><use href="/assets/icons.svg#external"/></svg> <span data-i18n="prod_cta">Ver 1.665 productos en MercadoLibre</span></a></div>
+  <p class="pcats"><span data-i18n="pcats">Catálogo en lista, por categoría:</span> {{categoryLinks}}</p>
+</section>
