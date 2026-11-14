@@ -44,3 +44,76 @@ The three generic Bosch spare-part cards require a verified photograph of the ex
 
 - **web/** — the same photographs resized to at most 800 px and saved as WebP so the page loads quickly. The product cards use these; the originals above are kept as the verified sources. To add a photo, keep the original here and put a resized copy in `web/`.
 - **logo.png** — the CARBELEC logo shown in the navigation bar and the hero.
+
+## Photos from the CARBELEC MercadoLibre store
+
+Downloaded 14 November 2026 from the public seller page https://www.mercadolibre.com.co/pagina/ferreteriacarbelec (full-size image, resized to at most 800 px). Only photos at least 800 px on their longest side were used.
+
+- **web/ml-amoladora-angular-truper-profesional-esma-4-1-2a.webp** — Amoladora angular Truper Profesional ESMA-4-1/2A9 de 60 Hz color naranja 800 W 127 V + accesorio
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_655654-MLA99873946777_112025-F.webp
+
+- **web/ml-rotomartillo-total-uth110266-1050w-sds-plus-4-5j.webp** — Rotomartillo Total UTH110266 1050W SDS Plus 4.5J con 6 accesorios turquesa
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_994355-MLA99855529361_112025-F.webp
+
+- **web/ml-rotomartillo-800-w-total-frecuencia-60hz-uth3082.webp** — Rotomartillo 800 W, Total Frecuencia 60hz Uth308268 Color Turquesa
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_728823-MLA99533257638_122025-F.webp
+
+- **web/ml-set-de-bocallaves-tubos-46-piezas-tht141462-tota.webp** — Set De Bocallaves Tubos 46 Piezas Tht141462 Total Enc 1/4 Color Azul Petróleo
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_759709-MLA99538813806_122025-F.webp
+
+- **web/ml-caja-para-herramientas-19-x25-3-en-1-desmontable.webp** — Caja Para Herramientas 19 X25 3 En 1 Desmontable Truper CHP-1925R Color Negro
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_915001-MLA95496904494_102025-F.webp
+
+- **web/ml-mini-pistola-de-calor-350-w-profesional-truper-1.webp** — Mini Pistola De Calor 350 W Profesional Truper 102578
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_994932-MLA99543003732_122025-F.webp
+
+- **web/ml-torquimetro-d-trueno-2-lecturas-1-2-truper-torq.webp** — Torquímetro D/trueno 2 Lecturas 1/2 Truper TORQ-1/2 77-204nm
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_634056-MLA100021107217_122025-F.webp
+
+- **web/ml-llaves-total-tht102rk586-combinadas-flexibles-ra.webp** — Llaves Total THT102RK586 Combinadas Flexibles Rachet Juego De 8 A 19Mm
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_653130-MLA99860659821_112025-F.webp
+
+- **web/ml-juego-de-llaves-allen-mm-extralargas-8-piezas-tr.webp** — Juego De Llaves Allen Mm Extralargas 8 Piezas Truper 100933 Color Negro
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_850419-MLA99918406499_112025-F.webp
+
+- **web/ml-taladro-rotomartillo-atornillador-electrico-de-1.webp** — Taladro rotomartillo atornillador eléctrico de 1/2" Truper ROTO-1/2A7, 650W, caja de cartón, 60Hz
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_714633-MLA99507565310_112025-F.webp
+
+- **web/ml-dewalt-dcb107-cargador-de-bateria-de-li-ion-12-v.webp** — Dewalt Dcb107 Cargador De Batería De Li-ion 12 Voltios Max. Color Negro
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_621041-MLU77492381497_072024-F.webp
+
+- **web/ml-pistola-de-pintura-alta-presion-1-8mm-vaso-1000c.webp** — Pistola De Pintura Alta Presion 1.8mm Vaso 1000cc Truper Color Plateado
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_920857-MLA99584685180_122025-F.webp
+
+- **web/ml-soldadura-resina-450g-truper.webp** — Soldadura Resina 450g Truper
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_691541-MLA99856434521_112025-F.webp
+
+- **web/ml-rodilleras-impermeables-para-trabajos-humedos-tr.webp** — Rodilleras Impermeables Para Trabajos Húmedos Truper 103232
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_775605-MLA93962479733_102025-F.webp
+
+- **web/ml-diablo-rojo-destapa-canerias-350gr.webp** — Diablo Rojo Destapa Cañerías 350gr
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_971565-MLA115094752151_072026-F.webp
+
+- **web/ml-cable-red-rj45-cat-5e-patch-cord-por-10-metros-i.webp** — Cable Red Rj45 Cat 5e Patch-cord Por 10 Metros (internet)
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_774368-MCO41738888392_052020-F.webp
+
+- **web/ml-pila-bateria-alcalina-max-d2-energizer.webp** — Pila Bateria Alcalina Max D2 Energizer
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_896633-MLA99335519232_112025-F.webp
+
+- **web/ml-bomba-de-mano-para-inflar-pedal-60-psi-truper-10.webp** — Bomba De Mano Para Inflar Pedal 60 Psi Truper 101667 Color Naranja BOPE-60
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_730909-MLA99580816536_122025-F.webp
+
+- **web/ml-espuma-expansiva-poliuretano-300-ml-truper-10919.webp** — Espuma Expansiva Poliuretano 300 Ml Truper 10919
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_640640-MLA108497591027_032026-F.webp
+
+- **web/ml-pistola-metalica-para-manguera-2-funciones-trupe.webp** — Pistola Metálica Para Manguera 2 Funciones Truper 18476
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_849420-MLA99465165916_112025-F.webp
+
+- **web/ml-cuchillas-oster-4-aspas-acero-inoxidable-batidor.webp** — Cuchillas Oster 4 Aspas Acero Inoxidable Batidora Licuadora
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_963212-MLA99623500416_122025-F.webp
+
+- **web/ml-juego-de-llaves-allen-largas-std-13-piezas-trupe.webp** — Juego De Llaves Allen Largas Std 13 Piezas Truper 13645 Color Plateado
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_989494-MLA99622807088_122025-F.webp
+
+- **web/ml-pinza-pelacable-5-pulgadas-0-6-a-2-6mm-uyustools.webp** — Pinza Pelacable 5 Pulgadas 0.6 A 2.6mm Uyustools Pel205
+  Source: https://http2.mlstatic.com/D_NQ_NP_2X_825681-MLA99362691348_112025-F.webp
