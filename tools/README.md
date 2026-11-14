@@ -17,6 +17,12 @@ The site is static. Two scripts turn a MercadoLibre listing export into what the
 
 4. Open `index.html` through a local web server (`python3 -m http.server`) and check the catalog, then commit.
 
+## Translations
+
+`assets/catalog.en.json` and `assets/catalog.pt.json` hold the product names in English and Portuguese, keyed by
+product id. They are edited by hand: neither script writes them. After an import, new products have no entry
+there and are shown in Spanish until one is added.
+
 ## What each script writes
 
 | Script | Reads | Writes |
