@@ -33,8 +33,7 @@ body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;backgroun
 
 /* HERO - Pure white, no bg mismatch */
 .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:112px 24px 64px;background:var(--bg)}
-.hero-logo{width:min(378px,100%);aspect-ratio:586/202;overflow:hidden;margin-bottom:32px;opacity:0;animation:fadeUp .7s .1s var(--ease) forwards}
-.hero-logo img{display:block;width:100%;height:auto;transform:translateY(-28%)}
+.hero-kicker{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-text);margin-bottom:18px;opacity:0;animation:fadeUp .7s .1s var(--ease) forwards}
 .hero h1{font-size:clamp(44px,7.5vw,80px);font-weight:600;line-height:1.05;letter-spacing:-.04em;max-width:700px;margin-bottom:12px;opacity:0;animation:fadeUp .7s .25s var(--ease) forwards}
 .hero-sub{font-size:clamp(17px,2vw,21px);color:var(--text2);max-width:460px;line-height:1.45;font-weight:400;margin-bottom:32px;opacity:0;animation:fadeUp .7s .4s var(--ease) forwards}
 .hero-search{position:relative;display:flex;gap:8px;width:min(520px,100%);margin-bottom:20px;opacity:0;animation:fadeUp .7s .5s var(--ease) forwards}
@@ -238,7 +237,7 @@ footer{border-top:.5px solid var(--border-light);padding:48px 24px;background:va
   .ab-p,.tc p{font-size:16px}.cat h3{font-size:18px}.cat p,.pc-ds{font-size:14px}.pc-nm{font-size:16px}
   .nav-links a{font-size:14px}.nav-links{gap:32px}
 }
-@media(min-width:2560px){:root{--maxw:1760px}.hero h1{font-size:96px;max-width:900px}.hero-sub{font-size:24px;max-width:560px}.hero-logo{width:460px}.nav-logo{width:180px}.hs-val{font-size:40px}.hs-lbl{font-size:13px}.btn{font-size:19px;padding:14px 28px}.btn-sm{font-size:15px;padding:10px 20px}}
+@media(min-width:2560px){:root{--maxw:1760px}.hero h1{font-size:96px;max-width:900px}.hero-sub{font-size:24px;max-width:560px}.nav-logo{width:180px}.hs-val{font-size:40px}.hs-lbl{font-size:13px}.btn{font-size:19px;padding:14px 28px}.btn-sm{font-size:15px;padding:10px 20px}}
 @media(max-width:900px){
   .nav-links{display:none}.nav-toggle{display:block}.mob-nav.open{display:flex}
   .cats{grid-template-columns:1fr 1fr}.tg,.ab-grid,.co-grid{grid-template-columns:1fr}
