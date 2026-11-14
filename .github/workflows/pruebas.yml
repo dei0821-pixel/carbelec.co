@@ -12,7 +12,8 @@ permissions:
 
 jobs:
   pruebas:
-    runs-on: ubuntu-latest
+    # Pinned: the Playwright version in package.json installs its browser on Ubuntu 24.04, not on newer images.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
